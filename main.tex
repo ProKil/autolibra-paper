@@ -18,7 +18,7 @@
 \hypersetup{colorlinks=true, citecolor=darkblue, linkcolor=darkblue, urlcolor=darkblue}
 
 
-\title{AutoLibra \protect\includegraphics[height=1em]{Template-2025/figs/scale.png}\\ \textit{Metric Induction for Agents with Open-Ended Human Input}}
+\title{AutoLibra \protect\includegraphics[height=1em]{figs/scale.png} \\ \textit{Metric Induction from Open-Ended Human Input for Agents}}
 
 % Authors must not appear in the submitted version. They should be hidden
 % as long as the \colmfinalcopy macro remains commented out below.
@@ -64,17 +64,28 @@ Address \\
 \maketitle
 
 \begin{abstract}
-Humans learn from the input of others in social interaction, which is useful for us to self-reflect and shape future behaviors. 
-Based on this intuition, we build \emph{AutoLibra}, a system that transforms human feedback, \emph{e.g.} ``If you find that the button is disabled, don't click it again''
-(on WebArena), or ``This agent has more autonomy to decide what to do on its own''
-(on CoGym) into metrics evaluating similar failure and successful modes. AutoLibra accomplishes this by clustering similar
-positive and negative behaviors, creating metrics that are ready to prompt LLM-as-a-Judge with concrete examples and definitions. 
-We propose two \emph{meta metrics} to evaluate how aligned a set of metrics is with human open-ended feedback: ``coverage'' and ``redundancy''. Through optimizing these meta metrics, we find that AutoLibra could recover the evaluation dimensions heuristically proposed in previous agent evaluation papers and discover the ones that are overlooked.
+Humans learn from the input of others in social interaction,
+which is useful for us to self-reflect and shape future behaviors. 
+Based on this intuition, we build \emph{AutoLibra},
+a system that transforms human feedback, 
+\emph{e.g.} ``\textsf{If you find that the button is disabled, don't click it again}'',
+or ``\textsf{This agent has too much autonomy to decide what to do on its own}''
+into metrics evaluating similar failure and successful modes.
+AutoLibra accomplishes this by first grounding the feedback in the agent's behavior,
+clustering similar positive and negative behaviors,
+and creating metrics that are ready to prompt LLM-as-a-Judge with
+concrete examples and definitions. 
+We propose two \emph{meta metrics} to evaluate how aligned a set of (induced) metrics
+is with human open-ended feedback: ``coverage'' and ``redundancy''.
+Through optimizing these meta metrics, we find that AutoLibra could
+not only recover the \textbf{agent evaluation} dimensions heuristically proposed
+in previous agent evaluation papers and discover the ones that are overlooked.
 Beyond agent evaluation, we demonstrate two practical applications of
-AutoLibra in agent improvement. First, we show that AutoLibra effectively
-selects high-quality agent fine-tuning data for web browsing.
-Second, we demonstrate that the metrics extracted by AutoLibra serve as better optimization targets
-than task success rate on two challenging text game tasks, enhancing human-in-the-loop prompt engineering.
+AutoLibra in \textbf{agent improvement}:
+First, we show that AutoLibra effectively selects high-quality agent fine-tuning data
+for web browsing. Second, we demonstrate that the metrics extracted by AutoLibra serve
+as better optimization targets than task success rate on two challenging text game tasks,
+enhancing human-in-the-loop prompt engineering.
 \end{abstract}
 
 \section{Introduction}
@@ -84,28 +95,48 @@ We summarize and internalize the feedback into
 generalizable self-evaluation metrics. Compared to the scarce reward
 we get from achieving goals, these metrics offer a lens for self-reflection on the
 strengths and weaknesses of ourselves and a ladder for self-improvement.
-In this paper, we ask: \textbf{can we automatically induce metrics to train and evaluate language agents from natural language feedback?} 
+In this paper, we ask:
+\textbf{can we automatically induce metrics to evaluate and improve language agents from natural language feedback?} 
 
 
-The current evaluation of large language model agents and reward modeling often fall into two camps: (1) goal-oriented evaluation -- \emph{whether the agents have fulfilled the given task}, \emph{e.g.} \citet{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog} and (2) behavior evaluation -- \emph{how well the agents do on heuristically designed dimensions}, \emph{e.g.} \citet{zhousotopia,shao2024collaborative,pan2025why}. 
-Goal-oriented evaluation is often verifiable, but it is not fine-grained or comprehensive enough to diagnose agents' behavior problems or find the bottlenecks for improvements. 
-While behavior evaluation complements it, it requires manual design of the metrics, which is time-consuming, may not align with users' opinions, and often not concrete enough. 
+The current evaluation of large language model (LLM) agents and reward modeling often fall
+into two paradigms: (1) goal-oriented evaluation --
+\emph{whether the agents have fulfilled the given task},
+\emph{e.g.} \citet{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog}
+and (2) behavior evaluation -- \emph{how well the agents do on heuristically designed dimensions},
+\emph{e.g.} \citet{zhousotopia,shao2024collaborative,pan2025why}. 
+Goal-oriented evaluation is often verifiable, but it is not fine-grained or comprehensive enough
+to diagnose agents' behavior problems or find the bottlenecks for improvements. 
+While behavior evaluation complements it, it requires manual design of the metrics by experts,
+which is time-consuming, may not align with users' opinions, and often not concrete enough. 
 
-In this paper, we introduce AutoLibra, an LLM-based system which takes in agent trajectories along with human open-ended feedback, and generates a set of metrics, each with a name, description, and a list of good behavior examples, and bad behavior examples. AutoLibra 
+We introduce AutoLibra \protect\includegraphics[height=1em]{figs/scale.png}, an automatic metric induction method,
+as a new paradigm for agent evaluation and improvement.
+This method offers behavior evaluation for agents, while (1) automating the metric creation process with LLMs, 
+(2) optimizing the alignment through searching for a set of metrics to cover human feedback with minimal redundancy,
+and (3) providing concrete examples of good and bad behaviors for each metric to improve the
+LLM-as-a-Judge's performance. 
+
+AutoLibra takes in agent trajectories along with human open-ended feedback, and generates a set of metrics, each with a name, description, and a list of good behavior examples, and bad behavior examples. AutoLibra 
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figs/autolibra.pdf}
+\end{figure}
 
 
 \begin{wrapfigure}{r}{0.5\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{Template-2025/figs/autolibra-pipeline.pdf}
+    \includegraphics[width=0.5\textwidth]{figs/autolibra-pipeline.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{wrapfigure}
 
-\section{AutoLibra\protect\includegraphics[height=1em]{Template-2025/figs/scale.png}}
+\section{AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}}
 
 
-\section{The lens \protect\includegraphics[height=1em]{Template-2025/figs/microscope.png}: Agent evaluation with AutoLibra}
-\section{The ladder \protect\includegraphics[height=1em]{Template-2025/figs/ladder.png}: Agent improvement with AutoLibra}
+\section{The lens \protect\includegraphics[height=1em]{figs/microscope.png}: Agent evaluation with AutoLibra}
+\section{The ladder \protect\includegraphics[height=1em]{figs/ladder.png}: Agent improvement with AutoLibra}
 \subsection{Style}
 
 Papers to be submitted to COLM 2025 must be prepared according to the

@@ -1,0 +1,50 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Chan et~al.(2024)Chan, Chowdhury, Jaffe, Aung, Sherburn, Mays, Starace, Liu, Maksin, Patwardhan, et~al.]{chan2024mle}
+Jun~Shern Chan, Neil Chowdhury, Oliver Jaffe, James Aung, Dane Sherburn, Evan Mays, Giulio Starace, Kevin Liu, Leon Maksin, Tejal Patwardhan, et~al.
+\newblock Mle-bench: Evaluating machine learning agents on machine learning engineering.
+\newblock \emph{arXiv preprint arXiv:2410.07095}, 2024.
+
+\bibitem[Jimenez et~al.(2024)Jimenez, Yang, Wettig, Yao, Pei, Press, and Narasimhan]{jimenezswe}
+Carlos~E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik~R Narasimhan.
+\newblock Swe-bench: Can language models resolve real-world github issues?
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024.
+
+\bibitem[Paglieri et~al.(2024)Paglieri, Cupia{\l}, Coward, Piterbarg, Wolczyk, Khan, Pignatelli, Kuci{\'n}ski, Pinto, Fergus, et~al.]{paglieri2024balrog}
+Davide Paglieri, Bart{\l}omiej Cupia{\l}, Samuel Coward, Ulyana Piterbarg, Maciej Wolczyk, Akbir Khan, Eduardo Pignatelli, {\L}ukasz Kuci{\'n}ski, Lerrel Pinto, Rob Fergus, et~al.
+\newblock Balrog: Benchmarking agentic llm and vlm reasoning on games.
+\newblock \emph{arXiv preprint arXiv:2411.13543}, 2024.
+
+\bibitem[Pan et~al.(2025)Pan, Cemri, Agrawal, Yang, Chopra, Tiwari, Keutzer, Parameswaran, Ramchandran, Klein, Gonzalez, Zaharia, and Stoica]{pan2025why}
+Melissa~Z Pan, Mert Cemri, Lakshya~A Agrawal, Shuyi Yang, Bhavya Chopra, Rishabh Tiwari, Kurt Keutzer, Aditya Parameswaran, Kannan Ramchandran, Dan Klein, Joseph~E. Gonzalez, Matei Zaharia, and Ion Stoica.
+\newblock Why do multiagent systems fail?
+\newblock In \emph{ICLR 2025 Workshop on Building Trust in Language Models and Applications}, 2025.
+\newblock URL \url{https://openreview.net/forum?id=wM521FqPvI}.
+
+\bibitem[Shao et~al.(2024)Shao, Samuel, Jiang, Yang, and Yang]{shao2024collaborative}
+Yijia Shao, Vinay Samuel, Yucheng Jiang, John Yang, and Diyi Yang.
+\newblock Collaborative gym: A framework for enabling and evaluating human-agent collaboration.
+\newblock \emph{arXiv preprint arXiv:2412.15701}, 2024.
+
+\bibitem[Vaswani et~al.(2017)Vaswani, Shazeer, Parmar, Uszkoreit, Jones, Gomez, Kaiser, and Polosukhin]{Vaswani+2017}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan~N Gomez, \L~ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in Neural Information Processing Systems}, volume~30. Curran Associates, Inc., 2017.
+\newblock URL \url{https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf}.
+
+\bibitem[Zhou et~al.(2024{\natexlab{a}})Zhou, Xu, Zhu, Zhou, Lo, Sridhar, Cheng, Ou, Bisk, Fried, et~al.]{zhouwebarena}
+Shuyan Zhou, Frank~F Xu, Hao Zhu, Xuhui Zhou, Robert Lo, Abishek Sridhar, Xianyi Cheng, Tianyue Ou, Yonatan Bisk, Daniel Fried, et~al.
+\newblock Webarena: A realistic web environment for building autonomous agents.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024{\natexlab{a}}.
+
+\bibitem[Zhou et~al.(2024{\natexlab{b}})Zhou, Zhu, Mathur, Zhang, Yu, Qi, Morency, Bisk, Fried, Neubig, et~al.]{zhousotopia}
+Xuhui Zhou, Hao Zhu, Leena Mathur, Ruohong Zhang, Haofei Yu, Zhengyang Qi, Louis-Philippe Morency, Yonatan Bisk, Daniel Fried, Graham Neubig, et~al.
+\newblock Sotopia: Interactive evaluation for social intelligence in language agents.
+\newblock In \emph{The Twelfth International Conference on Learning Representations}, 2024{\natexlab{b}}.
+
+\end{thebibliography}
