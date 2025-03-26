@@ -56,9 +56,9 @@ Turn 2 unsuccessful improvements (Decreased performance)
 
 Turn 2 improvement and motivation:
 \begin{enumerate}
-    \item Augment subtask-level planning with positional instructions, targets RME
-    \item Meta-prompting by providing task identification heuristic, targets SI, WCR, and WR
-    \item Augment few-shot example with movement guidance, targets
+    \item Augment subtask-level planning instructions with positional instructions, targets RME and RMO
+    \item Meta-prompting by providing condition-based task identification heuristic, targets SI, WCR, and WR
+    \item Augment few-shot example with movement guidance
 \end{enumerate}
 
 
@@ -66,31 +66,22 @@ Turn 2:
 
 
 \begin{itemize}
-    \item Improvement in WCR vs Turn 0, indicating T1 improvements worked
-    \item Slight improvement in RMO, DNE, CSDM but not statistically significant
-    \item Overall improvement in BALROG score because agent seeks objectives
-    \item Qualitatively, agent now targets specific blocks instead of randomly walking - but also now gets stuck when objective complex or multi-step
+    \item Substantial improvement in WCR due to more detailed, condition-based task identification heuristic, corresponding increase in other metrics supports idea that WCR is prerequisite metric to other reasoning metrics
+    \item Strong increase in RME and RMO, indicating improved agent reasoning performance induced by more detailed subtask-level planning  
+    \item SI no improvement, agent still misunderstands map directions and confuses rule blocks with objects
+    \item Qualitatively, agent now recognizes when wall needs to be broken and breaks wall rule; still cannot assemble rules to win; still gets stuck on immovable blocks and walls
 \end{itemize}
 
 Metrics obtained are:
 \begin{itemize}
-    \item Win Rule Construction (WR)
-    \item Selective Interaction with Relevant Objects (SI)
-    \item Rule Manipulation and Execution (RME)
+    \item Subtask Coordination and Overall Task Planning (SC)
 \end{itemize}
 
-Turn 2 unsuccessful improvements (Decreased performance)
+Turn 3 improvement and motivation:
 \begin{enumerate}
-    \item 1-step location and action history as part of observation
-    \item 5-step location and action history as part of observation
-    \item Movement templates (given a start location and destination, what movements are necessary to navigate without colliding with obstacles)
-\end{enumerate}
-
-Turn 2 improvement and motivation:
-\begin{enumerate}
-    \item Augment subtask-level planning with positional instructions
-    \item Meta-prompting by providing task identification heuristic
-    \item Augment few-shot example with movement guidance
+    \item Format observations as absolute position (as opposed to relative) and 
+    \item Chain-of-thought reasoning to assemble goal agenda from
+    \item Many-shot example of goal reasoning
 \end{enumerate}
 
 
