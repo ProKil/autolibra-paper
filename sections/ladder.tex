@@ -1,0 +1,69 @@
+\usepackage{fontspec}
+\usepackage{emoji}
+\usepackage[table,xcdraw]{xcolor}
+\section{The ladder \protect\includegraphics[height=1em]{figs/ladder.png}: Agent improvement with AutoLibra}
+
+
+Methods
+Improvements
+Prompt
+Failed attempts
+Scores
+Defeat null hypothesis of:
+- Goal score alone being sufficient
+- Human-derived metrics alone being sufficient
+
+(~2 pages total incl. tables, shortened prompts)
+
+Turn 0:
+
+Metrics obtained are:
+\begin{itemize}
+    \item Win Condition Recognition (WCR)
+    \item Rule Modification for Obstacle Management (RMO)
+    \item Direct Navigation Efficiency (DNE)
+    \item Context-Sensitive Decision Making (CSDM)
+\end{itemize}
+Win condition recognition prequisite to all other metrics, turn 1 improvements target this metric specifically.
+
+Turn 0 trajectory appears stochastic, ∴ impossible for human to isolate model behaviors for targeted improvement; very low goal score/random trajectory makes using goal score as an agent improvement metric not useful in this case.
+
+Turn 1 improvement and motivation:
+\begin{enumerate}
+    \item Few-shot prompting, targets WCR by giving model example of identifying win condition from native env observations
+    \item Subtask-level planning guidance, target improvement of CSDM and WCR by mapping environment observations to goals, which model could not do in turn 0
+\end{enumerate}
+
+Turn 1:
+
+\begin{itemize}
+    \item Improvement in WCR vs Turn 0, indicating T1 improvements worked
+    \item Slight improvement in RMO, DNE, CSDM but not statistically significant
+    \item Overall improvement in BALROG score because agent seeks objectives
+    \item Qualitatively, agent now targets specific blocks instead of randomly walking - but also now gets stuck when objective complex or multi-step
+\end{itemize}
+
+Metrics obtained are:
+\begin{itemize}
+    \item Win Rule Construction (WR)
+    \item Selective Interaction with Relevant Objects (SI)
+    \item Rule Manipulation and Execution (RME)
+\end{itemize}
+
+Turn 2 unsuccessful improvements:
+\begin{enumerate}
+    \item 1-step location and action history as part of observation
+    \item 5-step location and action history as part of observation
+    \item Movement templates (
+\end{enumerate}
+
+Turn 2 improvement and motivation:
+\begin{enumerate}
+    \item Augment subtask-level planning with positional instructions
+    \item Meta prompting 
+\end{enumerate}
+
+
+Turn 2:
+
+Turn 3:
