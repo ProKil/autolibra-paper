@@ -64,9 +64,11 @@ Address \\
 \maketitle
 
 \begin{abstract}
-Humans learn from the input of others in social interaction,
-which is useful for us to self-reflect and shape future behaviors. 
-Based on this intuition, we build \emph{AutoLibra},
+The evaluation and optimization of language agents are often based on either
+task success or heuristically designed metrics.
+However, these approaches are either not fine-grained enough or require 
+manual design of the metrics by experts.
+We propose \emph{AutoLibra},
 a system that transforms human feedback, 
 \emph{e.g.} ``\textsf{If you find that the button is disabled, don't click it again}'',
 or ``\textsf{This agent has too much autonomy to decide what to do on its own}''
@@ -79,13 +81,15 @@ We propose two \emph{meta metrics} to evaluate how aligned a set of (induced) me
 is with human open-ended feedback: ``coverage'' and ``redundancy''.
 Through optimizing these meta metrics, we find that AutoLibra could
 not only recover the \textbf{agent evaluation} dimensions heuristically proposed
-in previous agent evaluation papers and discover the ones that are overlooked.
+in previous agent evaluation benchmarks, but also discover the ones that have been overlooked.
 Beyond agent evaluation, we demonstrate two practical applications of
 AutoLibra in \textbf{agent improvement}:
 First, we show that AutoLibra effectively selects high-quality agent fine-tuning data
 for web browsing. Second, we demonstrate that the metrics extracted by AutoLibra serve
 as better optimization targets than task success rate on two challenging text game tasks,
-enhancing human-in-the-loop prompt engineering.
+enhancing prompt engineering.
+Our results suggest that AutoLibra can use very small number of annotations (less than 100 annotations), 
+to induce a set of interpretable metrics with higher than 80\% coverage on unseen feedback.
 \end{abstract}
 
 \section{Introduction}
