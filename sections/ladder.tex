@@ -79,10 +79,24 @@ Metrics obtained are:
 
 Turn 3 improvement and motivation:
 \begin{enumerate}
-    \item Format observations as absolute position (as opposed to relative) and 
-    \item Chain-of-thought reasoning to assemble goal agenda from
-    \item Many-shot example of goal reasoning
+    \item Format observations as absolute position (as opposed to relative), listing of immovable/movable blocks (DNE)
+    \item Chain-of-thought reasoning to assemble goal agenda based on turn-to-turn observations (SC)
+    \item Many-shot example of task solving and goal agenda formation (SC, RME)
+    \item Navigation instructions to avoid undesired block and wall collisions (DNE)
+    \item Explicit instructions on how to assemble rules (WR, RME)
 \end{enumerate}
 
-
 Turn 3:
+
+\begin{itemize}
+    \item Large increase in SI and CSDM induced by agent following instructions in CoT reasoning plan.
+    \item Strong improvement in DNE, DNE metric informed addition of absolute position and navigation instructions
+    \item Small increase in WR; agent demonstrates limited capabilities to assemble win condition rules as long as few other obstacles present
+    \item Qualitatively, nearly agent always understands when wall rule can be and cannot be broken, as well as when it's not necessary to break the wall rule, covers nearly all tasks that involve going to win; understands how to assemble win rules but still struggles with changing block direction and understanding that blocks get stuck against walls
+
+\end{itemize}
+
+Metrics obtained are:
+\begin{itemize}
+    \item Interaction with Immovable Objects (IO)
+\end{itemize}
