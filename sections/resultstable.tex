@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{colortbl}
+
+% Function to generate color based on percentage value
+\newcommand{\cellcolorpercent}[1]{%
+  \ifdim #1 pt < 10 pt \cellcolor{red!90}%
+  \else\ifdim #1 pt < 20 pt \cellcolor{red!80}%
+  \else\ifdim #1 pt < 30 pt \cellcolor{red!70}%
+  \else\ifdim #1 pt < 40 pt \cellcolor{red!60}%
+  \else\ifdim #1 pt < 50 pt \cellcolor{red!50}%
+  \else\ifdim #1 pt < 60 pt \cellcolor{yellow!40}%
+  \else\ifdim #1 pt < 70 pt \cellcolor{yellow!30}%
+  \else\ifdim #1 pt < 80 pt \cellcolor{green!30}%
+  \else\ifdim #1 pt < 90 pt \cellcolor{green!50}%
+  \else\ifdim #1 pt < 100 pt \cellcolor{green!70}%
+  \else\cellcolor{green!90}%
+  \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
+}
+
+\begin{document}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|>{\raggedright\arraybackslash}p{4cm}|c|c|c|c|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+\textbf{Turns} & 0 & 1 & 2 & 3 \\ \hline
+\textbf{Win Condition Recognition} & \cellcolorpercent{27.78} 27.78\% & \cellcolorpercent{50.00} 50.00\% & \cellcolorpercent{88.89} 88.89\% & \cellcolorpercent{94.44} 94.44\% \\ \hline
+\textbf{Rule Modification} & \cellcolorpercent{5.56} 5.56\% & \cellcolorpercent{11.11} 11.11\% & \cellcolorpercent{27.78} 27.78\% & \cellcolorpercent{44.44} 44.44\% \\ \hline
+\textbf{Direct Navigation Efficiency} & \cellcolorpercent{5.56} 5.56\% & \cellcolorpercent{12.50} 12.50\% & \cellcolorpercent{12.50} 12.50\% & \cellcolorpercent{44.44} 44.44\% \\ \hline
+\textbf{Context-Sensitive Decision Making} & \cellcolorpercent{11.11} 11.11\% & \cellcolorpercent{12.50} 12.50\% & \cellcolorpercent{12.50} 12.50\% & \cellcolorpercent{38.89} 38.89\% \\ \hline
+\textbf{Win Rule Construction} & - & \cellcolorpercent{0.00} 0.00\% & \cellcolorpercent{0.00} 0.00\% & \cellcolorpercent{5.56} 5.56\% \\ \hline
+\textbf{Selective Interaction With Relevant Objects (Irrelevant Obj. Avoidance)} & - & \cellcolorpercent{27.78} 27.78\% & \cellcolorpercent{44.44} 44.44\% & \cellcolorpercent{88.89} 88.89\% \\ \hline
+\textbf{Rule Manipulation and Exec. (Effective Wall Rule Interpretation)} & - & \cellcolorpercent{5.56} 5.56\% & \cellcolorpercent{27.78} 27.78\% & \cellcolorpercent{33.33} 33.33\% \\ \hline
+\textbf{Subtask Coordination} & - & - & \cellcolorpercent{11.11} 11.11\% & \cellcolorpercent{33.33} 33.33\% \\ \hline
+\textbf{Immovable Interaction} & - & - & - & \cellcolorpercent{66.67} 66.67\% \\ \hline
+\end{tabular}
+\caption{Percentage Values with Color Gradient Based on Performance}
+\end{table}
+
+\end{document}
