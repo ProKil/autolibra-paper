@@ -92,7 +92,17 @@ Our results suggest that AutoLibra can use very small number of annotations (les
 to induce a set of interpretable metrics with higher than 80\% coverage on unseen feedback.
 \end{abstract}
 
+
 \section{Introduction}
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+   \vspace{-45pt}
+   \centering
+   \includegraphics[width=0.5\textwidth]{figs/autolibra.pdf}
+   \caption{Comparison of AutoLibra with existing agent evaluation paradigms.}
+\end{wrapfigure}
+
+
 In the development process, humans receive feedback from others,
 both praises and critics, although not all are accurate or constructive.
 We summarize and internalize the feedback into
@@ -102,7 +112,7 @@ strengths and weaknesses of ourselves and a ladder for self-improvement.
 In this paper, we ask:
 \textbf{can we automatically induce metrics to evaluate and improve language agents from natural language feedback?} 
 
-
+   
 The current evaluation of large language model (LLM) agents and reward modeling often fall
 into two paradigms: (1) goal-oriented evaluation --
 \emph{whether the agents have fulfilled the given task},
@@ -123,15 +133,11 @@ LLM-as-a-Judge's performance.
 
 AutoLibra takes in agent trajectories along with human open-ended feedback, and generates a set of metrics, each with a name, description, and a list of good behavior examples, and bad behavior examples. AutoLibra 
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{figs/autolibra.pdf}
-\end{figure}
 
 
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{wrapfigure}{r}{0.7\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{figs/autolibra-pipeline.pdf}
+    \includegraphics[width=0.7\textwidth]{figs/autolibra-teaser.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{wrapfigure}
