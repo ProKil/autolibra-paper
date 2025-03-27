@@ -1,18 +1,18 @@
 \section{Introduction}
 
-\begin{wrapfigure}[18]{r}{0.5\textwidth}
-   \vspace{-45pt}
+\begin{wrapfigure}[18]{r}{0.45\textwidth}
+   \vspace{-40pt}
    \centering
-   \includegraphics[width=0.5\textwidth]{figs/autolibra.pdf}
-   \caption{Comparison of AutoLibra with existing agent evaluation paradigms.}
+   \includegraphics[width=0.45\textwidth]{figs/autolibra.pdf}
+   \caption{AutoLibra provides behavioral evaluation on agent performance
+    through automatic metric induction based on human feedback and agent trajectories.}
 \end{wrapfigure}
 
 
-Feedback is critical for human self-assessment and improvement \citep{nicol2006formative}.
-
-Compared to the scarce reward
-we get from achieving goals, these metrics offer a lens for self-reflection on the
-strengths and weaknesses of ourselves and a ladder for self-improvement.
+Efficient human learners internalize open-ended feedback from others into self-regulation metrics
+\citep{pintrich2002development,nicol2006formative}.
+These metrics offer lenses for self-reflection on the
+strengths and weaknesses of ourselves and ladders for self-improvement.
 In this paper, we ask:
 \textbf{can we automatically induce metrics to evaluate and improve language agents from natural language feedback?} 
 
@@ -20,13 +20,16 @@ In this paper, we ask:
 The current evaluation of large language model (LLM) agents and reward modeling often fall
 into two paradigms: (1) goal-oriented evaluation --
 \emph{whether the agents have fulfilled the given task},
-\emph{e.g.} \citet{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog}
+\emph{e.g.} benchmarks \citep{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog} and reward
+modeling approaches \citep{pan2024autonomous,chen2025scaling,choudhury2025process}
 and (2) behavior evaluation -- \emph{how well the agents do on heuristically designed dimensions},
-\emph{e.g.} \citet{zhousotopia,shao2024collaborative,pan2025why}. 
-Goal-oriented evaluation is often verifiable, but it is not fine-grained or comprehensive enough
-to diagnose agents' behavior problems or find the bottlenecks for improvements. 
-While behavior evaluation complements it, it requires manual design of the metrics by experts,
-which is time-consuming, may not align with users' opinions, and often not concrete enough. 
+\emph{e.g.} social agent and human-agent interaction benchmarks \citep{zhousotopia,shao2024collaborative}
+and agent failure mode analysis \citep{pan2025why,zhang2023effects,yang2023behavioral}. 
+Goal-oriented evaluation is often designed to be verifiable through considering, but it is not fine-grained
+or comprehensive enough to diagnose agents' behavior problems or find the bottlenecks for improvements \citep{yehudai2025survey}.  
+While behavior evaluation complements it, it requires manual design of the metrics either based on top-down heuristics
+\citep{zhousotopia}, or thematic analysis of the agent's behavior \citep{shao2024collaborative,pan2025why}.
+This manual design process is often time-consuming and labor-intensive through expert annotations and classifications. 
 
 We introduce AutoLibra \protect\includegraphics[height=1em]{figs/scale.png}, an automatic metric induction method,
 as a new paradigm for agent evaluation and improvement.
@@ -34,14 +37,14 @@ This method offers behavior evaluation for agents, while (1) automating the metr
 (2) optimizing the alignment through searching for a set of metrics to cover human feedback with minimal redundancy,
 and (3) providing concrete examples of good and bad behaviors for each metric to improve the
 LLM-as-a-Judge's performance. 
-
-AutoLibra takes in agent trajectories along with human open-ended feedback, and generates a set of metrics, each with a name, description, and a list of good behavior examples, and bad behavior examples. AutoLibra 
-
-
-
 \begin{wrapfigure}{r}{0.7\textwidth}
     \centering
     \includegraphics[width=0.7\textwidth]{figs/autolibra-teaser.pdf}
     \caption{Caption}
     \label{fig:enter-label}
 \end{wrapfigure}
+
+AutoLibra takes in agent trajectories along with human open-ended feedback, and generates a set of metrics, each with a name, description, and a list of good behavior examples, and bad behavior examples. AutoLibra 
+
+
+
