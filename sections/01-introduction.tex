@@ -39,7 +39,7 @@ This method offers behavior evaluation for agents, with the following advantages
 (2) it could be applied to different kinds of agents and tasks, and 
 (3) the metrics are fully explainable and interpretable by humans.
 
-\begin{wrapfigure}{r}{0.65\textwidth}
+\begin{wrapfigure}[23]{l}{0.65\textwidth}
     \centering
     \includegraphics[width=0.65\textwidth]{figs/autolibra-teaser.pdf}
     \caption{AutoLibra iteratively discover new optimization targets throughout agent optimization process.}
@@ -69,14 +69,16 @@ metrics from candidates proposed in the Extraction process.
 
 
 With AutoLibra, we aim to answer the following research questions:
-\begin{description}
-    \item[RQ1:] Can LLMs serve as a proxy for humans when being used in agent behavior thematic analysis,
+
+\textbf{RQ1:} Can LLMs serve as a proxy for humans when being used in agent behavior thematic analysis,
     behavior evaluation, and meta-evaluating the LLM-as-a-Judge results?
-    \item[RQ2:] What are the differences between the metrics induced by AutoLibra and the behavior evaluation
+
+\textbf{RQ2:}    What are the differences between the metrics induced by AutoLibra and the behavior evaluation
     metrics designed by human experts?
-    \item[RQ3:] Is AutoLibra useful for improving the performance of agents in different tasks by 
+
+\textbf{RQ3:}    Is AutoLibra useful for improving the performance of agents in different tasks by 
     providing fine-grained behavior evaluation for human agent engineers and agent learning algorithms?
-\end{description}
+
 
 With experiments on multiple agent domains, including collaborative agents \citep{shao2024collaborative}, social agents 
 \citep{zhousotopia}, web agents \citep{zhouwebarena,he2024webvoyager}, and text game agents \citep{paglieri2024balrog,cloos2024babaaibreakrules}, 
