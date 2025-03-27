@@ -35,7 +35,12 @@ The feedback of human annotators could contains multiple aspects, e.g. \textsf{A
 on giving me a consistent itinerary and vacation plan, although It froze on the last couple of minutes.},
 collected from human annotators in CoGym \citep{shao2024collaborative}, contains a positive aspect
 about the agent's ability to generate a consistent itinerary, and a negative aspect about the agent freezing
-at the end. Here we define \emph{aspect} as a triple 
+at the end. Here we define an \emph{aspect} as a triple $(\texttt{behavior}, \texttt{feedback}, \texttt{sign})$.
+In the positive aspect of the previous example, the \texttt{behavior} is the agent's actions to create
+a 20-day itinerary for Maldives, the \texttt{feedback} is that the itinerary created is consistent, 
+and the \texttt{sign} is positive. 
+
+
 
 \subsection{Behavior clustering}
 \label{sec:clustering}
