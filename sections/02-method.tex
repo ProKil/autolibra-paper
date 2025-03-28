@@ -19,7 +19,7 @@ induced metrics can be used in LLM-as-a-Judge to generate human-aligned evaluati
 
 As illustrated in Fig. \ref{fig:autolibra-pipeline}, AutoLibra achieves these desiderata through a closed-loop pipeline
 consisting of three major steps: \textbf{Extraction Process} first grounds the human feedback
-for each trajectory into aspects (\S\ref{sec:grounding}), and then clusters the aspects into $N$ metrics(\S\ref{sec:clustering}).
+for each trajectory into aspects (\S\ref{sec:grounding}), and then clusters the aspects into $N$ metrics (\S\ref{sec:clustering}).
 \textbf{LLM-as-a-Judge} gives each trajectory scores for the induced metrics, the combinations of
 metrics and scores becoming the traits of the agents (\S\ref{sec:llm-judge}).
 Finally, \textbf{Meta-Evaluation Process} measures the quality of induced metrics through matching
@@ -57,7 +57,7 @@ To illustrate this step, we consider another example in the same dataset
 the \texttt{behavior} is the agent's action to quickly write and run a Python script, the \texttt{feedback}
 is that the agent responds quickly, and the \texttt{sign} is positive. Although this aspect is a positive aspect,
 it reflects the same dimension of the agent's behavior as the previous negative aspect just on the opposite side.
-Each metrics is a cluster of aspects, with a definition summarizing the criteria of positive behaviors,
+Each \emph{metric} is a cluster of aspects, with a definition summarizing the criteria of positive behaviors,
 and a list of positive behavior examples, and a list of negative behavior examples. This clustering procedure
 is similar to the theme induction step in thematic analysis.
 
@@ -78,10 +78,41 @@ But don't limit to one particular website or one particular character.
 \subsection{LLM-as-a-Judge}
 \label{sec:llm-judge}
 
-LLM-as-a-Judge is a large language model that evaluates the agent trajectories based on the induced metrics.
+LLM-as-a-Judge \citep{zheng2023judging},
+or more broadly model-based evaluation 
+\citep{zhang2019bertscore,celikyilmaz2021evaluationtextgenerationsurvey}
+is a method to rely on machine learning models to evaluate the output of other machine learning models.
+The success of it depends on the gap between the difficulty of the evaluation or verification and 
+that of generation and action. 
+In agentic tasks, this gap is often large, as the policy model needs to perform 
+multiple steps of decision making, while the evaluation model only needs to
+classify the trajectories, which make LLM-as-a-Judge widely used \citep{zhouwebarena,he2024webvoyager,zhousotopia}.
+In AutoLibra, we also use LLM-as-a-Judge as the evaluation method to
+evluate the agent trajectories based on the induced metrics. However, LLM-as-a-Judge
+can be replaced by any other evaluation methods implementing the induced metrics,
+e.g. \texttt{interact-valid-element} metric
+could be evaluated by a rule-based evaluator which checks if the agent
+interacts with valid elements on the webpage. Future research could explore
+programmtical evaluation generation methods \citep{maeureka} to generate 
+programs for the induced metrics.
+
+Taking the induced metrics as input, an LLM (we use o3-mini medium,
+as it provides similar results in this step as o3-mini high
+but is cheaper to run) is prompted to rate agent trajectories into
+\{+1, -1, N/A\} for each metric. The output of LLM-as-a-Judge is a set of
+positive \emph{traits}, and a set of negative \emph{traits}. When we calculate the scores of 
+the metrics, we use the ratio of agent trajectories rated as positive
+to the ones that are rated as positive or negative, ignoring the N/A ones,
+since not all metrics are applicable to all trajectories ---
+some metrics like \texttt{valid-search-terms} are only applicable when the task
+involves searching. 
 
 \subsection{Meta-evaluation}
 \label{sec:meta-evaluation}
+
+The last component of the loop is the Meta-Evaluation Process. ``Meta'' here implies 
+that we are evaluating the evaluation metrics and results. 
+This step takes the traits and the aspects in the 
 
 \subsection{Metric optimization}
 \label{sec:metric-optimization}
