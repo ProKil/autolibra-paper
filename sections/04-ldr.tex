@@ -39,13 +39,12 @@ In performing iterative agent improvement with AutoLibra, a full cycle of the Au
     \end{algorithmic}
 \end{algorithm}
 
-\input{sections/metrics.tex}\label{tab:metrics}
-\input{sections/babaisai.tex}\label{tab:metric_perf}
-\input{sections/heldout.tex}\label{tab:heldout}
+\input{sections/metrics.tex}
+\input{sections/heldout.tex}
 
 \subsection{Results}
 
-The induced metrics and the agent's per-task performance are shown in Table \ref{tab:metrics}, Table \ref{tab:metric_perf}, respectively. A significant improvement in the agent's is observed from Turn 0 to Turn 3, with the agent achieving a both higher environment score and trajectory performance on the held-out tasks compared to the baseline agent. Significantly, the agent's performance on specific metrics increased correspondingly to code changes targeting those metrics, demonstrating the utility of AutoLibra for fine-grained agent improvement. This is discussed in more detail in the following sections.
+The induced metrics and the agent's per-task performance are shown in Table \ref{tab:metrics} and Table \ref{tab:heldout}, respectively. A significant improvement in the agent's is observed from Turn 0 to Turn 3, with the agent achieving a both higher environment score and trajectory performance on the held-out tasks compared to the baseline agent. Significantly, the agent's performance on specific metrics increased correspondingly to code changes targeting those metrics, demonstrating the utility of AutoLibra for fine-grained agent improvement. This is discussed in more detail in the following sections.
 
 \subsubsection{Extracted Metrics and Improvements}
 The metrics induced by AutoLibra (Table \ref{tab:metrics}) capture the behavior of the agent effectively, with coverage increasing from 65\% at Turn 0 to 92\% at Turn 3 and a low mean redundancy of 56\%. Notably, earlier metrics were found to describe higher-level behaviors than later metrics, reflective of the more complex behaviors that the agent demonstrated in later turns, as well as the compositionality of induced metrics. Code changes were selected to specifically target given metrics, and as seen in Figure \ref{fig:autolibra-training}, the agent's performance on the targeted metric improved significantly in the turn following the code change. This demonstrates the utility of AutoLibra for fine-grained agent improvement, as well as the human interpretability of the induced metrics.
@@ -88,7 +87,7 @@ Qualitatively, nearly agent always understands when wall rule can be and cannot 
 % A turn-by-turn discussion of metrics and targeted code changes is presented in Appendix XXX.
 \subsubsection{Held-Out Task Performance}
 
-On the held-out tasks, the agent improved significantly from Turn 0 to Turn 3, with an environment scores of 30\% and 55\%, respectively, a substantial increase compared to the highest base model performance of 33\% on baba-is-ai \cite{paglieri2024balrog}, and demonstrating that the improvements realized by AutoLibra are generalizable to unseen tasks. The agent's trajectory performance also improved significantly, with the average number of steps per task (capped at 100) decreasing from 79 to 51, indicating that the agent's reasoning performance and efficiency improved as a result of the code changes made in each turn. The agent's performance on the held-out tasks is shown in Table \ref{tab:heldout}.
+On the held-out tasks, the agent improved significantly from Turn 0 to Turn 3, with an environment scores of 30\% and 55\%, respectively, a substantial increase compared to the highest base model performance of 33\% on baba-is-ai \cite{paglieri2024balrog}, and demonstrating that the improvements realized by AutoLibra are generalizable to unseen tasks. The agent's trajectory performance also improved significantly, with the average number of steps per task (capped at 100) decreasing from 79 to 51, indicating that the agent's reasoning performance and efficiency improved as a result of the code changes made in each turn. The agent's performance on the held-out tasks is shown in Table \ref{tab:metric_perf}.
 %The greatest performance increase was observed between Turn 2 and Turn 3, expected to due to the consistency of wall-breaking and the emergence of rule-construction that was previously absent.
 
 
@@ -102,20 +101,32 @@ The agent code for each turn (0-3) was tested with Claude-3-5 instead of GPT-4o-
 
 \subsubsection{Different Environment}
 
-AutoLibra was further evaluated in a new environment, whose rules and objectives were different from those of baba-is-ai. MiniHack is a grid navigation game expressed in text similar to baba-is-ai, consisting of a procedurally generated environment that requires the agent to navigate a space consisting of various agent roles, creatures, items, and tasks to reach a goal \cite{samvelyan2021minihackplanetsandboxopenended}. Given its plasticity and abundant elements, MiniHack is more challenging and diversified than baba-is-ai as it can simulate significantly different environments that test different capabilities of agents. Similar as our experiments with baba-is-ai, the improvement for MiniHack also follows Algorithm 1. Two turns of iterative agent improvement with AutoLibra were performed on MiniHack. Four representative tasks for MiniHack are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the MiniHack environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.
+AutoLibra was further evaluated in a new environment, whose rules and objectives were different from those of baba-is-ai. MiniHack is a grid navigation game expressed in text similar to baba-is-ai, consisting of a procedurally generated environment that requires the agent to navigate a space consisting of various agent roles, creatures, items, and tasks to reach a goal \cite{samvelyan2021minihackplanetsandboxopenended}. Given its plasticity and abundant elements, MiniHack is more challenging and diversified than baba-is-ai as it can simulate significantly different environments that test different capabilities of agents. Similar as our experiments with baba-is-ai, the improvement for MiniHack also follows Algorithm 1. Two turns of iterative agent improvement with AutoLibra were performed on MiniHack. Four representative tasks for MiniHack are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the MiniHack environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.\\
+\\
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\textwidth]{figs/emojis/maps.png}
+    \caption{Overview of four maps used in the agent optimization process. 
+    From left to right, up to down: (1) \emph{Boxoban}, (2) \emph{MazeWalk}, (3) \emph{Corridor Fight}, and (4) \emph{Quest}.}
+    \label{fig:minihack_maps}
+\end{figure}
+\input{sections/metrics_mini.tex}
+\input{sections/heldout_mini.tex}
 
-\input{sections/metrics_mini.tex}\label{tab:metrics_mini}
+\subsubsection{Representative Tasks}
+The four selected representative tasks each provide a unique perspective on evaluating an agent's capability. Figure \ref{fig:minihack_maps} shows an example for each task, and from left to right, up to down, these maps respectively represent Boxoban, MazeWalk, Corridor Fight, and Quest. Boxoban is a box-pushing game inspired by Sokoban. To succeed in Boxoban, the agent needs to push the four boulders(orange balls) onto the four fountains(blue icons), and partial credit will be awarded for pushing some of the boulders onto the fountains. Boxoban tests the agent's capability in strategic planning and rule-following. MazeWalk is a game that requires the agent to explore unknown dark spaces to find the target downstairs(the icon with a downward arrow). Two challenges for MazeWalk are invisibility—the agent has a highly restrained vision of the map in the beginning—and darkness—even if the agent has visited a block, the block will plunge into darkness as the agent walks away. Thus, MazeWalk tests the agent's capability in map memory and strategic searching. Corridor Fight is a game that requires the agent to explore the unknown dark corridor to find the target downstairs while surviving the giant rats. Corridor Fight tests the agent's capability in memory, space awareness, hazard awareness, and strategic combat. Finally, Quest requires the agent to use a tool to help itself cross the deadly lava, survive randomly generated monsters, and search for the target downstairs. As the most randomized game, it tests the agent's abilities to recognize and utilize tools, understand its role and special power, and strategically survive from monsters.
+
 
 \subsubsection{Results}
 
-f
+The induced metrics and the agent's per-task performance are shown in Table \ref{tab:metrics_mini}, Table \ref{tab:metric_mini_perf}, respectively. A substantial improvement in the agent's is observed from Turn 1 to Turn 2, with the agent achieving a both higher environment score and trajectory performance on the held-out tasks compared to the baseline agent. Specifically, the agent's performance on specific metrics increased correspondingly to prompt changes targeting those metrics, demonstrating the utility of AutoLibra for fine-grained agent improvement. This is discussed in more detail in the following sections.
 
-\paragraph{\textit{4.4.3.1 Results}}~\newline 
-\\GPT-40-241120 is used as the agent model.
-\paragraph{\textit{4.4.3.1 Results}}~\newline 
-\\GPT-40-241120 is used as the agent model.
 
-\subsubsection{Results}
+\paragraph{\textit{4.4.4.1 Extracted Metrics and Improvements}}~\newline 
+\\The metrics induced by AutoLibra (Table \ref{tab:metrics_mini}) capture the behavior of the agent effectively through all turns, with coverage of 83\% at Turn 0 to 88\% at Turn 2 and a low average redundancy of 66\%. Notably, due to the diversity of tasks, most metrics only focus on one or two tasks. Moreover, the metrics generated at turn 0 are already complete enough as they show a good coverage of all four tasks, and the later metrics were found to describe detailed behaviors for targeting one task respectively. Prompt changes were selected to specifically target given metrics, and as seen in Figure \ref{fig:autolibra-training}, the agent's performance on the targeted metric improved significantly in the turn following the code change. This demonstrates the utility of AutoLibra for fine-grained agent improvement, as well as the human interpretability of the induced metrics.
 
-f
+
+\paragraph{\textit{4.4.4.2 Held-Out Task Performance}}~\newline 
+\\For the held-out tasks, the agent improved from turn 0 to turn 2, with score from 0\% to 25\%, respectively, a substantial increase compared to the highest base model performance of 33\% on baba-is-ai \cite{paglieri2024balrog}, and demonstrating that the improvements realized by AutoLibra are generalizable to unseen tasks. The agent's trajectory performance also improved significantly, with the average number of steps per task (capped at 100) decreasing from 79 to 51, indicating that the agent's reasoning performance and efficiency improved as a result of the code changes made in each turn. The agent's performance on the held-out tasks is shown in Table \ref{tab:metric_perf}.
+
 
