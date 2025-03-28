@@ -66,10 +66,8 @@ However, clustering similar agent behaviors together is challenging for statitis
     but the clusters are mostly based on tasks and not on the behaviors.
 }
 Inspired by \citet{viswanathan2024large,lam2024concept}, we prompt an LLM
-(
-    we use o3-mini high\footnote{https://openai.com/index/openai-o3-mini/}, as it yields the best coverage and redundancy scores
-    as evaluated later
-) to cluster the aspects 
+(we use o3-mini high\footnote{https://openai.com/index/openai-o3-mini/}, as it yields the best coverage and redundancy scores
+    as evaluated later) to cluster the aspects 
 into $N$ metrics, and provide the LLM with the following instructions:
 The granularity of the grouping should be minimal, only very similar behaviors should be grouped together.
 But don't limit to one particular website or one particular character.
@@ -81,14 +79,14 @@ But don't limit to one particular website or one particular character.
 LLM-as-a-Judge \citep{zheng2023judging},
 or more broadly model-based evaluation 
 \citep{zhang2019bertscore,celikyilmaz2021evaluationtextgenerationsurvey}
-is a method to rely on machine learning models to evaluate the output of other machine learning models.
+is a method to use machine learning models to evaluate the output of other machine learning models.
 The success of it depends on the gap between the difficulty of the evaluation or verification and 
 that of generation and action. 
 In agentic tasks, this gap is often large, as the policy model needs to perform 
 multiple steps of decision making, while the evaluation model only needs to
 classify the trajectories, which make LLM-as-a-Judge widely used \citep{zhouwebarena,he2024webvoyager,zhousotopia}.
-In AutoLibra, we also use LLM-as-a-Judge as the evaluation method to
-evluate the agent trajectories based on the induced metrics. However, LLM-as-a-Judge
+In AutoLibra, we also use LLM-as-a-Judge to
+evaluate the agent trajectories configurated with the induced metrics. However, LLM-as-a-Judge
 can be replaced by any other evaluation methods implementing the induced metrics,
 e.g. \texttt{interact-valid-element} metric
 could be evaluated by a rule-based evaluator which checks if the agent
@@ -112,10 +110,49 @@ involves searching.
 
 The last component of the loop is the Meta-Evaluation Process. ``Meta'' here implies 
 that we are evaluating the evaluation metrics and results. 
-This step takes the traits and the aspects in the 
+This step takes the traits detected by the LLM-as-a-Judge, and matches them with the aspects
+grounded from the human feedback. The goal is to verify (1) whether the induced metrics 
+covers what the human annotators care about, and (2) whether LLM-as-a-Judge can produce
+accurate evaluation results based on the induced metrics. In the previous example,
+if the \texttt{respond-promptly} is extracted as a metric, and the LLM-as-a-Judge
+has the same opinion as the human annotators, then this aspect is considered as successfully covered.
+If either a similar metric was not extracted, or the LLM-as-a-Judge assigns a different score,
+then this aspect is considered as not covered.
+
+To perform this step, we separate the aspects into positive and negative aspects, and
+traits into positive and negative traits, and only try to match the positive aspects with positive traits,
+and negative aspects with negative traits. 
+We prompt an LLM (we use GPT-4o \citep{openai2024gpt4ocard},
+as it yields good results in our experiments) with a list of aspects and another list of traits,
+and ask the LLM to find the best matching trait for each aspect or decide that there is no matching trait.
+The \emph{coverage} of the whole dataset is calculated as the proportion of aspects that have a matching trait,
+and the \emph{redundancy} is calculated as the proportion of traits that have not been matched to any aspect.
+
 
 \subsection{Metric optimization}
 \label{sec:metric-optimization}
+We aim at prioritizing coverage of the metrics to provide comprehensive evaluation of the agent behavior,
+while minimizing the overlap within the metrics to avoid redundancy.
+To optimize for this objective, we generate 20 different metrics with $N$ ranging from 4 to 13,
+and calculate the coverage and redundancy of the metrics on the human feedback.
+We then select the metrics with a coverage of at least the highest coverage minus 1\%,
+and the lowest redundancy.
+This is performed iteratively, by resetting the range of $N$ to the number of metrics selected
+previously plus or minus 2, and repeating the process until the coverage and redundancy
+of the selected metrics do not change significantly, normally within 3 iterations.
+This optimization process is a very simple strategy. We have also tried various other optimization
+strategies, including genetic algorithms --- sythesizing new metrics by combining the existing ones,
+and iterative clustering --- iteratively cluster unmatched aspects into new metrics, but none of them
+yield better results than the simple strategy.
 
-\subsection{Iterative metric induction}
+\subsection{Iterative metric induction while agent improves}
 \label{sec:iterative-induction}
+When applying AutoLibra to agent optimization, we can iterative induce new metrics as agents could
+have new failure modes or new behaviors as they improve.
+Although we can also induce a complete new set of metrics from scratch, to track the agent improvement
+accross different iterations, we induce new metrics which can be added to the existing metrics.
+To do this, we slightly change the behavior clustering step, by providing the LLM with the existing metrics
+and their definitions, and ask the LLM to not change the definitions of the existing metrics, 
+only add new examples to the existing metrics and add new metrics if necessary.
+We apply the same optimization strategy as in the metric optimization step
+to make sure the newly induced metrics do cover emerging behaviors and not overlap with the existing metrics.

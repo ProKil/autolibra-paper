@@ -1,9 +1,10 @@
 \section{Introduction}
 
-\begin{wrapfigure}[18]{r}{0.45\textwidth}
-   \vspace{-40pt}
+\begin{wrapfigure}[18]{r}{0.4\textwidth}
+   \vspace{-44pt}
    \centering
-   \includegraphics[width=0.45\textwidth]{figs/autolibra.pdf}
+   \includegraphics[width=0.4\textwidth]{figs/autolibra.pdf}
+   \vspace{-10pt}
    \caption{AutoLibra provides behavioral evaluation on agent performance
     through automatic metric induction based on human feedback and agent trajectories.}
 \end{wrapfigure}
@@ -14,10 +15,10 @@ Efficient human learners internalize open-ended feedback from others into self-r
 These metrics offer lenses for self-reflection on the
 strengths and weaknesses of ourselves and ladders for self-improvement.
 In this paper, we ask:
-\textbf{can we automatically induce metrics to evaluate and improve language agents from natural language feedback?} 
+\textbf{can we automatically induce metrics to evaluate and improve agents from natural language feedback?} 
 
    
-The current evaluation of large language model (LLM) agents and reward modeling often fall
+Crrent evaluation of large language model (LLM) agents and reward modeling often fall
 into two paradigms: (1) goal-oriented evaluation --
 \emph{whether the agents have fulfilled the given task},
 \emph{e.g.} benchmarks \citep{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog} and reward
@@ -42,6 +43,7 @@ This method offers behavior evaluation for agents, with the following advantages
 \begin{wrapfigure}[23]{l}{0.65\textwidth}
     \centering
     \includegraphics[width=0.65\textwidth]{figs/autolibra-teaser.pdf}
+    \vspace{-10pt}
     \caption{AutoLibra iteratively discover new optimization targets throughout agent optimization process.}
     \label{fig:autolibra-training}
 \end{wrapfigure}
