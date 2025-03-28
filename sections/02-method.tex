@@ -166,3 +166,50 @@ and their definitions, and ask the LLM to not change the definitions of the exis
 only add new examples to the existing metrics and add new metrics if necessary.
 We apply the same optimization strategy as in the metric optimization step
 to make sure the newly induced metrics do cover emerging behaviors and not overlap with the existing metrics.
+
+\begin{table}[!t]
+    \centering
+    \small
+    \begin{tabular}{ccccccc}
+        \toprule
+        Steps & CoGym & Sotopia & WebArena & WebVoyager & Baba-is-AI & MiniHack  \\
+        \midrule
+        Grounding & 0.95 & 0.95 & 0.98 & 0.93 &  &  \\
+        LLM-as-a-Judge & 0.90 & 0.85 & 0.95 & 1.00 &  & \\
+        Meta-Evaluation & 0.98 & 0.90 & 0.85 & 0.83 &  &  \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+        The ratio of instances marked as fully correct in human validation. For each step and
+        each task, we randomly sample 40 instances and ask human annotators to label them as completely correct
+        or not. Although the agreement scores vary across tasks and steps, the average agreement for each
+        step and dataset is above 0.9. 
+}
+    \label{tab:validation}
+\end{table}
+
+\subsection{Collecting human feedback and validating AutoLibra}
+\label{sec:collecting-human-feedback}
+
+In this paper, we use two kinds of human feedback for different kinds of agent. (1) Agents that directly interact
+with humans: we use the feedback from the users who are interacting with the agents. CoGym \citep{shao2024collaborative}
+is the setting belongs to this category, and we use the user comments collected in their study. (2) Agents that 
+do not directly interact with humans: we use the feedback from human annotators who observe the agent trajectories.
+The annotators are instructed to explicitly point out the aspects of the agent behaviors that they think are good or bad,
+and refrain from giving a very general comment like \textsf{The agent is good at solving the task}
+but instead give a more specific comment like \textsf{The agent cannot figure out how to get to the other room}.
+The annotators can also choose from a TTY and a web interface, on both of which they first check out the agent's task,
+and then view the agent's observation and actions step by step. Although for web navigation tasks, viewing screenshots
+is more straightforward, we keep the observation format the same as the one we used for the agents. 
+For multi-agent tasks, we annotate each agent's trajectories separately.
+
+To answer the question of whether AutoLibra is aligned with human judgment,
+we validate the feedback grounding, LLM-as-a-Judge, and meta-evaluation steps through another human annotation process.
+We did not validate the behavior clustering step, as it is super hard for human annotators to
+process more than 400 aspects and perform clustering on them. The coverage and redundancy scores
+together with validation results of the other steps in the loop can serve as an indirect validation for the 
+behavior clustering step.
+Table \ref{tab:validation} shows the agreement rate of the human annotators on the AutoLibra steps. 
+It should be noted that these tasks are vastly different, e.g. grounding for WebVoyager \citep{he2024webvoyager} is quite hard 
+due to the complexity of the trajectory, and LLM-as-a-Judge for Sotopia \citep{zhousotopia} is 
+difficult due to the complexity of the evaluating social interaction. 
