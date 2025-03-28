@@ -1,2 +1,64 @@
 \section{The ladder \protect\includegraphics[height=1em]{figs/ladder.png}: Agent improvement with AutoLibra}
 
+AutoLibra can additonally be employed to directly improve agent performance by using extracted metrics to guide targeted modifications to the agent's code, using a human-in-the-loop or another LLM as the editor.
+
+As a demonstration of AutoLibra's capabilities, we present a case study in which we use AutoLibra to improve the performance of a reinforcement learning agent on baba-is-ai, a highly challenging agentic reasoning task based on the Baba Is You video game. We demonstrate that AutoLibra induces fine-grained, orthogonal [non-redundant], and human-interpretable metrics that have high coverage of the agent's behavior, and show the utility of these metrics in guiding targeted modifications to the agent's to improve its performance and efficiency. We further demonstrate that an agent improved by metrics extracted from AutoLibra outperforms a baseline agent on the task in environment score and trajectory performance, and that the improvements realized by AutoLibra are generalizable to unseen Baba Is You levels and arbitrary LLMs.
+
+\subsection{baba-is-ai}
+Baba Is You is a puzzle game in which the player controls a character that can modify the rules of the game by pushing blocks containing words that define the game's rules. Words can be combined to form sentences that define the properties of objects in the game, such as "Baba is You" or "Flag is Win". The goal of the game is to reach a win condition, such as touching a flag, by manipulating the rules of the game to create new win conditions, modify the properties of objects, or change the behavior of the player character.
+
+The game is highly challenging and requires the player to think creatively and reason causally about the game's rules in order to solve the puzzles. This makes Baba Is You an ideal testbed for evaluating the performance of reinforcement learning agents on agentic reasoning tasks; we employ the baba-is-ai environment, a simplified version of Baba Is You \cite{cloos2024babaaibreakrules, paglieri2024balrog} as our testing implementation. Observations of the environment are supplied to the agent in text form, and the agent interacts with the environment by issuing commands in the form of text strings that move the active character.
+
+[Insert figure of baba-is-ai environment]
+
+\subsection{AutoLibra for baba-is-ai improvement}
+
+In performing iterative agent improvement with AutoLibra, a full cycle of the AutoLibra pipeline is considered a full turn, the pseudocode for which is shown in Algorithm 1. One unmodified agent is used as a baseline for comparison (Turn 0), and three complete turns of iterative agent improvement with AutoLibra are performed (Turn 1, 2, 3), for a total of four turns. Six representative tasks for baba-is-ai are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the baba-is-ai environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.
+
+
+\begin{algorithm}
+    \caption{Insert Pseudocode Here}
+    \begin{algorithmic}[1]
+    \State Initialize $a \gets 0$
+    \State Initialize $b \gets 1$
+    \For{$i = 1$ to $n$}
+        \State $a \gets a + b$
+        \State $b \gets b + 1$
+    \EndFor
+    \State \textbf{Return} $a$
+    \end{algorithmic}
+\end{algorithm}
+
+\input{sections/metrics.tex}
+
+\subsection{Results}
+
+The induced metrics are shown in Table XXX, with the agent's performance per-task is shown in Table XXX. A significant improvement in the agent's is observed from Turn 0 to Turn 3, with the agent achieving a both higher environment score and trajectory performance on the held-out tasks compared to the baseline agent. Significantly, the agent's performance on specific metrics increased correspondingly to code changes targeting those metrics, demonstrating the utility of AutoLibra for fine-grained agent improvement. This is discussed in more detail in the following sections.
+
+\subsubsection{Extracted Metrics and Improvements}
+The metrics induced by AutoLibra (Table XXX) capture the behavior of the agent effectively, with a mean coverage of XXX across all turns and a low mean redundancy of XXX. Notably, earlier metrics were found to describe higher-level behaviors than later metrics, reflective of the more complex behaviors that the agent demonstrated in later turns, as well as the compositionality of induced metrics. Code changes were selected to specifically target given metrics, and as seen in Figure XXX, the agent's performance on the targeted metric improved significantly in the turn following the code change. This demonstrates the utility of AutoLibra for fine-grained agent improvement, as well as the human interpretability of the induced metrics.
+
+\subsubsubsection{Turn 0}
+The agent behavior is stochastic and inconsistent, with no clear strategy or goal. Any progress in the environment is the consequence of a random walk. 
+Win Condition Recognition was identified as being prereqisite to all other metrics induced in this turn, as progress in the environment is impossible without recognizing the win condition, and was therefore targeted for improvement. Improvements took the form of few-shot prompting, by supplying an example of observations and the corresponding win condition and subtasks, and guidance on subtask-level planning, by mapping specific environmental observations to actions that would progress the agent towards the win condition.
+
+\subsubsubsection{Turn 1}
+
+% A turn-by-turn discussion of metrics and targeted code changes is presented in Appendix XXX.
+\subsubsection{Held-Out Task Performance}
+
+On the held-out tasks, the agent improved significantly from Turn 0 to Turn 3, with an environment scores of XXX and XXX, respectively, a substantial increase compared to the highest base model performance on baba-is-ai \cite{paglieri2024balrog}. 
+%The greatest performance increase was observed between Turn 2 and Turn 3, expected to due to the consistency of wall-breaking and the emergence of rule-construction that was previously absent.
+
+
+\subsection{Ablation Study}
+
+To evaluate the generalizability of the improvements realized by AutoLibra, we conducted an ablation study in which we evaluated the performance of the agent improved by AutoLibra on unseen Baba Is You levels and arbitrary LLMs.
+
+\subsubsection{Different LLMs}
+
+The agent code for each turn (0-3) was tested with Claude-3-5 instead of GPT-4o-241120, and the agent's performance was evaluated on the baba-is-ai environment. Table XXX shows that the agent's performance was found to be consistent across all turns, with no significant difference in environment score or trajectory performance observed between the two LLMs. This demonstrates that the improvements realized by AutoLibra are generalizable to arbitrary LLMs, and that the induced metrics are robust to changes in the underlying LLM.
+
+\subsubsection{Different Environment}
+
+AutoLibra was further evaluated on a new environment, whose rules and objectives were different from those of baba-is-ai. MiniHack is a grid navigation game expressed in text similar to baba-is-ai, consisting of a procedurally generated environment that requires the agent to navigate a dungeon and collect items to reach a goal, and which is more challenging than baba-is-ai (XXX vs XXX leading model performance). Two turns of iterative agent improvement with AutoLibra were performed on MiniHack.
