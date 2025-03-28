@@ -147,10 +147,20 @@ yield better results than the simple strategy.
 
 \subsection{Iterative metric induction while agent improves}
 \label{sec:iterative-induction}
-When applying AutoLibra to agent optimization, we can iterative induce new metrics as agents could
+When applying AutoLibra to agent optimization, we can iteratively induce new metrics as agents could
 have new failure modes or new behaviors as they improve.
-Although we can also induce a complete new set of metrics from scratch, to track the agent improvement
-accross different iterations, we induce new metrics which can be added to the existing metrics.
+For example, in the Baba-is-AI task \citep[\S\ref{sec:baba-is-ai}]{cloos2024babaaibreakrules},
+agent initially fails to recognize the win condition and act randomly,
+after agent improves with an in-context example in the prompt, the agent starts to 
+follow existing win conditions, but fails to construct new win conditions.
+This was not mentioned in human feedback before the agent improvement, since the agent
+was too random to even reach the stage where constructing new win conditions is possible.
+Therefore, a new metric \texttt{win-rule-construction} should be induced in the second iteration 
+to provide a new signal for optimizing the agent even further.
+
+Although instead of adding new metrics, we can also induce a complete new set of metrics from scratch
+in each iteration, adding new metrics to the existing ones is useful for tracking agents' progress
+across different iterations. In practice, we do not find this results in any coverage loss. 
 To do this, we slightly change the behavior clustering step, by providing the LLM with the existing metrics
 and their definitions, and ask the LLM to not change the definitions of the existing metrics, 
 only add new examples to the existing metrics and add new metrics if necessary.
