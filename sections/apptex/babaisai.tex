@@ -1,3 +1,6 @@
+
+\section{Baba-is-ai Metric Performance}
+\label{appendix:babaisai}
 % Function to generate color based on percentage value
 \newcommand{\cellcolorpercent}[1]{%
   \ifdim #1 pt < 10 pt \cellcolor{red!90}%
@@ -14,10 +17,18 @@
   \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
 }
 
+\makeatletter
+\newcommand{\thickhline}{%
+    \noalign {\ifnum 0=`}\fi \hrule height 3pt
+    \futurelet \reserved@a \@xhline
+}
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
+\makeatother
 
+\renewcommand{\arraystretch}{1.5} 
 \begin{table}[ht]
 \centering
-\begin{tabular}{|>{\arraybackslash}p{1cm}|c|c|c|c|}
+\begin{tabular}{|>{\arraybackslash}p{2cm}|c|c|c|c|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
 \textbf{Turn} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} \\ \hline
@@ -29,9 +40,11 @@
 \includegraphics[scale=0.07]{figs/emojis/emoji_6.png} & - & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{44.44} \textbf{44.44\%} & \cellcolorpercent{88.89} \textbf{88.89\%} \\ \hline
 \includegraphics[scale=0.07]{figs/emojis/emoji_7.png} & - & \cellcolorpercent{5.56} \textbf{5.56\%} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\ \hline
 \includegraphics[scale=0.07]{figs/emojis/emoji_8.png} & - & - & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\ \hline
-\includegraphics[scale=0.07]{figs/emojis/emoji_9.png} & - & - & - & \cellcolorpercent{66.67} \textbf{66.67\%} \\ \hline 
-Cov. & \textbf{65\%} & \textbf{83\%} & \textbf{85\%} & \textbf{92\%} \\ \hline
-Red. & \textbf{58\%} & \textbf{59\%} & \textbf{47\%} & \textbf{59\%} \\ \hline
+\includegraphics[scale=0.07]{figs/emojis/emoji_9.png} & - & - & - & \cellcolorpercent{66.67} \textbf{66.67\%} \\ 
+\thickhline 
+Coverage & 65\% & 83\% & 85\% & 92\% \\ \hline
+Redundancy & 58\% & 59\% & 47\% & 59\% \\ \hline
 \end{tabular}
 \caption{Metric Performance for baba-is-ai AutoLibra Turns 0-3}
+\label{tab:metric_perf}
 \end{table}

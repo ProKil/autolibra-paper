@@ -71,8 +71,8 @@ Address \\
 \begin{abstract}
 The evaluation and optimization of language agents are often based on either
 task success or pre-defined designed metrics.
-However, these approaches are either not fine-grained enough or require 
-manual design of the metrics by experts.
+However, these metrics are often coarse and heavily rely on manual design from experts, making it difficult to evaluate agents' changing behaviors in action. 
+% approaches are either not fine-grained enough or require  manual design of the metrics by experts.
 We propose \emph{AutoLibra},
 a system that transforms human feedback, 
 \emph{e.g.} ``\textsf{If you find that the button is disabled, don't click it again}'',
@@ -90,10 +90,10 @@ in previous agent evaluation benchmarks, but also discover the ones that have be
 Beyond agent evaluation, we demonstrate two practical applications of
 AutoLibra in \textbf{agent improvement}:
 First, we demonstrate that the metrics extracted by AutoLibra serve
-as better optimization targets than task success rate on two challenging text game tasks,
-enhancing prompt engineering. 
-Second, we show that AutoLibra can also interatively selects high-quality agent fine-tuning data
-for web browsing. 
+as better optimization targets than task success rate on two challenging text game tasks. 
+% , enhancing prompt engineering. 
+Second, we show that AutoLibra can also iteratively selects high-quality fine-tuning data
+for web browsing agents. 
 Our results suggest that AutoLibra can be a powerful tool for
 evaluating and improving language agents.
 \end{abstract}
@@ -109,6 +109,7 @@ evaluating and improving language agents.
 
 
 \input{sections/04-ldr}
+\input{sections/appendix}
 \subsection{Style}
 
 Papers to be submitted to COLM 2025 must be prepared according to the

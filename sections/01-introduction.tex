@@ -10,15 +10,15 @@
 \end{wrapfigure}
 
 
-Efficient human learners internalize open-ended feedback from others into self-regulation metrics
+Efficient human learners internalize open-ended feedback from others into self-regulation dimensions %metrics
 \citep{pintrich2002development,nicol2006formative}.
-These metrics offer lenses for self-reflection on the
+These dimensions or ``metrics'' offer lenses for self-reflection on the
 strengths and weaknesses of ourselves and ladders for self-improvement.
 In this paper, we ask:
 \textbf{can we automatically induce metrics to evaluate and improve agents from natural language feedback?} 
 
    
-Crrent evaluation of large language model (LLM) agents and reward modeling often fall
+Current evaluation of large language model (LLM) agents and reward modeling often fall
 into two paradigms: (1) goal-oriented evaluation --
 \emph{whether the agents have fulfilled the given task},
 \emph{e.g.} benchmarks \citep{zhouwebarena,jimenezswe,chan2024mle,paglieri2024balrog} and reward
@@ -61,7 +61,7 @@ agents repeated interact with disabled elements could be clustered into a metric
 
 The Evaluation process of AutoLibra is designed to provide a closed-loop feedback signal for both the Extraction process
 and the LLM-as-a-Judge. The agent trajectories used in the Extraction process are scored by the LLM-as-a-Judge based
-on the metrics induced by the Extraction process. The Evaluation process then try to match the detected agent traits,
+on the metrics induced by the Extraction process. The Evaluation process then tries to match the detected agent traits,
 \emph{e.g.} \texttt{interact-valid-element}: \texttt{negative}, with the human feedback aspects.
 In this way, we can meta-evaluate the \emph{coverage} of the detected traits, and the \emph{redundancy} of the metrics,
 i.e. what proportion of the aspects in the human feedback are detected as agent traits,

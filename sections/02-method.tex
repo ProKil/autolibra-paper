@@ -26,13 +26,13 @@ Finally, \textbf{Meta-Evaluation Process} measures the quality of induced metric
 the detected agent traits with aspects in the human feedback (\S\ref{sec:meta-evaluation}).
 To optimize for the lowest redundancy with highest coverage, we control the number of metrics 
 through a hyperparameter $N$ in the clustering step (\S\ref{sec:metric-optimization}). AutoLibra also supports
-an interative metric induction process, where as the agent is optimized, new metrics can be addeding 
+an interactive metric induction process, where as the agent is optimized, new metrics can be added
 to the existing metrics (\S\ref{sec:iterative-induction}).
 
 \subsection{Feedback grounding}
 \label{sec:grounding}
-The feedback of human annotators could contains multiple aspects, e.g. \textsf{AI agent was pretty good
-on giving me a consistent itinerary and vacation plan, although It froze on the last couple of minutes.},
+The feedback of human annotators could contains multiple aspects, e.g. \textsf{``AI agent was pretty good
+on giving me a consistent itinerary and vacation plan, although It froze on the last couple of minutes.''},
 collected from human annotators in CoGym \citep{shao2024collaborative}, contains a positive aspect
 about the agent's ability to generate a consistent itinerary, and a negative aspect about the agent freezing
 at the end. Here we define an \emph{aspect} as a triple $(\texttt{behavior}, \texttt{feedback}, \texttt{sign})$.
