@@ -103,6 +103,8 @@ The agent code for each turn (0-3) was tested with Claude-3-5 instead of GPT-4o-
 
 AutoLibra was further evaluated in a new environment, whose rules and objectives were different from those of baba-is-ai. MiniHack is a grid navigation game expressed in text similar to baba-is-ai, consisting of a procedurally generated environment that requires the agent to navigate a space consisting of various agent roles, creatures, items, and tasks to reach a goal \cite{samvelyan2021minihackplanetsandboxopenended}. Given its plasticity and abundant elements, MiniHack is more challenging and diversified than baba-is-ai as it can simulate significantly different environments that test different capabilities of agents. Similar as our experiments with baba-is-ai, the improvement for MiniHack also follows Algorithm 1. Two turns of iterative agent improvement with AutoLibra were performed on MiniHack. Four representative tasks for MiniHack are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the MiniHack environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.
 
+\input{sections/metrics_mini.tex}\label{tab:metrics_mini}
+
 \subsubsection{Results}
 
 f
