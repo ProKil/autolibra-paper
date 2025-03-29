@@ -10,11 +10,16 @@ Baba Is You is a puzzle game in which the player controls a character that can m
 
 The game is highly challenging and requires the player to think creatively and reason causally about the game's rules in order to solve the puzzles. This makes Baba Is You an ideal testbed for evaluating the performance of reinforcement learning agents on agentic reasoning tasks; we employ the baba-is-ai environment, a simplified version of Baba Is You \cite{cloos2024babaaibreakrules, paglieri2024balrog} as our testing implementation. Observations of the environment are supplied to the agent in text form, and the agent interacts with the environment by issuing commands in the form of text strings that move the active character.
 
-[Insert figure of baba-is-ai environment]
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale=0.5]{figs/babaisai_env.png}
+    \caption{Example of the baba-is-ai environment. In this task (two\_room-break\_stop-make\_win-distr\_obj-irrelevant\_rule), the agent has to break the "wall is stop" rule and push the "key" rule block next to "is win" to assemble the win rule, then touch the key to win. Pushing the "door" rule block would be a mistake, as no door object is present.}
+    \label{fig:babaisai_env}
+\end{figure}
 
 \subsection{AutoLibra for baba-is-ai improvement}
 
-In performing iterative agent improvement with AutoLibra, a full cycle of the AutoLibra pipeline is considered a full turn, the pseudocode for which is shown in Algorithm 1. One unmodified agent is used as a baseline for comparison (Turn 0), and three complete turns of iterative agent improvement with AutoLibra are performed (Turn 1, 2, 3), for a total of four turns. Six representative tasks for baba-is-ai are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the baba-is-ai environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.
+In performing iterative agent improvement with AutoLibra, a full cycle of the AutoLibra pipeline is considered a full turn, the pseudocode for which is shown in Algorithm \ref{algo1}. One unmodified agent is used as a baseline for comparison (Turn 0), and three complete turns of iterative agent improvement with AutoLibra are performed (Turn 1, 2, 3), for a total of four turns. Six representative tasks for baba-is-ai are used in iterative metric improvement, with the remainder held out for evaluation. The agent is evaluated on the baba-is-ai environment and any changes to the agent code at the beginning of each turn, and the environment score, trajectory performance, and other metrics are recorded at the end of each turn. GPT-4o-241120 is used as the agent model.
 
 
 \begin{algorithm}
@@ -37,6 +42,7 @@ In performing iterative agent improvement with AutoLibra, a full cycle of the Au
     \EndFor
 
     \end{algorithmic}
+    \label{algo1}
 \end{algorithm}
 
 \input{sections/metrics.tex}
