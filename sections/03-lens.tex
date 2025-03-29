@@ -1,14 +1,15 @@
 \section{The lens \protect\includegraphics[height=1em]{figs/microscope.png}: Agent evaluation with AutoLibra}
 \label{sec:lens}
 
-In this section, we use AutoLibra as a lens to provide insights into agent behaviors. We first try to validate
-the steps of AutoLibra by annotating the 
 
-\begin{wrapfigure}[8]{r}{0.5\textwidth}
-    \includegraphics[width=0.5\textwidth]{figs/four_datasets_grid.pdf}
-\end{wrapfigure}
 
-\subsection{Are LLMs aligned with human judgment in AutoLibra?}
+In this section, we use AutoLibra as a lens to provide insights into agent behaviors. We first ask whether 
+the induced metrics can reflect human feedback even if they are not seen during the induction process.
+As shown in Fig. \ref{fig:coverage-redundancy},
+we show the best coverage and redundancy of metrics of different numbers $N$. 
+Intuitively, the more metrics we induce, the higher the coverage and redundancy. However we do find that
+at around $N=6$ to $N=10$, the coverage is at its peak, and adding more metrics will not improve the coverage
+but will increase the redundancy. 
 
 
 

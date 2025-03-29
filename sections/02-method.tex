@@ -193,7 +193,8 @@ to make sure the newly induced metrics do cover emerging behaviors and not overl
 
 In this paper, we use two kinds of human feedback for different kinds of agent. (1) Agents that directly interact
 with humans: we use the feedback from the users who are interacting with the agents. CoGym \citep{shao2024collaborative}
-is the setting belongs to this category, and we use the user comments collected in their study. (2) Agents that 
+is the setting belongs to this category, and we use the user comments collected in their study, resulting
+in 197 trajectories with feedback. (2) Agents that 
 do not directly interact with humans: we use the feedback from human annotators who observe the agent trajectories.
 The annotators are instructed to explicitly point out the aspects of the agent behaviors that they think are good or bad,
 and refrain from giving a very general comment like \textsf{The agent is good at solving the task}
@@ -201,7 +202,11 @@ but instead give a more specific comment like \textsf{The agent cannot figure ou
 The annotators can also choose from a TTY and a web interface, on both of which they first check out the agent's task,
 and then view the agent's observation and actions step by step. Although for web navigation tasks, viewing screenshots
 is more straightforward, we keep the observation format the same as the one we used for the agents. 
-For multi-agent tasks, we annotate each agent's trajectories separately.
+For multi-agent tasks, we annotate each agent's trajectories separately. For Sotopia \citep{zhousotopia}, WebArena \citep{zhouwebarena}, and
+and WebVoyager \citep{he2024webvoyager}, we annotate 100 trajectories from GPT-4 \citep{achiam2023gpt} agents with feedback for each dataset,
+and for experiments in \S\ref{sec:ladder}, we annotate 18 trajectories with feedback for each dataset in each
+iteration. In experiments in \S\ref{sec:lens}, we randomly hold out 20\% of the trajectories for validation.
+
 
 To answer the question of whether AutoLibra is aligned with human judgment,
 we validate the feedback grounding, LLM-as-a-Judge, and meta-evaluation steps through another human annotation process.
@@ -213,3 +218,14 @@ Table \ref{tab:validation} shows the agreement rate of the human annotators on t
 It should be noted that these tasks are vastly different, e.g. grounding for WebVoyager \citep{he2024webvoyager} is quite hard 
 due to the complexity of the trajectory, and LLM-as-a-Judge for Sotopia \citep{zhousotopia} is 
 difficult due to the complexity of the evaluating social interaction. 
+
+
+\begin{wrapfigure}[16]{r}{0.5\textwidth}
+    \vspace{-24pt}
+    \includegraphics[width=0.5\textwidth]{figs/four_datasets_grid.pdf}
+    \vspace{-20pt}  
+    \caption{Coverage and redundancy of AutoLibra metrics on four datasets. The circles indicate the coverage
+    and redundancy of different induced metrics from the Extraction Process, and the star indicates the coverage
+    and redundancy of the selected metrics on the held-out human feedback.}
+    \label{fig:coverage-redundancy}
+\end{wrapfigure}
