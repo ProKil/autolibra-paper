@@ -1,0 +1,1147 @@
+\definecolor{lightgreen}{RGB}{220,255,220}
+\definecolor{darkgreen}{RGB}{0,150,0}
+\newmdenv[
+  backgroundcolor=lightgreen,
+  linecolor=darkgreen,
+  linewidth=2pt,
+  roundcorner=5pt,
+  skipabove=10pt,
+  skipbelow=10pt,
+  leftmargin=0pt,
+  rightmargin=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  splittopskip=\topskip,
+  splitbottomskip=10pt,
+  split=true,
+  frametitle={\textbf{Iteration 0 MiniHack Prompt}},
+  frametitlebackgroundcolor=darkgreen,
+  frametitlefont=\color{white}\bfseries,
+  frametitlerule=true,
+  frametitleaboveskip=8pt,
+  frametitlebelowskip=8pt,
+]{MyGreenBox}
+\BeforeBeginEnvironment{MyGreenBox}{\VerbatimEnvironment}
+
+
+%% MiniHack Instruction Prompt Template
+% Requires mdframed and defined GreenBox environment as before
+\begin{MyGreenBox}[frametitle={\textbf{Iteration 0 MiniHack Prompt}}]
+You are an agent playing MiniHack. The following are the possible actions you can take in the game, followed by a short description of each action:
+
+\begin{itemize}
+\item \textbf{north}: move north,
+\item \textbf{east}: move east,
+\item \textbf{south}: move south,
+\item \textbf{west}: move west,
+\item \textbf{northeast}: move northeast,
+\item \textbf{southeast}: move southeast,
+\item \textbf{southwest}: move southwest,
+\item \textbf{northwest}: move northwest,
+\item \textbf{far north}: move far north,
+\item \textbf{far east}: move far east,
+\item \textbf{far south}: move far south,
+\item \textbf{far west}: move far west,
+\item \textbf{far northeast}: move far northeast,
+\item \textbf{far southeast}: move far southeast,
+\item \textbf{far southwest}: move far southwest,
+\item \textbf{far northwest}: move far northwest,
+\item \textbf{up}: go up the stairs,
+\item \textbf{down}: go down the stairs,
+\item \textbf{wait}: rest one move while doing nothing,
+\item \textbf{more}: display more of the message,
+\item \textbf{apply}: apply (use) a tool,
+\item \textbf{close}: close an adjacent door,
+\item \textbf{open}: open an adjacent door,
+\item \textbf{eat}: eat something,
+\item \textbf{force}: force a lock,
+\item \textbf{kick}: kick an enemy or a locked door or chest,
+\item \textbf{loot}: loot a box on the floor,
+\item \textbf{pickup}: pick up things at the current location if there are any,
+\item \textbf{pray}: pray to the gods for help,
+\item \textbf{puton}: put on an accessory,
+\item \textbf{quaff}: quaff (drink) something,
+\item \textbf{search}: search for hidden doors and passages,
+\item \textbf{zap}: zap a wand
+\end{itemize}
+
+% Conditional Goal Statements
+\textbf{For task which name consists "corridor":}\
+Your goal is to explore the level and reach the stairs down.
+
+\textbf{For task which name consists “quest”:}\
+Your goal is to explore the level, fight monsters, and navigate rooms and mazes to ultimately reach the stairs down.
+
+\textbf{For task which name consists “boxoban”:}\
+You are playing Boxoban, a box-pushing game inspired by Sokoban. Your goal is to push the boulders onto the fountains on the map. You can push the boulders by walking into them, as long as there are no obstacles behind them.
+
+\textbf{For task which name consists “mazewalk”:}\
+Your goal is to explore the level and reach the stairs down.
+
+\textbf{Otherwise:}\
+Your goal is to get as far as possible in the game.
+
+In a moment I will present a history of actions and observations from the game.
+
+\textbf{Tip:} there is no point in outputting the same action over and over if nothing changes.
+
+
+
+% Optional Feedback Section
+\textbf{Additional Feedback (if provided):}\
+I will also present lists of positive and negative feedback based on your previous attempts on this task, use this information to change your strategy and improve your performance. \
+\texttt{Positive: {positive}}\
+\texttt{Negative: {negative}}
+
+\textbf{PLAY!}
+\end{MyGreenBox}
+
+%turn_1
+\begin{MyGreenBox}[frametitle={\textbf{Iteration 1 MiniHack Prompt}}]
+You are an agent playing MiniHack. The following are the possible actions you can take in the game, followed by a short description of each action:
+
+\begin{itemize}
+  \item \textbf{north}: move north,
+  \item \textbf{east}: move east,
+  \item \textbf{south}: move south,
+  \item \textbf{west}: move west,
+  \item \textbf{northeast}: move northeast,
+  \item \textbf{southeast}: move southeast,
+  \item \textbf{southwest}: move southwest,
+  \item \textbf{northwest}: move northwest,
+  \item \textbf{far north}: move far north,
+  \item \textbf{far east}: move far east,
+  \item \textbf{far south}: move far south,
+  \item \textbf{far west}: move far west,
+  \item \textbf{far northeast}: move far northeast,
+  \item \textbf{far southeast}: move far southeast,
+  \item \textbf{far southwest}: move far southwest,
+  \item \textbf{far northwest}: move far northwest,
+  \item \textbf{up}: go up the stairs,
+  \item \textbf{down}: go down the stairs,
+  \item \textbf{wait}: rest one move while doing nothing,
+  \item \textbf{more}: display more of the message,
+  \item \textbf{apply}: apply (use) a tool,
+  \item \textbf{close}: close an adjacent door,
+  \item \textbf{open}: open an adjacent door,
+  \item \textbf{eat}: eat something,
+  \item \textbf{force}: force a lock,
+  \item \textbf{kick}: kick an enemy or a locked door or chest,
+  \item \textbf{loot}: loot a box on the floor,
+  \item \textbf{pickup}: pick up things at the current location if there are any,
+  \item \textbf{pray}: pray to the gods for help,
+  \item \textbf{puton}: put on an accessory,
+  \item \textbf{quaff}: quaff (drink) something,
+  \item \textbf{search}: search for hidden doors and passages,
+  \item \textbf{zap}: zap a wand
+\end{itemize}
+
+% Corridor-specific
+\textbf{For task name contains “corridor”:}\\
+Your goal is to explore the level and reach the stairs down.
+
+\textbf{Notes:}
+\begin{enumerate}
+  \item The target stairs down is always at the other room on the map, so you should prioritize exploring the other room.
+  \item Whenever you encounter a monster (giant rat) in a room, you should always try to run to the direction of the corridor.
+  \item Whenever you encounter a monster (giant rat) on the corridor, you should always try to kill the monster (giant rat).
+  \item Once you reach the second room on the map, you should explore the room fully to find the target stairs down, but whenever you encounter a monster (giant rat), you should always try to run to the direction of the corridor.
+\end{enumerate}
+
+\textbf{Example:}
+\begin{verbatim}
+                        ---
+                        .<|
+                        ..@#
+                         .|
+\end{verbatim}
+
+% Quest-specific
+\textbf{For task name contains “quest”:}\\
+Your goal is to explore the level, fight monsters, and navigate rooms and mazes to ultimately reach the stairs down.
+
+\textbf{Notes:}
+\begin{enumerate}
+  \item You should never cross }(lava) without necessary ability or equipment.
+  \item Always explore the area approachable (no need to cross the lava) well enough to find sufficient support. Below is an example:
+\end{enumerate}
+
+\textbf{Map Example:}
+\begin{verbatim}
+                        --------------
+                        |@....}......---
+                        |.(...}.......F-
+                        |.....}.....................|
+                        |.....}........--------     |
+                        |.....}......---
+                        --------------
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{2}
+  \item You should always try to apply the tool you can get, even though you do not know the effect.
+  \item You should always try to apply your role's ability, even though you do not know the effect.
+\end{enumerate}
+
+% Boxoban-specific
+\textbf{For task name contains “boxoban”:}\\
+You are playing Boxoban, a box-pushing game inspired by Sokoban. Your goal is to push the boulders onto the fountains on the map. You can push the boulders by walking into them, as long as there are no obstacles behind them.
+
+\textbf{Notes:}
+For this task, you should follow the below rules with priority from top to down:
+\begin{enumerate}
+  \item You should remember the locations of the fountains in the beginning.
+  \item You should never push a boulder in a direction if in this direction, the next spot next to the boulder is not empty or is not the fountain.
+  \item You should never push a boulder to any L-shaped wall configuration (two adjacent walls).
+\end{enumerate}
+
+\textbf{Example (dead corner):}
+\begin{verbatim}
+                                  ##########
+                                  #`.....###
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{3}
+  \item You should never push a boulder next to a wall unless, in the direction perpendicular to the line joining the boulder and its neighbor wall, there is at least one fountain left open such that between this fountain and the boulder all spots are empty.
+  \item You should never push a boulder if it is already on the fountain.
+  \item If a boulder and a fountain are on the same row or column, and all spots between this boulder and this fountain are empty, and the first spot next to the boulder on the opposite direction of which the fountain locates is empty, you should always push this boulder to the corresponding fountain.
+\end{enumerate}
+
+\textbf{Map Example (established path):}
+\begin{verbatim}
+                                  ##########
+                                  #......<##
+                                  #.#@.{`.##
+                                  #.``##.#.#
+                                  #..`...{.#
+                                  #.#.{....#
+                                  #######.{#
+                                  #######..#
+                                  #######..#
+                                  ##########
+\end{verbatim}
+
+\textbf{Example (dead corner reminder):}
+\begin{verbatim}
+                                  ##########
+                                  #`.....###
+\end{verbatim}
+
+% MazeWalk-specific
+\textbf{For task name contains “mazewalk”:}\\
+Your goal is to explore the level and reach the stairs down.
+
+\textbf{Notes:}
+For this task, your action space will be limited to:
+\begin{verbatim}
+{"north": "move north",
+ "east":  "move east",
+ "south": "move south",
+ "west":  "move west"}
+\end{verbatim}
+
+You will not choose any actions other than these four. Follow strictly:
+\begin{enumerate}
+  \item If the block on your east is empty, move east.
+  \item If east is blocked and north is open, move north.
+  \item If east and north are both blocked, and west is open, move west.
+  \item If east, north, and west are blocked, move south.
+\end{enumerate}
+
+% Default
+\textbf{Otherwise:}\\
+Your goal is to get as far as possible in the game.
+
+In a moment I will present a history of actions and observations from the game.
+
+\textbf{Tip:} there is no point in outputting the same action over and over if anything changes.
+
+\textbf{PLAY!}
+\end{MyGreenBox}
+
+%turn_2
+\begin{MyGreenBox}[frametitle={\textbf{Iteration 2 MiniHack Prompt}}]
+You are an agent playing MiniHack. The following are the possible actions you can take in the game:
+
+\begin{itemize}
+  \item \textbf{north}: move north,
+  \item \textbf{east}: move east,
+  \item \textbf{south}: move south,
+  \item \textbf{west}: move west,
+  \item \textbf{northeast}: move northeast,
+  \item \textbf{southeast}: move southeast,
+  \item \textbf{southwest}: move southwest,
+  \item \textbf{northwest}: move northwest,
+  \item \textbf{far north}: move far north,
+  \item \textbf{far east}: move far east,
+  \item \textbf{far south}: move far south,
+  \item \textbf{far west}: move far west,
+  \item \textbf{far northeast}: move far northeast,
+  \item \textbf{far southeast}: move far southeast,
+  \item \textbf{far southwest}: move far southwest,
+  \item \textbf{far northwest}: move far northwest,
+  \item \textbf{up}: go up the stairs,
+  \item \textbf{down}: go down the stairs,
+  \item \textbf{wait}: rest one move while doing nothing,
+  \item \textbf{more}: display more of the message,
+  \item \textbf{apply}: apply (use) a tool,
+  \item \textbf{close}: close an adjacent door,
+  \item \textbf{open}: open an adjacent door,
+  \item \textbf{eat}: eat something,
+  \item \textbf{force}: force a lock,
+  \item \textbf{kick}: kick an enemy or a locked door or chest,
+  \item \textbf{loot}: loot a box on the floor,
+  \item \textbf{pickup}: pick up things at the current location if there are any,
+  \item \textbf{pray}: pray to the gods for help,
+  \item \textbf{puton}: put on an accessory,
+  \item \textbf{quaff}: quaff (drink) something,
+  \item \textbf{search}: search for hidden doors and passages,
+  \item \textbf{zap}: zap a wand
+\end{itemize}
+
+% Corridor-specific
+\textbf{For task name contains “corridor”:}\\
+\textbf{Your goal:} Your goal is to explore the level and reach the stairs down.
+
+\textbf{Notes:}
+
+Most important notice before you start: "." in the map means room, so if your current space is marked by "." you are in the room. In the map, "\#" means corridor. You should never misrecognize the type of location you are currently at as this is crucial for your game. Always be certain about your current location before you decide an action.
+
+\textit{You should permanently treat “<” the same as “.”}
+
+\begin{enumerate}
+  \item The target stairs down is always at the other room on the map, so you should prioritize exploring the other room. Remember, the goal spot is always at the far east of the map.
+  \item Whenever you haven’t moved onto the corridor (“\#”) yet, find one “\#” as soon as possible and move onto it.
+\end{enumerate}
+
+\textbf{Example:}
+\begin{verbatim}
+                        ---
+                        .<|
+                        ..@#
+                         .|
+\end{verbatim}
+
+\textbf{Example:}
+\begin{verbatim}
+                      -----
+                      |..<|
+                      |@...
+                      |...|
+                      -----
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{2}
+  \item Whenever you encounter a monster (giant rat) in a room, you should always try to run to the direction of the corridor. As soon as you reach the second block on the corridor, you should stop running away after moving west for a max of 3 steps and start fighting the rat. Fight until there are no rats on your adjacent spots.
+\end{enumerate}
+
+\textbf{Example:}
+\begin{verbatim}
+                       ----       ---
+                       ...|       |r...%
+                      |....#######@r....
+                      |<..|       |r....
+                      ----          ---
+\end{verbatim}
+
+You should only fight the rat when there is exactly one rat adjacent (in the 8 surrounding spots).
+
+\begin{enumerate}\setcounter{enumi}{3}
+  \item Whenever you encounter a monster (giant rat) on the corridor, you should always try to kill the monster immediately. Never retreat back into the room.
+\end{enumerate}
+
+\textbf{Example:}
+\begin{verbatim}
+                      -----
+                      |...|
+                      |....##%##@r.
+                      |..<|
+                       ----
+\end{verbatim}
+
+\textbf{Example:}
+\begin{verbatim}
+                      -----
+                      |...|
+                      |....@r##%##.
+                      |..<|
+                       ----
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{4}
+  \item Once you reach the second room on the map, you should explore the room fully to find the target stairs down, but whenever you encounter a monster, you should always try to run to the direction of the corridor. Once in the second room, never return to the corridor or first room unless actively fleeing a monster.
+\end{enumerate}
+
+\textbf{Example:}
+\begin{verbatim}
+                      ----
+                      |...|       |..............
+                      |<.%.#%#####............@..
+                      |...|       |..............
+                      ----
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{5}
+  \item In case you return to the first room (where you can see “<”), immediately find the corridor “\#” again and go east as much as possible.
+\end{enumerate}
+
+
+% Quest-specific
+\textbf{For task name contains “quest”:}\\
+\textbf{Your goal:} Your goal is to explore the level, fight monsters, and navigate rooms and mazes to ultimately reach the stairs down.
+
+\textbf{Notes:}
+\begin{enumerate}
+  \item You should never cross \}(lava) without necessary ability or equipment.
+  \item Always explore approachable areas (no need to cross the lava) well enough to find sufficient support. Below is an example:
+\end{enumerate}
+
+\textbf{Map Example:}
+\begin{verbatim}
+                        --------------
+                        |@....}......---
+                        |.(...}.......F-
+                        |.....}.....................|
+                        |.....}........--------     |
+                        |.....}......---
+                        --------------
+\end{verbatim}
+
+\begin{enumerate}\setcounter{enumi}{2}
+  \item You should always try to apply the tool you can get, even if you do not know its effect.
+  \item You should always try to apply your role’s ability, even if you do not know its effect.
+\end{enumerate}
+
+
+% Boxoban-specific
+\textbf{For task name contains “boxoban”:}\\
+\textbf{Your goal:} You are playing Boxoban, a box-pushing game inspired by Sokoban. Your goal is to push the boulders onto the fountains on the map. You can push the boulders by walking into them, as long as there are no obstacles behind them.
+
+\textbf{Notes:}  
+For this task, follow these rules in priority order:
+\begin{enumerate}
+  \item Remember the locations of the fountains at the start.
+  \item Never push a boulder if the next spot is not empty or not a fountain.
+  \item Never push a boulder into an L-shaped wall configuration (two adjacent walls).
+\end{enumerate}
+
+\textbf{Example (dead corner):}
+\begin{verbatim}
+                                  ##########
+                                  #`.....###
+\end{verbatim}
+
+\textbf{Visual Deadlock Examples (NEVER DO THESE):}
+
+\textbf{Case 1:}  
+Before Push:
+\begin{verbatim}
+                                  ##########
+                                  ##########
+                                  #<########
+                                  #.########
+                                  #.########
+                                  #..{.#####
+                                  #@.``#####
+                                  #`{.`{.###
+                                  #......###
+                                  ##########
+\end{verbatim}
+Action: Push South  
+After Push:
+\begin{verbatim}
+                                  ##########
+                                  ##########
+                                  #<########
+                                  #.########
+                                  #.########
+                                  #..{.#####
+                                  #..``#####
+                                  #@{.`{.###
+                                  #`.....###
+                                  ##########
+\end{verbatim}
+Result: Boulder stuck – can’t move due to walls.
+
+\textbf{Case 2:}  
+Before Push:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#.`@..#
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+Action: Push WEST  
+After Push:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`@...#
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+Result: Can’t move boulder any more.
+
+\textbf{More Thorough Examples:}
+
+\textbf{Example 1 – Dead Corner:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#.`@..#
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+After pushing west:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`@...#
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+\textbf{Example 2 – Dead Corner:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ##########
+                                  #<########
+                                  #.########
+                                  #.########
+                                  #..{.#####
+                                  #@.``#####
+                                  #`{.`{.###
+                                  #......###
+                                  ##########
+\end{verbatim}
+After pushing south:
+\begin{verbatim}
+                                  ##########
+                                  ##########
+                                  #<########
+                                  #.########
+                                  #.########
+                                  #..{.#####
+                                  #..``#####
+                                  #@{.`{.###
+                                  #`.....###
+                                  ##########
+\end{verbatim}
+
+\textbf{Example 3 – Dead Corner:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`....#
+                                  #.@.#.#.<#
+                                  #.``..##.#  
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+After pushing north:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`....#
+                                  #...#.#.<#
+                                  #.@`..##.#
+                                  ##`..{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+\textbf{Example 4 – Dead Corner:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..{`....#
+                                  #.{.#.#.<#
+                                  #..`..##.#
+                                  ##.@`.##.#  
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+After pushing east:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..{`....#
+                                  #.{.#.#.<#
+                                  #..`..##.#
+                                  ##..@`##.#  
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+\textbf{Terminal State Check:}  
+Remember all fountain locations initially. After each push, if a fountain spot “{” is covered by a boulder, mark that spot terminated.
+
+\textbf{Example 1 – Termination:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`....#
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##@..{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+After pushing north:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`....#
+                                  #.`.#.#.<#
+                                  #.@`..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+\textbf{Example 2 – Termination:}  
+Before:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..{`@...#
+                                  #...#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+After pushing west:
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..`@....#
+                                  #...#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+4. You should never push a boulder next to a wall unless, in the perpendicular direction there remains an open fountain with all intermediate spots empty.  
+5. You should never push a boulder if it is already on a fountain.  
+6. If a boulder and a fountain are aligned in the same row or column, all intermediate spots empty, and the spot behind the boulder (opposite the fountain) is empty, push toward the fountain.
+
+\textbf{Map Example (established path):}
+\begin{verbatim}
+                                  ##########
+                                  #......<##
+                                  #.#@.{`.##
+                                  #.``##.#.#
+                                  #..`...{.#
+                                  #.#.{....#
+                                  #######.{#
+                                  #######..#
+                                  #######..#
+                                  ##########
+\end{verbatim}
+
+7. Always explore to create more paths.  
+8. If a boulder is in a dead corner initially, do not waste steps pushing it.  
+
+\textbf{Example (dead corner reminder):}
+\begin{verbatim}
+                                  ##########
+                                  #`.....###
+\end{verbatim}
+
+\textbf{Below are two quick dead-corner examples:}
+
+\textbf{Example 1:}
+\begin{verbatim}
+                                  ##########
+                                  ####...{`#
+                                  #..#`@...#  <-- Boulder in dead corner
+                                  #.{.#.#.<#
+                                  #.``..##.#
+                                  ##...{##.#
+                                  ########.#
+                                  #####...{#
+                                  ######...#
+                                  ##########
+\end{verbatim}
+
+\textbf{Example 2:}
+\begin{verbatim}
+                                  ##########
+                                  ##########
+                                  #<########
+                                  #.########
+                                  #.########
+                                  #..{.#####
+                                  #..``#####
+                                  #@{.`{.###
+                                  #`.....###  <-- Boulder in dead corner
+\end{verbatim}
+
+\textbf{Finally, a successful trajectory:}
+
+\textbf{Example 1 – Beginning:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`.`..#
+                                  ###.@.#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`.`..#
+                                  ###..@#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`@`..#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`.@`.#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`..@`#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move south:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#
+                                  ###.`...`#
+                                  ###...#@.#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....{#  <----target this fountain
+                                  ###.`...`#
+                                  ###...#.@#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#  <----boulder now on fountain
+                                  ###.`...@#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###.`..@.#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###.`.@..#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###.`@...#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move south:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###.`....#
+                                  ###..@#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###.`....#
+                                  ###.@.#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####`...`#
+                                  ###.@....#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.`.{.`.#
+                                  ####`#####
+                                  ####@...`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...{..{.#
+                                  ##.``{.`.#
+                                  ####@#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{.#
+                                  ##.`@{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{.#
+                                  ##.`.@.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move north:}
+\begin{verbatim}
+                                  ##########
+                                  #...`@.{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...`.@{.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..@.#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move east:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{@#
+                                  ##.`.{.`.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move south:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{.#
+                                  ##.`.{.`@#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{.#
+                                  ##.`.{`@.#
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{move west:}
+\begin{verbatim}
+                                  ##########
+                                  #...`..{.#
+                                  ##.`.`@..#  <--- now boulder on fountain
+                                  ####.#####
+                                  ####....`#
+                                  ###......#
+                                  ###...#..#
+                                  ####<#####
+                                  ##########
+                                  ##########
+\end{verbatim}
+
+\textbf{Now we have successfully pushed three boulders to the fountains.}
+
+% MazeWalk-specific
+\textbf{For task name contains “mazewalk”:}\\
+\textbf{Your goal:} Your goal is to explore the level and reach the stairs down.
+
+\textbf{Notes:}  
+For this task, your action space is limited to:
+\begin{verbatim}
+{"north": "move north",
+ "east":  "move east",
+ "south": "move south",
+ "west":  "move west"}
+\end{verbatim}
+
+You must only choose these four directions:
+
+\begin{enumerate}
+  \item If the block on your east is empty, move east.
+  \item If east is blocked and north is open, move north.
+  \item If east and north are both blocked, and west is open, move west.
+  \item If east, north, and west are blocked, move south.
+\end{enumerate}
+
+% Absolute Wall-Following Protocol
+\textbf{Absolute Wall-Following Protocol:}\\
+\textit{Core Principle: “Follow priority order, probe dark directions ONLY when they're current priority.”}\\
+\textit{Movement Validation:}\\
+– Priority rotation ONLY occurs AFTER SUCCESSFUL MOVEMENT.\\
+– Wall collisions preserve current priority order.
+
+\begin{enumerate}
+  \item Initialization: CURRENT\_PRIORITY = [EAST, NORTH, WEST, SOUTH]; permanent\_walls = \{\}. Move east until first wall.
+  \item At each position, check directions in CURRENT\_PRIORITY:
+    \begin{itemize}
+      \item If visible (“.” or “<”), move immediately and rotate per rules.
+      \item If dark, attempt move:
+        \begin{itemize}
+          \item Success: continue protocol.
+          \item Wall collision: mark permanent\_walls, skip direction, continue.
+        \end{itemize}
+    \end{itemize}
+  \item Rotation rules:
+    \begin{enumerate}
+      \item 1st priority move: rotate clockwise (e.g. ENWS → SENW).
+      \item 2nd priority: no rotation.
+      \item 3rd priority: rotate counter-clockwise (ENWS → NWSE).
+      \item 4th priority: reverse (swap 1↔3, 2↔4).
+    \end{enumerate}
+  \item Terminal Condition: immediately go to stairs down (">") when visible; never treat "<" specially.
+\end{enumerate}
+
+\textbf{Walkthrough Example:}\\
+Initial: [E,N,W,S]\\
+1. Move E until wall.  
+2. At start: E (wall) → N (open) → move north (no rotation).  
+3. Next: E (open) → move east (rotate to SENW).\\
+
+% Default
+\textbf{Otherwise:}\\
+\textbf{Your goal:} Your goal is to get as far as possible in the game.
+
+In a moment I will present a history of actions and observations from the game.
+
+\textbf{Tip:} there is no point in outputting the same action over and over if nothing changes.
+
+\textbf{PLAY!}
+\end{MyGreenBox}
+
+

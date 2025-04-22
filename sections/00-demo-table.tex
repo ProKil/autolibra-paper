@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{booktabs} % make sure this is in your preamble
+
+\begin{document}
+
+\begin{table}[!t]
+    \centering
+    \small
+    \begin{tabular}{p{1.5cm}p{4cm}p{4cm}}
+        \toprule
+        Category & \textbf{Baba-is-ai}  & \textbf{Cogym} \\ %f61a0243-fb24-4bc9-96c8-d1914fe14d49 - babaisai turn 3
+        \midrule
+        \textbf{Trajectory} & & \\ 
+        \textbf{Human Feedback} & %The agent correctly recognizes that the wall is blocking, and attempts to bypass the rule. The agent correctly recognizes that the win condition is not active, and also recognizes the correct block to build it with. The agent correctly plans movements and block interactions and their correct order to complete the challenge.The agent correctly recognizes that \"wall is stop\" is not blocked by the game boundary, and thus can be broken.The agent paths almost perfectly, and does not waste turns moving incorrectly.The agent correctly recognizes when the \"wall is stop\" condition is not longer blocking, and correctly navigates to the win object.The agent correctly avoids being distracted by objects and rules not relevant to the victory condition.The agent correctly recognizes that it is necessary to break the \"wall is stop\" condition to win the game.The agent correctly recognizes that \"wall is stop\" is not blocked by the game boundary, and thus can be broken.The agent correctly pushes rule blocks by moving into them from a direction they are not blocked from.The agent correctly recognizes which objects are in the field, and correctly plans to build a win condition based on the available rule block.The agent correctly builds a win condition by pushing a block from the correct direction and placing it in the correct location. 
+        The agent accurately interprets game rules like "wall is stop," plans to break them when needed, identifies win conditions, selects relevant rule blocks, avoids distractions, and efficiently executes movements and interactions to build and activate the correct win condition using available objects. & \\
+        \textbf{Aspects} &         
+        \begin{enumerate}[left=0pt]
+          \item The agent plans correct movements toward achieving the task goal.
+          \item The agent correctly recognizes that the win condition is not active, and also recognizes the correct block to build with.
+          \item The agent correctly pushes rule blocks by moving into them from a direction they are not blocked from.
+        \end{enumerate} & \\
+        \textbf{Metrics}    &
+        
+        \begin{enumerate}[left=0pt]
+          \item The agent plans correct movements toward achieving the task goal.
+          \item The agent correctly recognizes that the win condition is not active, and also recognizes the correct block to build with.
+          \item The agent correctly pushes rule blocks by moving into them from a direction they are not blocked from.
+        \end{enumerate} & \\
+        \textbf{Traits}     & & \\
+        \textbf{Mapping}    & & \\
+        \bottomrule
+    \end{tabular}
+    \caption{
+    }
+    \label{tab:babaisai-cogym}
+\end{table}
+\end{document}
+
+%

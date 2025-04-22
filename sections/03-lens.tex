@@ -1,21 +1,20 @@
-\section{The lens \protect\includegraphics[height=1em]{figs/microscope.png}: Agent evaluation with AutoLibra}
+\section{The Lens \protect\includegraphics[height=1em]{figs/microscope.png}: Agent evaluation with AutoLibra}
 \label{sec:lens}
 
+In this section, we use AutoLibra as a lens to provide grounded, behavior-salient insights into agent trajectories. We evaluate coverage of induced metrics have and they can be generalized to novel human feedback.
+
+Intuitively, coverage and redundancy grow as the number of metrics increases. However, we observe diminishing coverage gains past $N=6$ to $N=10$, while redundancy continues to increase.
+On held-out human feedback (mentioned in \S\ref{sec:collecting-human-feedback}), coverage and redundancy are marginally worse than the from feedback used to induce the metrics, which demonstrates that AutoLibra produces metrics that are generalizable to arbitrary agent trajectories. We also find \diyi{do you have ablation results here in a detailed fashion, instead of briefly saying it changes from 5 to 30\%?} that LLM-as-a-Judge is improved by use of the good- and bad-behavior examples in the metrics -- across all datasets, not using the examples reduces the coverage significantly (5\% to 30\%). 
+
+\diyi{i recommend creating a table to lay out the original metrics from each work, and the new metrics you induced, to give readers a clear read.}
 
 
-In this section, we use AutoLibra as a lens to provide insights into agent behaviors. We first ask whether 
-the induced metrics can reflect human feedback even if they are not seen during the induction process.
-As shown in Fig. \ref{fig:coverage-redundancy},
-we show the best coverage and redundancy of metrics of different numbers $N$. 
-Intuitively, the more metrics we induce, the higher the coverage and redundancy. However we do find that
-at around $N=6$ to $N=10$, the coverage is at its peak, and adding more metrics will not improve the coverage
-but will increase the redundancy. 
+\citet{shao2024collaborative} organize the failure modes in CoGym into five main categories. We find that the metrics induced on CoGym from the user feedback with AutoLibra cover similar categories, demonstrating the consistenty of AutoLibra as a metric extraction tool: \textit{Communication clarity and user interaction} belongs to Communication,  \textit{Adherence to instructions and consistency} belongs to Situational Awareness, \textit{Adaptability and responsiveness to feedback} belongs to Planning, \textit{Search accuracy and content relevance} belongs to Environment Awareness, and \textit{User preference query and incorporation} belongs to Personalization. All five metrics are more concrete and fine-grained than the larger categories in CoGym; we also discover the following metrics that are not mentioned in the break-down analysis in the CoGym paper:
+\textit{Response time and efficiency}, \textit{Itinerary and report detail quality}, and \textit{Formatting and presentation consistency}. We note that this comparison shows the complementary characteristics of automatically 
+induced metrics, which are more concrete on the issues that users are noticing, while the expert-designed categories measure the high-level capabilities of AI agents. 
 
+Similarly, \citet{zhousotopia} propose seven dimensions for evaluating social intelligence in AI agents. Among the induced metrics, 3 metrics map well to behaviors in Sotopia-Eval: \textit{Conversational Naturalness and Efficiency}, \textit{Personality Consistency and Alignment}, \textit{Contextual Integration of Identity and Personal Background}, while metrics like \textit{Negotiation Tactics and Strategic Adaptability} and \textit{Responsiveness and Conversational Termination} are not captured in any of the dimensions of Sotopia-Eval. 
 
+For web navigation tasks, AutoLibra also discovers metrics including \textit{Access Barrier Handling}, \textit{Error Recovery and Iterative Adjustment}, \textit{Step Efficiency and Action Redundancy} which much more closely reflect emergent agent behavior than the failure analysis categories proposed in previous work \citep{he2024webvoyager,zhou2024proposeragentevaluatorpaeautonomousskilldiscovery}, where they are often classified as ``navigation stuck''. %Understanding the cause of the navigation failure is access barrier such as CAPTCHA or error recovery is important for improving the agents. 
 
-\subsection{How do AutoLibra metrics compare with human-derived metrics?}
-
-
-
-\subsection{Are examples in the metrics useful for LLM-as-a-Judge?}
-
+%\diyi{i thought we also had some insights on how these metrics can be generalized across similar tasks. Is this highlighted somewhere? Phil: in theory handled in section 4}

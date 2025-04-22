@@ -1,0 +1,22 @@
+\begin{algorithm}
+    \caption{Pseudocode for iterative agent improvement with AutoLibra}
+    \begin{algorithmic}[1]
+    \For{$i$ in range($n\_iters$)}
+        \For{$task$ in $selected\_tasks$}
+            \State $traj_i, eval\_score_i += agent.play(task, prompt)$
+            \State $annotations_i += editor.annotate(traj_i)$
+        \EndFor
+        \State $metrics_i = AutoLibra.extract_metrics(traj_i, annotations_i)$
+        \State $traj\_scores_i = AutoLibra.llm_eval(metrics_i, traj_i)$
+        \State $curr\_scores = eval\_score_i$
+        \While {$curr\_scores <= eval\_score_i$}
+            \State $prompt = updated\_prompt_k$
+            \For{$task$ in $selected\_tasks$}
+                \State $\_, curr_scores = agent.play(task, prompt)$
+            \EndFor
+        \EndWhile
+    \EndFor
+
+    \end{algorithmic}
+\end{algorithm}
+
