@@ -5,6 +5,7 @@ As AutoLibra can automatically induce metrics from human feedback, a natural que
 In this section, we will study can AutoLibra be used a `ladder', inducing metrics as new optimization targets in each iteration to improve agent performance. We investigate two methods for optimizing agents:
 prompt engineering and fine-tuning, across two domains: text game and web browsing. Across all tested methods and domains, AutoLibra induces new metrics in each iteration to cover emergent agent behaviors, and enables continuous improvements on both induced metrics and task success.
 Fig. \ref{fig:autolibra-training} illustrates the results. 
+\diyi{do we want to summarize these improvement numbers in a table or something? }
 
 \begin{figure}[!t]
     \centering
@@ -17,7 +18,7 @@ Fig. \ref{fig:autolibra-training} illustrates the results.
 \subsection{Can AutoLibra induce good optimization targets for prompt engineering?}
 \label{sec:Baba-Is-AI}
 
-To answer this question, we use Baba-Is-AI \citep{cloos2024babaaibreakrules, paglieri2024balrog} as a case study, since it is a challenging environment not yet saturated by state-of-the-art LLM agents. This game requires metacognitive skills, such as breaking and building new rules, planning ordered subtasks, and advanced navigation. A full list of game rules is listed in App. \ref{appendix:baba_is_ai_rules}.
+To answer this question, we use Baba-Is-AI \citep{cloos2024babaaibreakrules, paglieri2024balrog} as a case study, since it is not yet saturated by state-of-the-art LLM agents. This game requires metacognitive skills, such as breaking and building new rules and planning ordered subtasks; a full list of game rules is listed in App. \ref{appendix:baba_is_ai_rules}.
 We use the top model on the leaderboard\footnote{\url{https://balrogai.com}} (which when we started the experiments, was GPT-4o) \citep{openai2024gpt4ocard} for the agent policy, while we find similar improvements in Claude-3.5-Sonnet\footnote{\url{https://www.anthropic.com/news/claude-3-5-sonnet}} as well.
 
 % \begin{figure}[ht]
@@ -31,6 +32,7 @@ We use the top model on the leaderboard\footnote{\url{https://balrogai.com}} (wh
 
 To avoid overfitting to the tasks used in optimization, we use 6 of 40 tasks in Baba-Is-AI \citep{paglieri2024balrog} to induce metrics and optimize prompts and report performance on all 40 tasks. 
 In one \textit{Iteration}, the human prompt engineers (two of the authors) generate 18 agent trajectories (3 trajectories / task), use AutoLibra to induce metrics, then optimize the prompt to achieve higher performance on the induced metrics without considering the task success rate, and start a new iteration when one or more metrics improved significantly (over 30\%). The procedure and experiment setup are detailed in App. Alg. \ref{appendix:algo1} and App. \ref{appendix:autolibra_setup}.
+\vspace{-0.4cm}
 
 \paragraph{Results}
 Illustrated in Fig. \ref{fig:autolibra-training}, the performance on Babaisai task increased from 25\% to 55\% between \textit{Iteration 0} and \textit{Iteration 3}, with each iteration resulting in greater performance than the previous; this is replicated across the held-out tasks alone, (complete task results tabulated in App. \ref{appendix:heldout}). This represents a substantial increase compared to the highest base model performance of 33\% on Baba-Is-AI \citep{paglieri2024balrog}. With only 6 tasks used in inducing the metrics, the improvement on all 40 tasks showing the metrics induced by AutoLibra are generalizable to unseen tasks. Among induced metrics (App. Tab. \ref{tab:baba_is_ai_metrics}), agent performance increases correspondingly to prompt changes targeting those metrics, an example being \texttt{Win Condition Recognition} \includegraphics[height=1em]{figs/emojis/emoji_1.png}, which increases from 28\% to 50\% from \textit{Iterations 0-1} after few-shot prompting (prompt in App. \ref{box:baba_is_you_iter_1}) is introduced to teach the identification of a win condition rule. The complete list of observations and reasoning for prompt engineering is in the App. \ref{appendix:baba_is_ai_obs}. With AutoLibra, prompt engineers could receive feedback on whether their prompt changes lead to desired behavior changes in agents. 
