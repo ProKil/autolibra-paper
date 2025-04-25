@@ -2,7 +2,7 @@
 
 To address the limitations of existing evaluation paradigms, AutoLibra \protect\includegraphics[height=1em]{figs/scale.png} is designed to
 meet the following desiderata: (1) \emph{data-driven}: This ensures that metrics are grounded
-in real agent behavior and human opinions,  (2) \emph{self-validating}: Allows choosing minimal set of metrics that cover unseen human feedback with sufficient abstraction to be useful across different tasks, and (3) \emph{generalizable}: Applicable to various agent environments, independent of a domain-specific design.
+in real agent behavior and human opinions,  (2) \emph{self-validating}: Allows choosing minimal set of metrics that cover unseen human feedback with sufficient abstraction to be useful across different tasks, and (3) \emph{generalizable}: Applicable to various agent environments, independent of domain-specific design.
 
 Based on feedback data collected from humans (\S\ref{sec:collecting-human-feedback}), AutoLibra achieves these desiderata through a closed-loop pipeline
 consisting of two processes: \textbf{Induction Process} that converts agent behaviors and corresponding feedback into metrics, (\S\ref{sec:induction_process}) and \textbf{Evaluation Process} that predicts ratings and quality of new agent behaviors on the induced metrics (\S\ref{sec:evaluation_process}). 
@@ -21,7 +21,7 @@ The annotators can also choose from a TTY (TeleTYpewriter) or a web interface; i
 and then view the agent's observation and actions step by step, in text form. \footnote{While viewing screenshots is standard for web navigation tasks, we keep the observation format consistent across agents and humans to encourage more grounded feedback.}
 For multi-agent tasks, we annotate each agent's trajectory in a given interaction separately. For Sotopia \citep{zhousotopia}, WebArena \citep{zhouwebarena},
 and WebVoyager \citep{he2024webvoyager}, we annotate 100 trajectories of agents based on GPT-4 \citep{achiam2023gpt} with feedback for each dataset. For experiments in \S\ref{sec:ladder} we annotate 18 trajectories for each dataset in each
-iteration. The annotation process is fast: Human annotators spend less than 5 minutes to provide feedback for each trajectory. In experiments in \S\ref{sec:lens}, we randomly hold out 20\% of the trajectories for validation.
+iteration. The annotation process is fast: Human annotators spend less than 5 minutes to provide feedback for each trajectory; \S\ref{sec:lens}, we further randomly hold out 20\% of the trajectories for validation.
 
 \subsection{\texorpdfstring{Induction Process: agent trajectories and human feedback $\rightarrow$ evaluation metrics}{Induction Process: agent trajectories and human feedback -> evaluation metrics}}
 \label{sec:induction_process}
@@ -104,9 +104,8 @@ evaluate the agent trajectories configured with the induced metrics. However, LL
 can be replaced by any other evaluation methods implementing the induced metrics;
 \emph{e.g.} an \texttt{interact-valid-element} metric
 could be evaluated by a rule-based evaluator that checks if the agent
-interacts with valid elements on the webpage. We should note that the AutoLibra method could be used with other evaluation methods, such as
-programmatic evaluation \citep{maeureka}. We leave generating
-programs for the induced metrics for future work.
+interacts with valid elements on the webpage. We note that AutoLibra could be used with other evaluation methods, such as
+programmatic evaluation \citep{maeureka}; we leave generating programs for the induced metrics for future work.
 
 As illustrated in Fig. \ref{fig:llm_as_a_judge}, taking the induced metrics as input, an LLM (we use o3-mini medium,
 as it provides similar results in this step to o3-mini high) is prompted to rate the agent trajectories to \{+ 1, -1, N / A\} for each metric. For an agent trajectory, the metrics labeled +1 are
