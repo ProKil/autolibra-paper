@@ -1,5 +1,8 @@
 \section{Conclusion and Future Work}
-In this paper, we propose AutoLibra, an evaluation paradigm and induction method for agent evaluation metrics based on open-ended human feedback.
+In this paper, we propose AutoLibra, a new paradigm for agent evaluation.
 We find that this framework is generalizable to a diverse range of agent tasks, provides new insights into agent behaviors,
-and identifies strong optimization targets for agent improvements via either prompt engineering or finetuning.
-Future work could apply the same framework on other agent tasks and explore the use of the induced metrics as reward signals for reinforcement learning.
+and identifies strong optimization targets for agent improvement. There are a few directions for further extending and applying this framework. 
+
+\paragraph{Sub-trajectory feedback} In AutoLibra, we label each trajectory with one piece of feedback, and ground it into the agents' concrete behavior which is at the sub-trajectory level. In the future, researchers can let users directly give feedback for one or multiple steps in the trajectory, which should lead to better feedback grounding results. Similarly, the feedback from user can come from during the interaction instead of after the agent has completed the tasks. 
+
+\paragraph{Wider exploration of  agent improvement methods} In this paper, we only explored two methods for agent improvement to show the utility of AutoLibra. In the future, researchers can use AutoLibra to provide dense rewards for individual steps, and use reinforcement learning to train LLM agents with these dense rewards. 

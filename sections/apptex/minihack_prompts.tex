@@ -15,7 +15,6 @@
   innerbottommargin=10pt,
   splittopskip=\topskip,
   splitbottomskip=10pt,
-  split=true,
   frametitle={\textbf{Iteration 0 MiniHack Prompt}},
   frametitlebackgroundcolor=darkgreen,
   frametitlefont=\color{white}\bfseries,
@@ -23,7 +22,7 @@
   frametitleaboveskip=8pt,
   frametitlebelowskip=8pt,
 ]{MyGreenBox}
-\BeforeBeginEnvironment{MyGreenBox}{\VerbatimEnvironment}
+\BeforeBeginEnvironment{MyGreenBox}{\VerbatimEnvironment\small}
 
 
 %% MiniHack Instruction Prompt Template
@@ -164,7 +163,7 @@ Your goal is to explore the level, fight monsters, and navigate rooms and mazes 
 
 \textbf{Notes:}
 \begin{enumerate}
-  \item You should never cross }(lava) without necessary ability or equipment.
+  \item You should never cross (lava) without necessary ability or equipment.
   \item Always explore the area approachable (no need to cross the lava) well enough to find sufficient support. Below is an example:
 \end{enumerate}
 
@@ -1122,7 +1121,7 @@ You must only choose these four directions:
       \item 1st priority move: rotate clockwise (e.g. ENWS → SENW).
       \item 2nd priority: no rotation.
       \item 3rd priority: rotate counter-clockwise (ENWS → NWSE).
-      \item 4th priority: reverse (swap 1↔3, 2↔4).
+      \item 4th priority: reverse (swap 1$\leftrightarrow$3, 2$\leftrightarrow$4).
     \end{enumerate}
   \item Terminal Condition: immediately go to stairs down (">") when visible; never treat "<" specially.
 \end{enumerate}
@@ -1142,6 +1141,7 @@ In a moment I will present a history of actions and observations from the game.
 \textbf{Tip:} there is no point in outputting the same action over and over if nothing changes.
 
 \textbf{PLAY!}
+}
 \end{MyGreenBox}
 
 
