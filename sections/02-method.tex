@@ -15,6 +15,13 @@ is the environment that belongs to this category, and we use the user comments c
 in 197 trajectories with feedback. (2) Experts -- for agents that
 do not directly interact with humans, we use the feedback from human annotators (five authors in this paper) who observe agent trajectories. All other environments belong to this category, these being Sotopia \citep{zhousotopia}, WebArena \citep{zhouwebarena}, WebVoyager \citep{he2024webvoyager}, Baba-is-ai \citep{cloos2024babaaibreakrules}, and MiniHack \citep{samvelyan2021minihackplanetsandboxopenended}. For each trajectory, we collect only one element of feedback; feedback is given based on the complete agent trajectories.\footnote{While in theory we can leverage feedback on specific steps to achieve better feedback grounding and multiple feedback for single trajectory, we leave it as future work.}
 
+\begin{wrapfigure}[17]{r}{0.4\linewidth}
+  \vspace{-15pt}
+  \includegraphics[width=\linewidth]{figs/autolibra_step_1.pdf}
+  \vspace{-10pt}
+  \caption{Feedback Grounding}
+  \label{fig:feedback_grounding}
+\end{wrapfigure}
 Annotators are instructed to explicitly indicate the aspects of agent behavior that they classify as good or bad,
 and to avoid general comments such as \textsf{"The agent is good at solving the task"}.
 The annotators can also choose from a TTY (TeleTYpewriter) or a web interface; in both cases the annotator is provided with the agent's task
@@ -23,23 +30,17 @@ For multi-agent tasks, we annotate each agent's trajectory in a given interactio
 and WebVoyager \citep{he2024webvoyager}, we annotate 100 trajectories of agents based on GPT-4 \citep{achiam2023gpt} with feedback for each dataset. For experiments in \S\ref{sec:ladder} we annotate 18 trajectories for each dataset in each
 iteration. The annotation process is fast: Human annotators spend less than 5 minutes to provide feedback for each trajectory; \S\ref{sec:lens}, we further randomly hold out 20\% of the trajectories for validation.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{figs/autolibra_pipeline_v2.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=\linewidth]{figs/autolibra_pipeline_v2.pdf}
+%     \caption{Caption}
+%     \label{fig:enter-label}
+% \end{figure}
+
 
 \subsection{Induction Process: agent trajectories and human feedback $\rightarrow$ evaluation metrics}
 \label{sec:induction_process}
 
-% \begin{wrapfigure}[19]{r}{0.5\linewidth}
-%   \vspace{-15pt}
-%   \includegraphics[width=\linewidth]{figs/autolibra_step_1.pdf}
-%   \vspace{-10pt}
-%   \caption{Feedback Grounding}
-%   \label{fig:feedback_grounding}
-% \end{wrapfigure}
 \paragraph{Feedback Grounding}
 The feedback of human annotators can contain multiple aspects; e.g. \textsf{``AI agent was pretty good
 at giving me a consistent itinerary and vacation plan, although it froze on the last couple of minutes.''},
@@ -50,6 +51,8 @@ at the end. Here we define an \emph{aspect} as a triple $(\texttt{behavior}, \te
 In the positive aspect of the previous example, the \texttt{behavior} is the agent's actions to create
 a 20-day itinerary for the Maldives, the \texttt{feedback} is that the created itinerary is consistent and the \texttt{sign} is positive. This grounding procedure is similar to the coding procedure in thematic analysis by humans.
 
+
+
 Illustrated in Fig. \ref{fig:feedback_grounding}, in this step, we feed the trajectory and the feedback into the LLM (we use GPT-4o \citep{openai2024gpt4ocard} 
 as it yields good results in our experiments) and prompt the LLM with the following instructions:
 (1) break down the feedback into bullet points; (2) for each bullet point, find the corresponding
@@ -59,12 +62,13 @@ trajectory, the LLM can generate one to five aspects, with a mean of one to two 
 
 
 \paragraph{Behavior Clustering}
-% \begin{wrapfigure}[19]{l}{0.5\linewidth}
-%   \includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
-%   \vspace{-10pt}
-%   \caption{Behavior Clustering}
-%   \label{fig:behavior_clustering}
-% \end{wrapfigure}
+\begin{wrapfigure}[16]{l}{0.4\linewidth}
+  \vspace{-15pt}
+  \includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
+  \vspace{-10pt}
+  \caption{Behavior Clustering}
+  \label{fig:behavior_clustering}
+\end{wrapfigure}
 The second step of the extraction process is to group the aspects into $N$ metrics.
 To illustrate this step, we consider another example in the same dataset
 \textsf{``The AI responds quickly to write and run the Python script``} where
@@ -90,13 +94,7 @@ makes the metrics more concrete but still applicable across different tasks.
 
 \subsection{Evaluation Process: evaluating agents and the quality of the induced metrics}
 \label{sec:evaluation_process}
-% \begin{wrapfigure}[19]{r}{0.5\linewidth}
-%   \vspace{-15pt}
-%   \includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
-%   \vspace{-10pt}
-%   \caption{\small Evaluating agents with induced metrics}
-%   \label{fig:llm_as_a_judge}
-% \end{wrapfigure}
+
 \paragraph{Evaluating agents with induced metrics}
 LLM-as-a-Judge \citep{zheng2023judging},
 or more broadly, model-based evaluation
@@ -114,6 +112,13 @@ could be evaluated by a rule-based evaluator that checks if the agent
 interacts with valid elements on the webpage. We note that AutoLibra could be used with other evaluation methods, such as
 programmatic evaluation \citep{maeureka}; we leave generating programs for the induced metrics for future work.
 
+\begin{wrapfigure}[16]{r}{0.4\linewidth}
+  \vspace{-15pt}
+  \includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
+  \vspace{-10pt}
+  \caption{\small Evaluating agents with induced metrics}
+  \label{fig:llm_as_a_judge}
+\end{wrapfigure}
 As illustrated in Fig. \ref{fig:llm_as_a_judge}, taking the induced metrics as input, an LLM (we use o3-mini medium,
 as it provides similar results in this step to o3-mini high) is prompted to rate the agent trajectories to \{+ 1, -1, N / A\} for each metric. For an agent trajectory, the metrics labeled +1 are
 the positive \emph{traits}, and the ones labeled -1 are the negative \emph{traits}. When we calculate the scores of
@@ -123,14 +128,8 @@ since not all metrics are applicable to all trajectories
 (some metrics like \texttt{valid-search-terms} are only applicable when the task
 involves searching). 
 
+
 \paragraph{Meta evaluation}
-% \begin{wrapfigure}[19]{l}{0.5\linewidth}
-%   \vspace{-15pt}
-%   \includegraphics[width=\linewidth]{figs/autolibra_step_4.pdf}
-%   \vspace{-10pt}
-%   \caption{\small Meta evaluation}
-%   \label{fig:meta_evaluation}
-% \end{wrapfigure}
 The last component of the loop is the meta-evaluation, i.e. evaluating the evaluation metrics induced by AutoLibra.
 This step matches the traits detected by the LLM-as-a-Judge with aspects
 grounded from the human feedback. The goal is to verify whether (1) the induced metrics cover the behaviors the human annotators care about, and (2) LLM-as-a-Judge can produce
@@ -140,8 +139,13 @@ has the same opinion as the human annotators, then this aspect is considered as 
 If either a similar metric was not extracted, or the LLM-as-a-Judge assigns a different score,
 then this aspect is considered as not covered.
 
-
-
+\begin{wrapfigure}[15]{l}{0.4\textwidth}
+  \vspace{-15pt}
+  \includegraphics[width=\linewidth]{figs/autolibra_step_4.pdf}
+  \vspace{-10pt}
+  \caption{\small Meta evaluation}
+  \label{fig:meta_evaluation}
+\end{wrapfigure}
 Illustrated in Fig. \ref{fig:meta_evaluation}, to perform this step, for each trajectory-feedback pair, we classify the aspects into positive and negative aspects, classify
 traits into positive and negative traits, then attempt to match the positive aspects with positive traits
 and the negative aspects with negative traits. 
