@@ -23,16 +23,23 @@ For multi-agent tasks, we annotate each agent's trajectory in a given interactio
 and WebVoyager \citep{he2024webvoyager}, we annotate 100 trajectories of agents based on GPT-4 \citep{achiam2023gpt} with feedback for each dataset. For experiments in \S\ref{sec:ladder} we annotate 18 trajectories for each dataset in each
 iteration. The annotation process is fast: Human annotators spend less than 5 minutes to provide feedback for each trajectory; \S\ref{sec:lens}, we further randomly hold out 20\% of the trajectories for validation.
 
-\subsection{\texorpdfstring{Induction Process: agent trajectories and human feedback $\rightarrow$ evaluation metrics}{Induction Process: agent trajectories and human feedback -> evaluation metrics}}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{figs/autolibra_pipeline_v2.pdf}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
+\subsection{Induction Process: agent trajectories and human feedback $\rightarrow$ evaluation metrics}
 \label{sec:induction_process}
 
-\begin{wrapfigure}[19]{r}{0.5\linewidth}
-  \vspace{-15pt}
-  \includegraphics[width=\linewidth]{figs/autolibra_step_1.pdf}
-  \vspace{-10pt}
-  \caption{Feedback Grounding}
-  \label{fig:feedback_grounding}
-\end{wrapfigure}
+% \begin{wrapfigure}[19]{r}{0.5\linewidth}
+%   \vspace{-15pt}
+%   \includegraphics[width=\linewidth]{figs/autolibra_step_1.pdf}
+%   \vspace{-10pt}
+%   \caption{Feedback Grounding}
+%   \label{fig:feedback_grounding}
+% \end{wrapfigure}
 \paragraph{Feedback Grounding}
 The feedback of human annotators can contain multiple aspects; e.g. \textsf{``AI agent was pretty good
 at giving me a consistent itinerary and vacation plan, although it froze on the last couple of minutes.''},
@@ -52,12 +59,12 @@ trajectory, the LLM can generate one to five aspects, with a mean of one to two 
 
 
 \paragraph{Behavior Clustering}
-\begin{wrapfigure}[19]{l}{0.5\linewidth}
-  \includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
-  \vspace{-10pt}
-  \caption{Behavior Clustering}
-  \label{fig:behavior_clustering}
-\end{wrapfigure}
+% \begin{wrapfigure}[19]{l}{0.5\linewidth}
+%   \includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
+%   \vspace{-10pt}
+%   \caption{Behavior Clustering}
+%   \label{fig:behavior_clustering}
+% \end{wrapfigure}
 The second step of the extraction process is to group the aspects into $N$ metrics.
 To illustrate this step, we consider another example in the same dataset
 \textsf{``The AI responds quickly to write and run the Python script``} where
@@ -83,13 +90,13 @@ makes the metrics more concrete but still applicable across different tasks.
 
 \subsection{Evaluation Process: evaluating agents and the quality of the induced metrics}
 \label{sec:evaluation_process}
-\begin{wrapfigure}[19]{r}{0.5\linewidth}
-  \vspace{-15pt}
-  \includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
-  \vspace{-10pt}
-  \caption{\small Evaluating agents with induced metrics}
-  \label{fig:llm_as_a_judge}
-\end{wrapfigure}
+% \begin{wrapfigure}[19]{r}{0.5\linewidth}
+%   \vspace{-15pt}
+%   \includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
+%   \vspace{-10pt}
+%   \caption{\small Evaluating agents with induced metrics}
+%   \label{fig:llm_as_a_judge}
+% \end{wrapfigure}
 \paragraph{Evaluating agents with induced metrics}
 LLM-as-a-Judge \citep{zheng2023judging},
 or more broadly, model-based evaluation
@@ -117,13 +124,13 @@ since not all metrics are applicable to all trajectories
 involves searching). 
 
 \paragraph{Meta evaluation}
-\begin{wrapfigure}[19]{l}{0.5\linewidth}
-  \vspace{-15pt}
-  \includegraphics[width=\linewidth]{figs/autolibra_step_4.pdf}
-  \vspace{-10pt}
-  \caption{\small Meta evaluation}
-  \label{fig:meta_evaluation}
-\end{wrapfigure}
+% \begin{wrapfigure}[19]{l}{0.5\linewidth}
+%   \vspace{-15pt}
+%   \includegraphics[width=\linewidth]{figs/autolibra_step_4.pdf}
+%   \vspace{-10pt}
+%   \caption{\small Meta evaluation}
+%   \label{fig:meta_evaluation}
+% \end{wrapfigure}
 The last component of the loop is the meta-evaluation, i.e. evaluating the evaluation metrics induced by AutoLibra.
 This step matches the traits detected by the LLM-as-a-Judge with aspects
 grounded from the human feedback. The goal is to verify whether (1) the induced metrics cover the behaviors the human annotators care about, and (2) LLM-as-a-Judge can produce
