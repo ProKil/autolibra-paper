@@ -2,82 +2,118 @@
 \label{sec:lens}
 
 In this section, we use AutoLibra as a lens to provide grounded, behavior-salient insights into agent trajectories. In three data sets, CoGym \citep{shao2024collaborative}, Sotopia \citep{zhousotopia}, and WebVoyager \citep{he2024webvoyager}, we compare induced metrics with heuristically proposed evaluation dimensions and failure modes summarized by the authors. We find that AutoLibra can discover more concrete metrics than heuristically defined categories, and novel metrics that are overlooked by experts. 
+Tab. \ref{tab:merged_comparison} summarizes the comparison between AutoLibra-induced metrics and evaluation criteria across three datasets (CoGym, Sotopia, and WebVoyager).
 
-\begin{table}[!h]
-\centering
-\begin{tabular}{ll}
-    \toprule
-    AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics & CoGym failure categories\\\midrule
-    \multicolumn{2}{c}{Matched metrics and categories}\\\midrule
-    \textit{Responsiveness and Efficiency} (75\%) & \textit{Communication} (65\%) \\
-    \emph{Communication Clarity and Notification} (8\%) & \textit{Communication} (65\%)\\
-    \textit{Instruction Adherence and Follow-Through} (24\%) & \textit{Situational Awareness} (40\%)\\
-    \textit{Iterative Refinement and Adaptability} (47\%) & \textit{Planning} (39\%)\\
-    \textit{Autonomy and Proactiveness} (28\%) & \textit{Planning} (39\%) \\
-    \textit{Search and Retrieval Accuracy} (13\%) & \textit{Environmental Awareness} (28\%) \\
-    \textit{Data Analysis Competence} (2\%) & \textit{Environmental Awareness} (28\%) \\
-    \textit{Interface and User Experience} (23\%) & \textit{Personalization} (16\%) \\\midrule
-    \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Content Quality and Coherence} (16\%)} \\ \bottomrule
-\end{tabular}
-\caption{Comparison between AutoLibra-induced metrics and CoGym failure categories}
-\label{tab:lens_cogym}
+
+% Define colors for matching categories
+\definecolor{comm}{RGB}{230,242,255}
+\definecolor{sit}{RGB}{255,240,230}
+\definecolor{plan}{RGB}{230,255,230}
+\definecolor{env}{RGB}{255,230,255}
+\definecolor{pers}{RGB}{255,255,230}
+\definecolor{goal}{RGB}{242,242,255}
+\definecolor{believ}{RGB}{255,242,242}
+\definecolor{navstuck}{RGB}{242,255,242}
+\definecolor{hall}{RGB}{255,242,255}
+\definecolor{misalign}{RGB}{245,245,230}
+\definecolor{unmatched}{RGB}{240,240,240}
+
+
+\begin{table}[!t]
+    \centering
+    \renewcommand{\arraystretch}{1.2}  % Increase row height
+    \begin{tabular}{@{}lp{\dimexpr0.50\textwidth}p{\dimexpr0.40\textwidth}@{}}
+        \toprule
+        & \textbf{AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics} & \textbf{Failure categories by experts} \\
+        \midrule
+        \multirow{11}{*}{\rotatebox[origin=c]{90}{\textbf{CoGym}}} & \multicolumn{2}{c}{Matched metrics and categories} \\
+        \cmidrule(lr){2-3}
+        & \cellcolor{comm}\textit{Responsiveness and Efficiency} (75\%) & \cellcolor{comm} \\
+        & \cellcolor{comm}\textit{Communication Clarity \& Notification} (8\%) & \multirow{-2}{*}{\cellcolor{comm}\textit{Communication} (65\%)}\\
+        & \cellcolor{sit}\textit{Instruction Adherence \& Follow-Through} (24\%) & \cellcolor{sit}\textit{Situational Awareness} (40\%) \\
+        & \cellcolor{plan}\textit{Iterative Refinement and Adaptability} (47\%) &  \cellcolor{plan}\\
+        & \cellcolor{plan}\textit{Autonomy and Proactiveness} (28\%) & \multirow{-2}{*}{\cellcolor{plan}\textit{Planning} (39\%)}\\
+        & \cellcolor{env}\textit{Content Quality and Coherence} (16\%) & \cellcolor{env}\\
+        & \cellcolor{env}\textit{Search and Retrieval Accuracy} (13\%) &  \cellcolor{env}\\
+        & \cellcolor{env}\textit{Data Analysis Competence} (2\%) & \multirow{-3}{*}{ \cellcolor{env}\textit{Environmental Awareness} (28\%)}\\
+        & \cellcolor{pers}\textit{Interface and User Experience} (23\%) & \cellcolor{pers}\textit{Personalization} (16\%) \\
+        \midrule
+        \multirow{11}{*}{\rotatebox[origin=c]{90}{\textbf{Sotopia}}} & \multicolumn{2}{c}{Matched metrics and dimensions} \\
+        \cmidrule(lr){2-3}
+        & \cellcolor{goal}\textit{Goal Achievement \& Outcome Effectiveness} (19\%) & \cellcolor{goal}\textit{Goal Completion} (14\%) \\
+        & \cellcolor{believ}\textit{Conversational Naturalness \& Efficiency} (5\%) & \cellcolor{believ} \\
+        & \cellcolor{believ}\textit{Personality Consistency and Alignment} (2\%) & \cellcolor{believ}\\
+        & \cellcolor{believ}\textit{Contextual Integration of Identity} (1\%)  & \multirow{-3}{*}{\cellcolor{believ}\textit{Believability} (4\%)} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{C{0.93\textwidth}}{\cellcolor{unmatched}\textit{Negotiation Tactics and Strategic Adaptability} (14\%), \textit{Responsiveness and Conversational Termination} (5\%), \textit{Adaptability and Flexibility in Dialogue} (7\%)} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{c}{Unmatched Sotopia-Eval dimensions} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{C{0.93\textwidth}}{\cellcolor{unmatched}\textit{Relationship, Knowledge, Secret, Financial and Material Benefits, Social Rules}} \\
+        \midrule
+        \multirow{12}{*}{\rotatebox[origin=c]{90}{\textbf{WebVoyager}}} & \multicolumn{2}{c}{Matched metrics and dimensions} \\
+        \cmidrule(lr){2-3}
+        & \cellcolor{navstuck}\textit{Error Recovery \& Adjustment} (15\%) &\cellcolor{navstuck}\\
+        & \cellcolor{navstuck}\textit{Step Efficiency \& Action Redundancy} (13\%) &\cellcolor{navstuck} \\
+        & \cellcolor{navstuck}\textit{Navigation Accuracy} (11\%) &\cellcolor{navstuck} \\
+        & \cellcolor{navstuck}\textit{Access Barrier Handling} (2\%) & \multirow{-4}{*}{\cellcolor{navstuck}\textit{Navigation Stuck} (44\%)} \\ 
+        & \cellcolor{hall}\textit{Information \& Verification Accuracy} (16\%) & \cellcolor{hall}\textit{Hallucination} (22\%) \\
+        & \cellcolor{misalign}\textit{Result Relevance Accuracy} (9\%) & \cellcolor{misalign}\textit{Prompt Misalignment} (9\%) \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{C{0.93\textwidth}}{\cellcolor{unmatched}\textit{Query and Search Strategy Efficiency} (7\%), \textit{Final Output and Summarization Quality} (18\%)} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{c}{Unmatched WebVoyager fail reasons} \\
+        \cmidrule(lr){2-3}
+        & \multicolumn{2}{C{0.93\textwidth}}{\cellcolor{unmatched}\textit{Visual Grounding Issue} (25\%)} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Comparison between AutoLibra-induced metrics and evaluation criteria across three datasets (CoGym, Sotopia, and WebVoyager)}
+    \label{tab:merged_comparison}
 \end{table}
 
+
+
+
+
 \paragraph{CoGym}
-For CoGym \citep{shao2024collaborative}, AutoLibra induces 9 metrics from feedback from \textbf{end users}, of which 7 can be matched to the five failure categories by the CoGym authors. Both \textit{Responsiveness and Efficiency} and \textit{Content Quality and Coherence} overlap with the five failure categories. This shows that AutoLibra induces metrics that reflect human expert categorization, but also provides a different perspective to understand agent performance.
+For CoGym \citep{shao2024collaborative}, 
+AutoLibra induces 9 metrics from feedback from \textbf{end users}, which can mathced to the five failure categories proposed by the authors.
+The failure rate (frequency of -1 rating) measured by AutoLibra also roughly matches the failure rate of the CoGym categories manually labeled by the authors.
+This shows that AutoLibra induces metrics that reflect human expert categorization and provide an automated measurement of agent failures.
 
 %\textit{Communication clarity and user interaction} belongs to Communication,  \textit{Adherence to instructions and consistency} belongs to Situational Awareness, \textit{Adaptability and responsiveness to feedback} belongs to Planning, \textit{Search accuracy and content relevance} belongs to Environment Awareness, and \textit{User preference query and incorporation} belongs to Personalization. All five metrics are more concrete and fine-grained than the larger categories in CoGym; we also discover the following metrics that are not mentioned in the break-down analysis in the CoGym paper:
 %\textit{Responsiveness and Efficiency}, \textit{Content Quality and Coherence}, and \textit{Data Analysis Competence}. We note that this comparison shows the complementary characteristics of automatically 
 %induced metrics, which are more concrete on the issues that users are noticing, while the expert-designed categories measure the high-level capabilities of AI agents. 
 
-\begin{table}[!h]
-\centering
-\begin{tabular}{ll}
-    \toprule
-    AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics & Sotopia-Eval dimensions\\
-    \midrule
-    \multicolumn{2}{c}{Matched metrics and dimensions}\\\midrule
-    \textit{Goal Achievement and Outcome Effectiveness} & \textit{Goal Completion}\\
-    \textit{Conversational Naturalness and Efficiency} & \textit{Believability} \\
-    \textit{Contextual Integration of Identity} & \textit{Believability}\\
-    \textit{Personality Consistency and Alignment} & \textit{Believability}\\ \midrule
-    \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Negotiation Tactics and Strategic Adaptability, Clarity and Precision in Communication, Responsiveness and Conversational Termination, Adaptability and Flexibility in Dialogue}} \\ \midrule
-     \multicolumn{2}{c}{Unmatched Sotopia-Eval dimensions}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Relationship, Knowledge, Secret, Financial and Material Benefits, Social Rules}} \\\bottomrule
-\end{tabular}
-\caption{Comparison between AutoLibra-induced metrics and Sotopia failure categories \diyi{should we combine Table 2 and Table 3, Table 4? }}
-\label{tab:lens_sotopia}
-\end{table}
 
-\paragraph{Sotopia} In Sotopia, we \citep{zhousotopia} proposed seven dimensions for evaluating social intelligence in AI agents. With AutoLibra, we recover the exact dimension \emph{Goal Completion}, and 3 metrics as the subdimensions of \emph{Believability}, indicating that \textit{Believability} could be too high-level, while AutoLibra provides more concrete breakdown metrics. 
-AutoLibra induces another four metrics which are overlooked in the heuristically proposed Sotopia-Eval dimensions. We should note that the other five dimensions in Sotopia are still valuable evaluation dimensions for social intelligence. However, behaviors captured by \emph{Financial and Material Benefits}, \emph{Knowledge}, and \emph{Secret} dimensions are often also captured by \textit{Goal Completion} and \textit{Believability}. As a result, AutoLibra produces the single \textit{Goal Achievement and Outcome Effectiveness} metric through minimizing the redundancy. Whereas, \textit{Relationship} and \textit{Social Rules} captures long-tailed behaviors which are not picked up by AutoLibra.
 
-\begin{table}[!h]
-\centering
-\begin{tabular}{ll}
-    \toprule
-    AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics & WebVoyager fail reasons\\
-    \midrule
-    \multicolumn{2}{c}{Matched metrics and dimensions}\\\midrule
-    \textit{Navigation Accuracy} (11\%) & \textit{Navigation Stuck} (44\%) \\ 
-    \textit{Access Barrier Handling} (2\%) & \textit{Navigation Stuck} (44\%)\\
-    \textit{Error Recovery and Iterative Adjustment} (15\%) & \textit{Navigation Stuck} (44\%)\\
-    \textit{Step Efficiency and Action Redundancy} (13\%) & \textit{Navigation Stuck} (44\%)\\ 
-    \textit{Information Extraction and Verification Accuracy} (16\%) & \textit{Hallucination} (22\%)\\
-    \textit{Result Relevance and Problem-Specific Accuracy} (9\%) & \textit{Prompt Misalignment} (9\%)\\
-    \midrule
-    \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Query and Search Strategy Efficiency} (7\%), \textit{Final Output and Summarization Quality} (18\%)} \\ \midrule
-     \multicolumn{2}{c}{Unmatched WebVoyager fail reasons}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Visual Grounding Issue} (25\%)} \\\bottomrule
-\end{tabular}
-\caption{Comparison between AutoLibra-induced metrics and WebVoyager failure categories}
-\label{tab:lens_wv}
-\end{table}
-
-\paragraph{WebVoyager} Similarly, for web navigation tasks, AutoLibra also discovers metrics such as \textit{Access Barrier Handling}, \textit{Error Recovery and Iterative Adjustment}, \textit{Step Efficiency and Action Redundancy} which much more closely reflect emergent agent behavior than the failure analysis categories proposed in previous work \citep{he2024webvoyager,zhou2024proposeragentevaluatorpaeautonomousskilldiscovery}, where they are often simply classified as ``navigation stuck''; full results are tabulated in Table \ref{tab:lens_wv}. This further demonstrates AutoLibra's utility in extracting behavior-salient metrics, and particularly demonstrates its ability to obtain \textbf{fine-grained metrics} that expert design would not have been able to extract. 
+\paragraph{Sotopia} In Sotopia, we \citep{zhousotopia} proposed seven dimensions for evaluating social intelligence in AI agents.
+With AutoLibra, we recover the exact dimension \emph{Goal Completion}, and 3 metrics as the subdimensions of \emph{Believability},
+indicating that \textit{Believability} could be too high-level, while AutoLibra provides more concrete breakdown metrics. 
+The failure rate (frequency of -1 rating) measured by AutoLibra in these two categories,
+roughly matches the score of the Sotopia dimensions of the agent we studied.
+AutoLibra induces another four metrics which are overlooked in the heuristically proposed Sotopia-Eval dimensions.
+We should note that the other five dimensions in Sotopia are still valuable evaluation dimensions for social intelligence.
+However, behaviors captured by \emph{Financial and Material Benefits}, \emph{Knowledge}, and \emph{Secret} dimensions are often also
+captured by \textit{Goal Completion} and \textit{Believability}.
+As a result, AutoLibra produces the single \textit{Goal Achievement and Outcome Effectiveness} metric through minimizing the redundancy.
+Whereas, \textit{Relationship} and \textit{Social Rules} captures long-tailed behaviors which are not picked up by AutoLibra.
 
 
 
+\paragraph{WebVoyager} Similarly, for web navigation tasks, AutoLibra also discovers metrics such as \textit{Access Barrier Handling},
+\textit{Error Recovery and Adjustment},
+\textit{Step Efficiency and Action Redundancy},
+and \textit{Navigation Accuracy} 
+which much more closely reflect concrete agent behavior than the failure analysis categories proposed in previous work
+\citep{he2024webvoyager,zhou2024proposeragentevaluatorpaeautonomousskilldiscovery}, where they are often simply classified as ``navigation stuck''.
+We also find additional metrics that are not mentioned in the failure analysis, such as \textit{Query and Search Strategy Efficiency} and
+\textit{Final Output and Summarization Quality}, which are frequent issues (with frequencies of 7\% and 18\%).
+Since AutoLibra only observe the behavior of the agents, it cannot interpret the neural representation,
+it is not able to capture the visual grounding issues which are mentioned in the WebVoyager paper.
+This further demonstrates AutoLibra's utility in extracting behavior-salient metrics,
+and particularly demonstrates its ability to obtain \textbf{fine-grained metrics} that expert design would not have been able to extract. 
