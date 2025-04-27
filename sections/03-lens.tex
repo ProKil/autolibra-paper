@@ -9,15 +9,16 @@ In this section, we use AutoLibra as a lens to provide grounded, behavior-salien
     \toprule
     AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics & CoGym failure categories\\\midrule
     \multicolumn{2}{c}{Matched metrics and categories}\\\midrule
-    \emph{Communication Clarity and Notification} & \textit{Communication} \\
-    \textit{Instruction Adherence and Follow-Through} & \textit{Situational Awareness} \\
-    \textit{Iterative Refinement and Adaptability} & \textit{Planning}\\
-    \textit{Autonomy and Proactiveness} & \textit{Planning} \\
-    \textit{Search and Retrieval Accuracy} & \textit{Environmental Awareness} \\
-    \textit{Data Analysis Competence} & \textit{Environmental Awareness} \\
-    \textit{Interface and User Experience} & \textit{Personalization} \\\midrule
+    \textit{Responsiveness and Efficiency} (75\%) & \textit{Communication} (65\%) \\
+    \emph{Communication Clarity and Notification} (8\%) & \textit{Communication} (65\%)\\
+    \textit{Instruction Adherence and Follow-Through} (24\%) & \textit{Situational Awareness} (40\%)\\
+    \textit{Iterative Refinement and Adaptability} (47\%) & \textit{Planning} (39\%)\\
+    \textit{Autonomy and Proactiveness} (28\%) & \textit{Planning} (39\%) \\
+    \textit{Search and Retrieval Accuracy} (13\%) & \textit{Environmental Awareness} (28\%) \\
+    \textit{Data Analysis Competence} (2\%) & \textit{Environmental Awareness} (28\%) \\
+    \textit{Interface and User Experience} (23\%) & \textit{Personalization} (16\%) \\\midrule
     \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Content Quality and Coherence, Responsiveness and Efficiency}} \\ \bottomrule
+     \multicolumn{2}{C{0.8\textwidth}}{\textit{Content Quality and Coherence} (16\%)} \\ \bottomrule
 \end{tabular}
 \caption{Comparison between AutoLibra-induced metrics and CoGym failure categories}
 \label{tab:lens_cogym}
@@ -60,16 +61,17 @@ AutoLibra induces another four metrics which are overlooked in the heuristically
     AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics & WebVoyager fail reasons\\
     \midrule
     \multicolumn{2}{c}{Matched metrics and dimensions}\\\midrule
-    \textit{Access Barrier Handling} & \textit{Navigation Stuck} \\
-    \textit{Error Recovery and Iterative Adjustment} & \textit{Navigation Stuck}\\
-    \textit{Step Efficiency and Action Redundancy} & \textit{Navigation Stuck}\\ 
-    \textit{Information Extraction and Verification Accuracy} & \textit{Hallucination} \\
-    \textit{Result Relevance and Problem-Specific Accuracy} & \textit{Prompt Misalignment}\\
+    \textit{Navigation Accuracy} (11\%) & \textit{Navigation Stuck} (44\%) \\ 
+    \textit{Access Barrier Handling} (2\%) & \textit{Navigation Stuck} (44\%)\\
+    \textit{Error Recovery and Iterative Adjustment} (15\%) & \textit{Navigation Stuck} (44\%)\\
+    \textit{Step Efficiency and Action Redundancy} (13\%) & \textit{Navigation Stuck} (44\%)\\ 
+    \textit{Information Extraction and Verification Accuracy} (16\%) & \textit{Hallucination} (22\%)\\
+    \textit{Result Relevance and Problem-Specific Accuracy} (9\%) & \textit{Prompt Misalignment} (9\%)\\
     \midrule
     \multicolumn{2}{c}{Unmatched AutoLibra\protect\includegraphics[height=1em]{figs/scale.png}-induced metrics}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Navigation Accuracy, Query and Search Strategy Efficiency, Error Recovery and Iterative Adjustment}} \\ \midrule
+     \multicolumn{2}{C{0.8\textwidth}}{\textit{Query and Search Strategy Efficiency} (7\%), \textit{Final Output and Summarization Quality} (18\%)}} \\ \midrule
      \multicolumn{2}{c}{Unmatched WebVoyager fail reasons}\\\midrule
-     \multicolumn{2}{C{0.8\textwidth}}{\textit{Visual Grounding Issue}} \\\bottomrule
+     \multicolumn{2}{C{0.8\textwidth}}{\textit{Visual Grounding Issue} (25\%)} \\\bottomrule
 \end{tabular}
 \caption{Comparison between AutoLibra-induced metrics and WebVoyager failure categories}
 \label{tab:lens_wv}
