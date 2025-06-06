@@ -1,47 +1,52 @@
 % Function to generate color based on percentage value
 \newcommand{\cellcolorpercent}[1]{%
-  \ifdim #1 pt < 10 pt \cellcolor{red!90}%
-  \else\ifdim #1 pt < 20 pt \cellcolor{red!80}%
-  \else\ifdim #1 pt < 30 pt \cellcolor{red!70}%
-  \else\ifdim #1 pt < 40 pt \cellcolor{red!60}%
-  \else\ifdim #1 pt < 50 pt \cellcolor{red!50}%
-  \else\ifdim #1 pt < 60 pt \cellcolor{yellow!40}%
-  \else\ifdim #1 pt < 70 pt \cellcolor{yellow!30}%
-  \else\ifdim #1 pt < 80 pt \cellcolor{green!30}%
-  \else\ifdim #1 pt < 90 pt \cellcolor{green!50}%
-  \else\ifdim #1 pt < 100 pt \cellcolor{green!70}%
-  \else\cellcolor{green!90}%
-  \fi\fi\fi\fi\fi\fi\fi\fi\fi\fi
-}
+\ifdim #1 pt < 10 pt \cellcolor{red!90}%
+\else\ifdim #1 pt < 20 pt \cellcolor{red!80}%
+\else\ifdim #1 pt < 30 pt \cellcolor{red!70}%
+\else\ifdim #1 pt < 40 pt \cellcolor{red!60}%
+\else\ifdim #1 pt < 50 pt \cellcolor{red!50}%
+\else\ifdim #1 pt < 60 pt \cellcolor{yellow!40}%
+\else\ifdim #1 pt < 70 pt \cellcolor{yellow!30}%
+\else\ifdim #1 pt < 80 pt \cellcolor{green!30}%
+\else\ifdim #1 pt < 90 pt \cellcolor{green!50}%
+\else\ifdim #1 pt < 100 pt \cellcolor{green!70}%
+\else\cellcolor{green!90}%
+\fi\fi\fi\fi\fi\fi\fi\fi\fi\fi }
 
 \makeatletter
 \newcommand{\thickhline}{%
-    \noalign {\ifnum 0=`}\fi \hrule height 3pt
-    \futurelet \reserved@a \@xhline
-}
-\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}}
-\makeatother
+\noalign {\ifnum 0=`}\fi \hrule height 3pt \futurelet \reserved@a \@xhline }
+\newcolumntype{"}{@{\hskip\tabcolsep\vrule width 1pt\hskip\tabcolsep}} \makeatother
 
-\renewcommand{\arraystretch}{1.5} 
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[ht]
-\centering
-\begin{tabular}{|>{\arraybackslash}p{5cm}|>{\arraybackslash}p{1.5cm}|c|c|c|c|}
-\hline
-\rowcolor[HTML]{C0C0C0} 
-\textbf{} & \textbf{Iteration} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} \\ \hline
-Win Condition Recognition & \includegraphics[scale=0.07]{figs/emojis/emoji_1.png} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{50.00} \textbf{50.00\%} & \cellcolorpercent{88.89} \textbf{88.89\%} & \cellcolorpercent{94.44} \textbf{94.44\%} \\ \hline
-Rule Modification & \includegraphics[scale=0.07]{figs/emojis/emoji_2.png} & \cellcolorpercent{5.56} \textbf{5.56\%} & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{44.44} \textbf{44.44\%} \\ \hline
-Direct Navigation Efficiency & \includegraphics[scale=0.07]{figs/emojis/emoji_3.png} & \cellcolorpercent{5.56} \textbf{5.56\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{44.44} \textbf{44.44\%} \\ \hline
-Context-Sensitive Decision Making & \includegraphics[scale=0.07]{figs/emojis/emoji_4.png} & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{38.89} \textbf{38.89\%} \\ \hline
-Win Rule Construction & \includegraphics[scale=0.07]{figs/emojis/emoji_5.png} & - & \cellcolorpercent{0.00} \textbf{0.00\%} & \cellcolorpercent{0.00} \textbf{0.00\%} & \cellcolorpercent{5.56} \textbf{5.56\%} \\ \hline
-Selective Interaction With Relevant Objects & \includegraphics[scale=0.07]{figs/emojis/emoji_6.png} & - & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{44.44} \textbf{44.44\%} & \cellcolorpercent{88.89} \textbf{88.89\%} \\ \hline
-Rule Manipulation and Execution & \includegraphics[scale=0.07]{figs/emojis/emoji_7.png} & - & \cellcolorpercent{5.56} \textbf{5.56\%} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\ \hline
-Subtask Coordination & \includegraphics[scale=0.07]{figs/emojis/emoji_8.png} & - & - & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\ \hline
-Immovable Interaction & \includegraphics[scale=0.07]{figs/emojis/emoji_9.png} & - & - & - & \cellcolorpercent{66.67} \textbf{66.67\%} \\ 
-\thickhline 
-\multicolumn{2}{|c|}{Coverage} & 65\% & 83\% & 85\% & 92\% \\ \hline
-\multicolumn{2}{|c|}{Redundancy} & 58\% & 59\% & 47\% & 59\% \\ \hline
-\end{tabular}
-\caption{Metric Performance for baba-is-ai AutoLibra Iterations 0-3}
-\label{tab:metric_perf}
+	\centering
+	\begin{tabular}{|>{\arraybackslash}p{5cm}|>{\arraybackslash}p{1.5cm}|c|c|c|c|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} \textbf{}           & \textbf{Iteration}                                    & \textbf{0}                                & \textbf{1}                                & \textbf{2}                                & \textbf{3}                                \\
+		\hline
+		Win Condition Recognition                   & \includegraphics[scale=0.07]{figs/emojis/emoji_1.png} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{50.00} \textbf{50.00\%} & \cellcolorpercent{88.89} \textbf{88.89\%} & \cellcolorpercent{94.44} \textbf{94.44\%} \\
+		\hline
+		Rule Modification                           & \includegraphics[scale=0.07]{figs/emojis/emoji_2.png} & \cellcolorpercent{5.56} \textbf{5.56\%}   & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{44.44} \textbf{44.44\%} \\
+		\hline
+		Direct Navigation Efficiency                & \includegraphics[scale=0.07]{figs/emojis/emoji_3.png} & \cellcolorpercent{5.56} \textbf{5.56\%}   & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{44.44} \textbf{44.44\%} \\
+		\hline
+		Context-Sensitive Decision Making           & \includegraphics[scale=0.07]{figs/emojis/emoji_4.png} & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{12.50} \textbf{12.50\%} & \cellcolorpercent{38.89} \textbf{38.89\%} \\
+		\hline
+		Win Rule Construction                       & \includegraphics[scale=0.07]{figs/emojis/emoji_5.png} & -                                         & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{5.56} \textbf{5.56\%}   \\
+		\hline
+		Selective Interaction With Relevant Objects & \includegraphics[scale=0.07]{figs/emojis/emoji_6.png} & -                                         & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{44.44} \textbf{44.44\%} & \cellcolorpercent{88.89} \textbf{88.89\%} \\
+		\hline
+		Rule Manipulation and Execution             & \includegraphics[scale=0.07]{figs/emojis/emoji_7.png} & -                                         & \cellcolorpercent{5.56} \textbf{5.56\%}   & \cellcolorpercent{27.78} \textbf{27.78\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\
+		\hline
+		Subtask Coordination                        & \includegraphics[scale=0.07]{figs/emojis/emoji_8.png} & -                                         & -                                         & \cellcolorpercent{11.11} \textbf{11.11\%} & \cellcolorpercent{33.33} \textbf{33.33\%} \\
+		\hline
+		Immovable Interaction                       & \includegraphics[scale=0.07]{figs/emojis/emoji_9.png} & -                                         & -                                         & -                                         & \cellcolorpercent{66.67} \textbf{66.67\%} \\
+		\thickhline \multicolumn{2}{|c|}{Coverage}  & 65\%                                                  & 83\%                                      & 85\%                                      & 92\%                                       \\
+		\hline
+		\multicolumn{2}{|c|}{Redundancy}            & 58\%                                                  & 59\%                                      & 47\%                                      & 59\%                                       \\
+		\hline
+	\end{tabular}
+	\caption{Metric Performance for baba-is-ai AutoLibra Iterations 0-3}
+	\label{tab:metric_perf}
 \end{table}

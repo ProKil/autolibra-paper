@@ -1,100 +1,170 @@
 \fontsize{9.5pt}{11pt}\selectfont
-\begin{tcolorbox}[ colback=gray!5!white, colframe=gray!10, title=\textbf{\textcolor{black}{Iteration 0: Context-Sensitive Decision Making}}]
-  
-\textbf{Explanation:} \\
-This metric assesses the agent’s capacity for context-sensitive decision making. It evaluates whether the agent tailors its actions according to the immediate game conditions—balancing between direct navigation and rule modification. Positive behaviors in new environments will demonstrate an ability to determine when obstacles require intervention and when direct movement is sufficient, thereby optimizing overall efficiency.
+\begin{tcolorbox}
+	[ colback=gray!5!white, colframe=gray!10, title=\textbf{\textcolor{black}{Iteration
+	0: Context-Sensitive Decision Making}}]
 
-\vspace{1em}
-\textbf{Good Behaviors:}
-\begin{itemize}
-    \item Accurately gauges the game context by recognizing when obstacles are not an issue—such as when the win condition is already accessible—and refrains from unnecessary rule modifications.
-    \item Selects focused, goal-oriented actions that align with observed win conditions, avoiding extraneous exploration.
-    \item Adapts its strategy based on spatial layout and current rules, ensuring that its actions are timely and appropriate for the situation.
-\end{itemize}
+	\textbf{Explanation:} \\ This metric assesses the agent’s capacity for context-sensitive
+	decision making. It evaluates whether the agent tailors its actions according
+	to the immediate game conditions—balancing between direct navigation and rule
+	modification. Positive behaviors in new environments will demonstrate an ability
+	to determine when obstacles require intervention and when direct movement is sufficient,
+	thereby optimizing overall efficiency.
 
-\vspace{0.5em}
-\textbf{Bad Behaviors:}
-\begin{itemize}
-    \item Engages in excessive exploratory actions that do not contribute to reaching the win condition.
-    \item Repeatedly takes ineffective actions (for example, persistently moving into walls) before finally switching strategy, indicating delayed context-sensitive decisions.
-    \item Alters irrelevant rules or diverts attention from the active win condition when the situation does not demand it.
-    \item Fails to adjust decision-making based on contextual cues, leading to uncoordinated or delayed progression toward the goal.
-\end{itemize}
+	\vspace{1em}
+	\textbf{Good Behaviors:}
+	\begin{itemize}
+		\item Accurately gauges the game context by recognizing when obstacles are not
+			an issue—such as when the win condition is already accessible—and refrains
+			from unnecessary rule modifications.
 
+		\item Selects focused, goal-oriented actions that align with observed win
+			conditions, avoiding extraneous exploration.
+
+		\item Adapts its strategy based on spatial layout and current rules,
+			ensuring that its actions are timely and appropriate for the situation.
+	\end{itemize}
+
+	\vspace{0.5em}
+	\textbf{Bad Behaviors:}
+	\begin{itemize}
+		\item Engages in excessive exploratory actions that do not contribute to reaching
+			the win condition.
+
+		\item Repeatedly takes ineffective actions (for example, persistently moving
+			into walls) before finally switching strategy, indicating delayed context-sensitive
+			decisions.
+
+		\item Alters irrelevant rules or diverts attention from the active win condition
+			when the situation does not demand it.
+
+		\item Fails to adjust decision-making based on contextual cues, leading to
+			uncoordinated or delayed progression toward the goal.
+	\end{itemize}
 \end{tcolorbox}
 
 \fontsize{9.5pt}{11pt}\selectfont
-\begin{tcolorbox}[ colback=gray!5!white, colframe=gray!30, title=\textbf{\textcolor{black}{Iteration 1: Rule Modification for Obstacle Management}}]
+\begin{tcolorbox}
+	[ colback=gray!5!white, colframe=gray!30, title=\textbf{\textcolor{black}{Iteration
+	1: Rule Modification for Obstacle Management}}]
 
-\textbf{Explanation:} \\
-This metric measures the agent’s competence in managing obstacles through rule modifications. It focuses on the agent’s ability to detect when a game rule (such as a blocking wall or an unchangeable character assignment) is hindering progress and to successfully alter that rule to create a viable path to victory. In novel scenarios, agents displaying positive behavior will apply targeted rule changes that directly open the path toward the win condition.
+	\textbf{Explanation:} \\ This metric measures the agent’s competence in managing
+	obstacles through rule modifications. It focuses on the agent’s ability to
+	detect when a game rule (such as a blocking wall or an unchangeable character assignment)
+	is hindering progress and to successfully alter that rule to create a viable
+	path to victory. In novel scenarios, agents displaying positive behavior will
+	apply targeted rule changes that directly open the path toward the win
+	condition.
 
-\vspace{1em}
-\textbf{Good Behaviors:}
-\begin{itemize}
-    \item Proactively breaks the \texttt{'wall is stop'} rule when an obstacle blocks access to the win condition.
-    \item Effectively modifies rules—such as replacing \texttt{'baba is you'} with \texttt{'key'}—to remove or bypass obstacles.
-\end{itemize}
+	\vspace{1em}
+	\textbf{Good Behaviors:}
+	\begin{itemize}
+		\item Proactively breaks the \texttt{'wall is stop'} rule when an obstacle
+			blocks access to the win condition.
 
-\vspace{0.5em}
-\textbf{Bad Behaviors:}
-\begin{itemize}
-    \item Fails to modify critical rule blocks (for instance, not altering \texttt{'baba is you'} when required) that prevent access to the win condition.
-    \item Does not interact with immovable obstacles like the \texttt{'wall is stop'} rule, neglecting available mechanisms to bypass them.
-    \item Neglects to rearrange rule blocks to create or build necessary win conditions (e.g., \texttt{'door is win'}), leaving obstacles unaddressed.
-\end{itemize}
+		\item Effectively modifies rules—such as replacing \texttt{'baba is you'}
+			with \texttt{'key'}—to remove or bypass obstacles.
+	\end{itemize}
 
+	\vspace{0.5em}
+	\textbf{Bad Behaviors:}
+	\begin{itemize}
+		\item Fails to modify critical rule blocks (for instance, not altering \texttt{'baba
+			is you'} when required) that prevent access to the win condition.
+
+		\item Does not interact with immovable obstacles like the \texttt{'wall is stop'}
+			rule, neglecting available mechanisms to bypass them.
+
+		\item Neglects to rearrange rule blocks to create or build necessary win conditions
+			(e.g., \texttt{'door is win'}), leaving obstacles unaddressed.
+	\end{itemize}
 \end{tcolorbox}
 
 \fontsize{9.5pt}{11pt}\selectfont
-\begin{tcolorbox}[ colback=gray!5!white, colframe=gray!60, title=\textbf{\textcolor{black}{Iteration 2: Subtask Coordination and Overall Task Planning}}]
-  
-\textbf{Explanation:} \\
-This metric assesses how well the agent coordinates multiple sub-tasks and plans its overall strategy. It rewards behaviors that demonstrate clear sequencing – from recognizing obstacles and manipulating rules to directly advancing toward the final objective. Failures in subtask coordination result in repetitive loops, ineffective transitions between actions, and an inability to achieve a meaningful win condition.
+\begin{tcolorbox}
+	[ colback=gray!5!white, colframe=gray!60, title=\textbf{\textcolor{black}{Iteration
+	2: Subtask Coordination and Overall Task Planning}}]
 
-\vspace{1em}
-\textbf{Good Behaviors:}
-\begin{itemize}
-    \item Final movement and approach towards \texttt{'ball'} after removing the obstacle.
-    \item Direct movement between objectives as opposed to unrelated exploration.
-    \item Throughout the trajectory, the agent repeatedly chooses actions that reduce the distance to the door: moving left and down as needed.
-    \item The trajectory demonstrates efficient movement towards the goal without unnecessary actions.
-    \item The trajectory shows direct movement to the door without redundant backtracking or circular movement.
-    \item Throughout the trajectory, the agent follows a direct and purposeful path towards its goal.
-\end{itemize}
+	\textbf{Explanation:} \\ This metric assesses how well the agent coordinates multiple
+	sub-tasks and plans its overall strategy. It rewards behaviors that
+	demonstrate clear sequencing – from recognizing obstacles and manipulating
+	rules to directly advancing toward the final objective. Failures in subtask coordination
+	result in repetitive loops, ineffective transitions between actions, and an inability
+	to achieve a meaningful win condition.
 
-\vspace{0.5em}
-\textbf{Bad Behaviors:}
-\begin{itemize}
-    \item The trajectory shows multiple iterations of upwards movement resulting in no significant progress.
-    \item In the trajectory, actions such as repeated \texttt{'left'} moves where no significant progress towards the goal is made.
-    \item In over multiple steps, the agent moves unsuccessfully against immovable boundaries and objects.
-    \item There are periods in the trajectory where the agent exhibits loops or repetitive movements without advancing its position strategically.
-    \item Ultimately, the agent's efforts to form victory conditions do not result in a meaningful or achievable goal given the map's configuration.
-\end{itemize}
+	\vspace{1em}
+	\textbf{Good Behaviors:}
+	\begin{itemize}
+		\item Final movement and approach towards \texttt{'ball'} after removing the
+			obstacle.
 
+		\item Direct movement between objectives as opposed to unrelated exploration.
+
+		\item Throughout the trajectory, the agent repeatedly chooses actions that
+			reduce the distance to the door: moving left and down as needed.
+
+		\item The trajectory demonstrates efficient movement towards the goal without
+			unnecessary actions.
+
+		\item The trajectory shows direct movement to the door without redundant backtracking
+			or circular movement.
+
+		\item Throughout the trajectory, the agent follows a direct and purposeful
+			path towards its goal.
+	\end{itemize}
+
+	\vspace{0.5em}
+	\textbf{Bad Behaviors:}
+	\begin{itemize}
+		\item The trajectory shows multiple iterations of upwards movement resulting
+			in no significant progress.
+
+		\item In the trajectory, actions such as repeated \texttt{'left'} moves where
+			no significant progress towards the goal is made.
+
+		\item In over multiple steps, the agent moves unsuccessfully against
+			immovable boundaries and objects.
+
+		\item There are periods in the trajectory where the agent exhibits loops or repetitive
+			movements without advancing its position strategically.
+
+		\item Ultimately, the agent's efforts to form victory conditions do not
+			result in a meaningful or achievable goal given the map's configuration.
+	\end{itemize}
 \end{tcolorbox}
 
 \fontsize{9.5pt}{11pt}\selectfont
-\begin{tcolorbox}[ colback=gray!5!white, colframe=gray!90, title=\textbf{\textcolor{black}{Iteration 3: Interaction with Immovable Obstacles}}]
-  
-\textbf{Explanation:} \\
-This metric measures how the agent handles immovable obstacles. Positive behaviors show proper recognition and effective avoidance of fixed objects, whereas negative behaviors involve futile or incorrect push attempts that betray a lack of understanding of the environment’s static features.
+\begin{tcolorbox}
+	[ colback=gray!5!white, colframe=gray!90, title=\textbf{\textcolor{black}{Iteration
+	3: Interaction with Immovable Obstacles}}]
 
-\vspace{1em}
-\textbf{Good Behaviors:}
-\begin{itemize}
-    \item Recognizes that immovable walls or blocks should not be pushed and instead plans to bypass them.
-    \item Avoids colliding with immovable objects by correctly assessing their fixed nature.
-    \item Plans actions that account for static obstacles, ensuring safe navigation around them.
-\end{itemize}
+	\textbf{Explanation:} \\ This metric measures how the agent handles immovable obstacles.
+	Positive behaviors show proper recognition and effective avoidance of fixed
+	objects, whereas negative behaviors involve futile or incorrect push attempts that
+	betray a lack of understanding of the environment’s static features.
 
-\vspace{0.5em}
-\textbf{Bad Behaviors:}
-\begin{itemize}
-    \item Repeatedly tries to push into an immovable wall or rule block despite the known constraints.
-    \item Interacts with stationary obstacles in ways that disregard their immovability, leading to ineffective progress.
-    \item Executes push commands in the wrong direction on fixed objects, indicating a misunderstanding of obstacle dynamics.
-\end{itemize}
+	\vspace{1em}
+	\textbf{Good Behaviors:}
+	\begin{itemize}
+		\item Recognizes that immovable walls or blocks should not be pushed and instead
+			plans to bypass them.
 
+		\item Avoids colliding with immovable objects by correctly assessing their fixed
+			nature.
+
+		\item Plans actions that account for static obstacles, ensuring safe
+			navigation around them.
+	\end{itemize}
+
+	\vspace{0.5em}
+	\textbf{Bad Behaviors:}
+	\begin{itemize}
+		\item Repeatedly tries to push into an immovable wall or rule block despite the
+			known constraints.
+
+		\item Interacts with stationary obstacles in ways that disregard their immovability,
+			leading to ineffective progress.
+
+		\item Executes push commands in the wrong direction on fixed objects,
+			indicating a misunderstanding of obstacle dynamics.
+	\end{itemize}
 \end{tcolorbox}

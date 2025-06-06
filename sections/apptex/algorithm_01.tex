@@ -1,22 +1,13 @@
 \begin{algorithm}
-    \caption{Pseudocode for iterative agent improvement with AutoLibra}
-    \begin{algorithmic}[1]
-    \For{$i$ in range($n\_iters$)}
-        \For{$task$ in $selected\_tasks$}
-            \State $traj_i, eval\_score_i += agent.play(task, prompt)$
-            \State $annotations_i += editor.annotate(traj_i)$
-        \EndFor
-        \State $metrics_i = AutoLibra.extract\_metrics(traj_i, annotations_i)$
-        \State $traj\_scores_i = AutoLibra.llm\_eval(metrics_i, traj_i)$
-        \State $curr\_scores = eval\_score_i$
-        \While {$curr\_scores <= eval\_score_i$}
-            \State $prompt = updated\_prompt_k$
-            \For{$task$ in $selected\_tasks$}
-                \State $\_, curr\_scores = agent.play(task, prompt)$
-            \EndFor
-        \EndWhile
-    \EndFor
-
-    \end{algorithmic}
+	\caption{Pseudocode for iterative agent improvement with AutoLibra}
+	\begin{algorithmic}
+		[1] \For{$i$ in range($n\_iters$)} \For{$task$ in $selected\_tasks$} \State $t
+		raj_{i}, eval\_score_{i}+= agent.play(task, prompt)$ \State $annotations_{i}+
+		= editor.annotate(traj_{i})$ \EndFor \State $metrics_{i}= AutoLibra.extract \_
+		metrics(traj_{i}, annotations_{i})$ \State $traj\_scores_{i}= AutoLibra.ll m\_
+		eval(metrics_{i}, traj_{i})$ \State $curr\_scores = eval\_score_{i}$ \While {$curr\_scores <= eval\_score_{i}$}
+		\State $prompt = updated\_prompt_{k}$ \For{$task$ in $selected\_tasks$}
+		\State $\_, curr\_scores = agent.play(task, prompt)$ \EndFor \EndWhile
+		\EndFor
+	\end{algorithmic}
 \end{algorithm}
-

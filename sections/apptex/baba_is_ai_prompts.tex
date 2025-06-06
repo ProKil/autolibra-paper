@@ -1,451 +1,582 @@
 \definecolor{lightgreen}{RGB}{220,255,220}
 \definecolor{darkgreen}{RGB}{0,150,0}
-\newmdenv[
-  backgroundcolor=lightgreen,
-  linecolor=darkgreen,
-  linewidth=2pt,
-  roundcorner=5pt,
-  skipabove=10pt,
-  skipbelow=10pt,
-  leftmargin=0pt,
-  rightmargin=0pt,
-  innerleftmargin=10pt,
-  innerrightmargin=10pt,
-  innertopmargin=10pt,
-  innerbottommargin=10pt,
-  splittopskip=\topskip,
-  splitbottomskip=10pt,
-  frametitle={\textbf{Iteration 0 Baba-is-ai Prompt}},
-  frametitlebackgroundcolor=darkgreen,
-  frametitlefont=\color{white}\bfseries,
-  frametitlerule=true,
-  frametitleaboveskip=8pt,
-  frametitlebelowskip=8pt,
+\newmdenv[ backgroundcolor=lightgreen, linecolor=darkgreen, linewidth=2pt,
+roundcorner=5pt, skipabove=10pt, skipbelow=10pt, leftmargin=0pt, rightmargin=0pt,
+innerleftmargin=10pt, innerrightmargin=10pt, innertopmargin=10pt,
+innerbottommargin=10pt, splittopskip=\topskip, splitbottomskip=10pt, frametitle={\textbf{Iteration 0 Baba-is-ai Prompt}},
+frametitlebackgroundcolor=darkgreen, frametitlefont=
+\color{white}
+\bfseries, frametitlerule=true, frametitleaboveskip=8pt, frametitlebelowskip=8pt,
 ]{GreenBox}
 
 \begin{GreenBox}
-\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each level. The following are the possible actions you can take in the game, followed by a short description of each action:
+	\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of
+	each level. The following are the possible actions you can take in the game,
+	followed by a short description of each action:
 
-\begin{itemize}
-    \item \textbf{idle}: wait for one step,
-    \item \textbf{up}: take one step up,
-    \item \textbf{right}: take one step to the right,
-    \item \textbf{down}: take one step down,
-    \item \textbf{left}: take one step to the left.
-\end{itemize}
+	\begin{itemize}
+		\item \textbf{idle}: wait for one step,
 
-\textbf{Tips:}
-\begin{itemize}
-    \item Examine the level carefully, noting all objects and text blocks present.
-    \item Identify the current rules, which are formed by text blocks in the format "[Subject] IS [Property]" (e.g. "BABA IS YOU").
-    \item Consider how you can change or create new rules by moving text blocks around.
-    \item Remember that you can only move objects or text that are not defined as "STOP" or similar immovable properties.
-    \item Your goal is usually to reach an object defined as "WIN", but this can be changed.
-    \item Think creatively about how changing rules can alter the properties and behaviors of objects in unexpected ways.
-    \item If stuck, try breaking apart existing rules or forming completely new ones.
-    \item Sometimes the solution involves making yourself a different object or changing what counts as the win condition.
-\end{itemize}
+		\item \textbf{up}: take one step up,
 
-\textbf{PLAY!}
+		\item \textbf{right}: take one step to the right,
 
-\textbf{Current Observation:}
+		\item \textbf{down}: take one step down,
 
-\textbf{Active rules:}
-\begin{itemize}
-    \item ball is win
-    \item baba is you
-\end{itemize}
+		\item \textbf{left}: take one step to the left.
+	\end{itemize}
 
-\textbf{Objects on the map:}
-\begin{itemize}
-    \item rule \texttt{ball}: 5 steps to the left and 1 step up
-    \item rule \texttt{is}: 4 steps to the left and 1 step up
-    \item rule \texttt{win}: 3 steps to the left and 1 step up
-    \item ball: 5 steps to the left and 2 steps down
-    \item rule \texttt{baba}: 5 steps to the left and 4 steps down
-    \item rule \texttt{is}: 4 steps to the left and 4 steps down
-    \item rule \texttt{you}: 3 steps to the left and 4 steps down
-\end{itemize}
+	\textbf{Tips:}
+	\begin{itemize}
+		\item Examine the level carefully, noting all objects and text blocks
+			present.
 
-First, think about the best course of action.  
-Then, you must choose exactly one of the listed actions and output it strictly in the following format:
+		\item Identify the current rules, which are formed by text blocks in the
+			format "[Subject] IS [Property]" (e.g. "BABA IS YOU").
 
-\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
+		\item Consider how you can change or create new rules by moving text blocks around.
 
-Replace \texttt{YOUR\_CHOSEN\_ACTION} with the chosen action.
+		\item Remember that you can only move objects or text that are not defined as
+			"STOP" or similar immovable properties.
+
+		\item Your goal is usually to reach an object defined as "WIN", but this can
+			be changed.
+
+		\item Think creatively about how changing rules can alter the properties and
+			behaviors of objects in unexpected ways.
+
+		\item If stuck, try breaking apart existing rules or forming completely new
+			ones.
+
+		\item Sometimes the solution involves making yourself a different object or changing
+			what counts as the win condition.
+	\end{itemize}
+
+	\textbf{PLAY!}
+
+	\textbf{Current Observation:}
+
+	\textbf{Active rules:}
+	\begin{itemize}
+		\item ball is win
+
+		\item baba is you
+	\end{itemize}
+
+	\textbf{Objects on the map:}
+	\begin{itemize}
+		\item rule \texttt{ball}: 5 steps to the left and 1 step up
+
+		\item rule \texttt{is}: 4 steps to the left and 1 step up
+
+		\item rule \texttt{win}: 3 steps to the left and 1 step up
+
+		\item ball: 5 steps to the left and 2 steps down
+
+		\item rule \texttt{baba}: 5 steps to the left and 4 steps down
+
+		\item rule \texttt{is}: 4 steps to the left and 4 steps down
+
+		\item rule \texttt{you}: 3 steps to the left and 4 steps down
+	\end{itemize}
+
+	First, think about the best course of action. Then, you must choose exactly
+	one of the listed actions and output it strictly in the following format:
+
+	\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
+
+	Replace \texttt{YOUR\_CHOSEN\_ACTION} with the chosen action.
 \end{GreenBox}
 
-\begin{GreenBox}[frametitle={\textbf{Iteration 1 Baba-is-ai Prompt}}]
-\label{box:baba_is_you_iter_1}
-\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each level. The following are the possible actions you can take in the game, followed by a short description of each action:
+\begin{GreenBox}
+	[frametitle={\textbf{Iteration 1 Baba-is-ai Prompt}}] \label{box:baba_is_you_iter_1}
+	\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of
+	each level. The following are the possible actions you can take in the game,
+	followed by a short description of each action:
 
-\begin{itemize}
-    \item \textbf{idle}: wait for one step,
-    \item \textbf{up}: take one step up,
-    \item \textbf{right}: take one step to the right,
-    \item \textbf{down}: take one step down,
-    \item \textbf{left}: take one step to the left.
-\end{itemize}
+	\begin{itemize}
+		\item \textbf{idle}: wait for one step,
 
-\textbf{Additional Tips:}
-\begin{enumerate}
-    \item The game is won by identifying a win condition and making it true by placing the "object is win" rule blocks next to each other in line.
-    \item First, identify the win condition and where the object corresponding to the win condition is located.
-    \item If it is blocked, identify the rules that are blocking it and try to remove them, or circumvent them by changing the character you control by changing the "baba is you" rule.
-    \item If the path to the win condition is not blocked, travel directly to the win condition object without distractions.
-    \item If a "wall is stop" rule is bounded on two sides by walls, the blocks cannot be moved, and you must find another way to reach the win condition.
-    \item Ignore any objects not related to the win condition, as they are not necessary to complete the level.
-\end{enumerate}
+		\item \textbf{up}: take one step up,
 
-\textbf{Example:}
+		\item \textbf{right}: take one step to the right,
 
-\textit{If your observation is:}
-\begin{quote}
-Active rules:  
-ball is win  
-wall is stop  
-baba is you  
+		\item \textbf{down}: take one step down,
 
-Objects on the map:  
-wall 5 steps to the right and 2 steps up  \\
-rule \texttt{ball} 8 steps to the right and 2 steps up  \\
-rule \texttt{is} 9 steps to the right and 2 steps up  \\
-rule \texttt{win} 10 steps to the right and 2 steps up  \\
-rule \texttt{wall} 1 step up  \\
-rule \texttt{is} 1 step to the right and 1 step up  \\
-rule \texttt{stop} 2 steps to the right and 1 step up \\ 
-wall 5 steps to the right and 1 step up  \\
-rule \texttt{door} 10 steps to the right and 1 step up  \\
-wall 5 steps to the right  \\
-ball 6 steps to the right  \\
-wall 5 steps to the right and 1 step down  \\
-wall 5 steps to the right and 2 steps down  \\
-wall 5 steps to the right and 3 steps down  \\
-rule \texttt{baba} 4 steps down  \\
-rule \texttt{is} 1 step to the right and 4 steps down  \\
-rule \texttt{you} 2 steps to the right and 4 steps down \\ 
-wall 5 steps to the right and 4 steps down  \\
-door 7 steps to the right and 4 steps down \\
-\end{quote}
+		\item \textbf{left}: take one step to the left.
+	\end{itemize}
 
-\textit{You should reason that:}
-\begin{itemize}
-    \item The win condition is "ball is win," therefore you should reach the ball to win.
-    \item The ball is blocked by a wall, so you should remove the "wall is stop" rule.
-    \item The "wall is stop" rule is not bounded by walls, so you can move the blocks to remove the rule.
-    \item The door is not necessary to reach the win condition, so you can ignore it.
-    \item Once the "wall is stop" rule is removed, you can move directly to the ball to win.
-\end{itemize}
+	\textbf{Additional Tips:}
+	\begin{enumerate}
+		\item The game is won by identifying a win condition and making it true by placing
+			the "object is win" rule blocks next to each other in line.
 
-\textbf{PLAY!}
+		\item First, identify the win condition and where the object corresponding
+			to the win condition is located.
 
-\textbf{Current Observation:}
+		\item If it is blocked, identify the rules that are blocking it and try to
+			remove them, or circumvent them by changing the character you control by changing
+			the "baba is you" rule.
 
-\textbf{Active rules:}  
-baba is you  
+		\item If the path to the win condition is not blocked, travel directly to
+			the win condition object without distractions.
 
-\textbf{Objects on the map:}
-\begin{itemize}
-    \item rule \texttt{is}: 2 steps to the left and 3 steps up
-    \item rule \texttt{win}: 1 step to the left and 3 steps up
-    \item key: 2 steps to the right and 2 steps up
-    \item rule \texttt{key}: 1 step to the right and 1 step up
-    \item rule \texttt{baba}: 3 steps to the left and 2 steps down
-    \item rule \texttt{is}: 2 steps to the left and 2 steps down
-    \item rule \texttt{you}: 1 step to the left and 2 steps down
-    \item ball: 2 steps down
-    \item rule \texttt{ball}: 2 steps to the right and 2 steps down
-\end{itemize}
+		\item If a "wall is stop" rule is bounded on two sides by walls, the blocks
+			cannot be moved, and you must find another way to reach the win condition.
 
-First, think about the best course of action.  
-Then, you must choose exactly one of the listed actions and output it strictly in the following format:
+		\item Ignore any objects not related to the win condition, as they are not
+			necessary to complete the level.
+	\end{enumerate}
 
-\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
-\end{GreenBox}
-\newpage
-\begin{GreenBox}[frametitle={\textbf{Iteration 2 Baba-is-ai Prompt}}]
+	\textbf{Example:}
 
-\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each level. The following are the possible actions you can take in the game, followed by a short description of each action:
+	\textit{If your observation is:}
+	\begin{quote}
+		Active rules: ball is win wall is stop baba is you
 
-\begin{itemize}
-    \item \textbf{idle}: wait for one step,
-    \item \textbf{up}: take one step up,
-    \item \textbf{right}: take one step to the right,
-    \item \textbf{down}: take one step down,
-    \item \textbf{left}: take one step to the left.
-\end{itemize}
+		Objects on the map: wall 5 steps to the right and 2 steps up \\ rule \texttt{ball}
+		8 steps to the right and 2 steps up \\ rule \texttt{is} 9 steps to the right
+		and 2 steps up \\ rule \texttt{win} 10 steps to the right and 2 steps up \\ rule
+		\texttt{wall} 1 step up \\ rule \texttt{is} 1 step to the right and 1 step up
+		\\ rule \texttt{stop} 2 steps to the right and 1 step up \\ wall 5 steps to
+		the right and 1 step up \\ rule \texttt{door} 10 steps to the right and 1 step
+		up \\ wall 5 steps to the right \\ ball 6 steps to the right \\ wall 5 steps
+		to the right and 1 step down \\ wall 5 steps to the right and 2 steps down \\
+		wall 5 steps to the right and 3 steps down \\ rule \texttt{baba} 4 steps
+		down \\ rule \texttt{is} 1 step to the right and 4 steps down \\ rule \texttt{you}
+		2 steps to the right and 4 steps down \\ wall 5 steps to the right and 4
+		steps down \\ door 7 steps to the right and 4 steps down \\
+	\end{quote}
 
-\textbf{You solve the puzzle by identifying the type of sub-problem, and then applying the following blocks of solution steps:}
-\begin{enumerate}
-    \item If the win condition is not blocked and its rule is active, move to the win condition object.
-    \item If the win condition is blocked by a wall and "wall is stop" rule is active and not bounded by the map boundary:
-    \begin{enumerate}
-        \item Move into the "wall is stop" blocks to remove the rule.
-        \item Move to the win condition object.
-    \end{enumerate}
-    \item If the win condition is blocked by a wall and "wall is stop" rule is active and bounded by the map boundary:
-    \begin{enumerate}
-        \item Locate and move to an object rule block on your side of the wall.
-        \item Push the object rule block towards the "baba is you" rule block by moving into it, and use this rule block to push the "baba" block out of the "baba is you" rule block.
-    \end{enumerate}
-    \item If the win condition is not active:
-    \begin{enumerate}
-        \item Locate the object rule block that can be pushed to the "is" rule block to activate the win condition.
-        \item Push the object rule block to the "is" rule block, making sure they are adjacent.
-        \item Move to the win condition object.
-    \end{enumerate}
-    \item If the win condition object is not present:
-    \begin{enumerate}
-        \item Locate an object rule block that can be pushed to the "is" rule block to create the win condition object.
-        \item Push the object rule block to the "is" rule block, making sure they are adjacent.
-        \item Move to the win condition object.
-    \end{enumerate}
-\end{enumerate}
+	\textit{You should reason that:}
+	\begin{itemize}
+		\item The win condition is "ball is win," therefore you should reach the
+			ball to win.
 
-\textbf{Example:}
+		\item The ball is blocked by a wall, so you should remove the "wall is stop"
+			rule.
 
-\textit{If your observation is:}
-\begin{quote}
-Active rules:  
-wall is stop  
-baba is you  
+		\item The "wall is stop" rule is not bounded by walls, so you can move the
+			blocks to remove the rule.
 
-Objects on the map:  
-wall 3 steps to the right and 3 step up  \\
-rule \texttt{is} 7 steps to the right and 3 step up  \\
-rule \texttt{win} 8 steps to the right and 3 step up  \\
-rule \texttt{wall} 2 step to the left and 2 step up  \\
-rule \texttt{is} 1 step to the left and 2 step up  \\
-rule \texttt{stop} 2 step up  \\
-wall 3 steps to the right and 2 step up  \\
-wall 3 steps to the right and 1 step up  \\
-key 4 steps to the right and 1 step up  \\
-wall 3 steps to the right  \\
-rule \texttt{ball} 7 steps to the right  \\
-wall 3 steps to the right and 1 step down  \\
-wall 3 steps to the right and 2 steps down  \\
-rule \texttt{baba} 2 step to the left and 3 steps down  \\
-rule \texttt{is} 1 step to the left and 3 steps down  \\
-rule \texttt{you} 3 steps down  \\
-wall 3 steps to the right and 3 steps down  \\
-ball 4 steps to the right and 3 steps down\\
-\end{quote}
+		\item The door is not necessary to reach the win condition, so you can
+			ignore it.
 
-\textit{You should plan your actions as follows:}
-\begin{enumerate}
-    \item The win condition is not active, so it needs to be built.
-    \item The win rule can be built by pushing the "ball" block on the other side of the wall next to the "is" block.
-    \item The "wall is stop" rule is blocking the path to the ball, so you should remove this rule first.
-    \item The "wall is stop" rule is not bounded by walls, so you can move the blocks to remove the rule.
-    \begin{itemize}
-        \item Move 2 steps to the left and 2 steps up to reach the "wall is stop" rule, and push the "wall" block to remove the rule.
-    \end{itemize}
-    \item Once the "wall is stop" rule is removed, you can push the "ball" block to the "is" block to win.
-    \begin{itemize}
-        \item Move 7 steps to the right, 3 steps down to reach the "ball" block.
-        \item Move 3 steps up to push the "ball" block to the "is" block.
-    \end{itemize}
-    \item Once you detect the "ball is win" rule as being active, you can move directly to the ball to win.
-\end{enumerate}
+		\item Once the "wall is stop" rule is removed, you can move directly to the
+			ball to win.
+	\end{itemize}
 
-\textbf{PLAY!}
+	\textbf{PLAY!}
 
-\textbf{Current Observation:}
+	\textbf{Current Observation:}
 
-\textbf{Active rules:}  
-ball is win  
-baba is you  
+	\textbf{Active rules:} baba is you
 
-\textbf{Objects on the map:}
-\begin{itemize}
-    \item rule \texttt{ball}: 3 steps to the left and 3 steps up
-    \item rule \texttt{is}: 2 steps to the left and 3 steps up
-    \item rule \texttt{win}: 1 step to the left and 3 steps up
-    \item ball: 3 steps to the left and 2 steps up
-    \item key: 3 steps to the left and 1 step up
-    \item rule \texttt{baba}: 3 steps to the left and 2 steps down
-    \item rule \texttt{is}: 2 steps to the left and 2 steps down
-    \item rule \texttt{you}: 1 step to the left and 2 steps down
-\end{itemize}
+	\textbf{Objects on the map:}
+	\begin{itemize}
+		\item rule \texttt{is}: 2 steps to the left and 3 steps up
 
-First, think about the best course of action.  
-Then, you must choose exactly one of the listed actions and output it strictly in the following format:
+		\item rule \texttt{win}: 1 step to the left and 3 steps up
 
-\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
+		\item key: 2 steps to the right and 2 steps up
 
-Replace \texttt{YOUR\_CHOSEN\_ACTION} with the chosen action.
+		\item rule \texttt{key}: 1 step to the right and 1 step up
 
+		\item rule \texttt{baba}: 3 steps to the left and 2 steps down
+
+		\item rule \texttt{is}: 2 steps to the left and 2 steps down
+
+		\item rule \texttt{you}: 1 step to the left and 2 steps down
+
+		\item ball: 2 steps down
+
+		\item rule \texttt{ball}: 2 steps to the right and 2 steps down
+	\end{itemize}
+
+	First, think about the best course of action. Then, you must choose exactly
+	one of the listed actions and output it strictly in the following format:
+
+	\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
 \end{GreenBox}
 \newpage
+\begin{GreenBox}
+	[frametitle={\textbf{Iteration 2 Baba-is-ai Prompt}}]
 
-\begin{GreenBox}[frametitle={\textbf{Iteration 3 Baba-is-ai Prompt}}]
+	\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each
+	level. The following are the possible actions you can take in the game, followed
+	by a short description of each action:
 
-\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each level. The following are the possible actions you can take in the game, followed by a short description of each action:
+	\begin{itemize}
+		\item \textbf{idle}: wait for one step,
 
-\begin{itemize}
-    \item \textbf{idle}: wait for one step,
-    \item \textbf{up}: take one step up,
-    \item \textbf{right}: take one step to the right,
-    \item \textbf{down}: take one step down,
-    \item \textbf{left}: take one step to the left.
-\end{itemize}
+		\item \textbf{up}: take one step up,
 
-\textbf{You solve the puzzle by identifying the type of sub-problem, and then applying the following blocks of solution steps:}
-\begin{enumerate}
-    \item If the win condition is not blocked and its rule is active, move to the win condition object.
-    \item If the win condition is blocked by a wall and "wall is stop" rule is active and not bounded by the map boundary:
-    \begin{enumerate}
-        \item Move into the "wall is stop" blocks to remove the rule.
-        \item Move to the win condition object.
-    \end{enumerate}
-    \item If the win condition is blocked by a wall and "wall is stop" rule is active and bounded by the map boundary:
-    \begin{enumerate}
-        \item Locate and move to an object rule block on your side of the wall.
-        \item Push the object rule block towards the "baba is you" rule block by moving into it, and use this rule block to push the "baba" block out of the "baba is you" rule block.
-    \end{enumerate}
-    \item If the win condition is not active:
-    \begin{enumerate}
-        \item Locate the object rule block that can be pushed to the "is" rule block to activate the win condition.
-        \item Push the object rule block to the "is" rule block, making sure they are adjacent.
-        \item Move to the win condition object.
-    \end{enumerate}
-    \item If the win condition object is not present:
-    \begin{enumerate}
-        \item Locate an object rule block that can be pushed to the "is" rule block to create the win condition object.
-        \item Push the object rule block to the "is" rule block, making sure they are adjacent.
-        \item Move to the win condition object.
-    \end{enumerate}
-\end{enumerate}
+		\item \textbf{right}: take one step to the right,
 
-\textbf{Example:}
+		\item \textbf{down}: take one step down,
 
-\textit{If your observation is:}
-\begin{quote}
-\textbf{Active rules:} \\
-wall is stop \\
-baba is you \\
+		\item \textbf{left}: take one step to the left.
+	\end{itemize}
 
-\textbf{Objects on the map:} \\
-rule \texttt{wall} at (1, 1) \\
-rule \texttt{is} at (2, 1) \\
-rule \texttt{stop} at (3, 1) \\
-rule \texttt{is} at (7, 3) \\
-rule \texttt{win} at (8, 3) \\
-rule \texttt{ball} at (7, 0) \\
-rule \texttt{baba} at (5, 6) \\
-rule \texttt{is} at (6, 6) \\
-rule \texttt{you} at (7, 6) \\
-wall at (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6) \\
-key at (5, 1) \\
-ball at (5, 6) \\
+	\textbf{You solve the puzzle by identifying the type of sub-problem, and then applying
+	the following blocks of solution steps:}
+	\begin{enumerate}
+		\item If the win condition is not blocked and its rule is active, move to
+			the win condition object.
 
-\textbf{Current position:} (4, 3) in a grid of shape (1, 0) to (8, 6)
-\end{quote}
+		\item If the win condition is blocked by a wall and "wall is stop" rule is active
+			and not bounded by the map boundary:
+			\begin{enumerate}
+				\item Move into the "wall is stop" blocks to remove the rule.
 
-\textit{You should plan your actions as follows:}
-\begin{enumerate}
-    \item The win condition is not active, so it needs to be built.
-    \item The win rule can be built by pushing the \texttt{ball} block on the other side of the wall next to the \texttt{is} block.
-    \item The "wall is stop" rule is blocking the path to the ball, so you should remove this rule first.
-    \item The "wall is stop" rule is not bounded by walls, so you can move the blocks to remove the rule.
-    \begin{itemize}
-        \item Move 2 steps to the left and 2 steps up to reach the "wall is stop" rule, and push the \texttt{wall} block to remove the rule.
-    \end{itemize}
-    \item Once the rule is removed, you can push the \texttt{ball} block to the \texttt{is} block.
-    \begin{itemize}
-        \item Move 7 steps to the right and 3 steps down to reach the \texttt{ball} block.
-        \item Move 3 steps up to push the \texttt{ball} block to the \texttt{is} block.
-    \end{itemize}
-    \item Once you detect the \texttt{ball is win} rule is active, move directly to the ball to win.
-\end{enumerate}
+				\item Move to the win condition object.
+			\end{enumerate}
 
-\textbf{PLAY!}
+		\item If the win condition is blocked by a wall and "wall is stop" rule is active
+			and bounded by the map boundary:
+			\begin{enumerate}
+				\item Locate and move to an object rule block on your side of the wall.
 
-\textbf{Current Observation:}
+				\item Push the object rule block towards the "baba is you" rule block by
+					moving into it, and use this rule block to push the "baba" block out
+					of the "baba is you" rule block.
+			\end{enumerate}
 
-\textbf{Active rules:} \\
-baba is you \\
+		\item If the win condition is not active:
+			\begin{enumerate}
+				\item Locate the object rule block that can be pushed to the "is" rule block
+					to activate the win condition.
 
-\textbf{Objects on the map:}
-\begin{itemize}
-    \item rule \texttt{is}: at (2, 1)
-    \item rule \texttt{win}: at (3, 1)
-    \item key: at (6, 2)
-    \item rule \texttt{key}: at (3, 4)
-    \item door: at (6, 5)
-    \item rule \texttt{baba}: at (1, 6)
-    \item rule \texttt{is}: at (2, 6)
-    \item rule \texttt{you}: at (3, 6)
-    \item rule \texttt{door}: at (6, 6)
-\end{itemize}
+				\item Push the object rule block to the "is" rule block, making sure
+					they are adjacent.
 
-\textbf{Current position:} (4, 3) in a grid of shape (1, 1) to (6, 6)
+				\item Move to the win condition object.
+			\end{enumerate}
 
-\textbf{Rule block pushing physics explanation:}
+		\item If the win condition object is not present:
+			\begin{enumerate}
+				\item Locate an object rule block that can be pushed to the "is" rule block
+					to create the win condition object.
 
-\begin{itemize}
-    \item Avoid moving into any non-wall rule block unless you are ready to interact with it.
-    \item Do not push "wall is stop" blocks if the "wall is stop" rule is not currently active.
-\end{itemize}
+				\item Push the object rule block to the "is" rule block, making sure
+					they are adjacent.
 
-\textbf{Steps to avoid unwanted interaction:}
-\begin{enumerate}
-    \item Read all rule block positions.
-    \item Read your current position and direction.
-    \item If a rule block is in your path, change direction by 90° (e.g., if going up, go left or right).
-    \item If a rule is on the wall of the grid, it can only be pushed parallel to that wall.
-\end{enumerate}
+				\item Move to the win condition object.
+			\end{enumerate}
+	\end{enumerate}
 
-\textbf{Example:}
+	\textbf{Example:}
 
-If you are at (3, 3) and a rule block is at (3, 4), you cannot push it up by first moving down. Instead, move to (2, 3) or (4, 3), then move down to (3, 6) to push it upward.
+	\textit{If your observation is:}
+	\begin{quote}
+		Active rules: wall is stop baba is you
 
-\textbf{Strategic Planning:}
+		Objects on the map: wall 3 steps to the right and 3 step up \\ rule \texttt{is}
+		7 steps to the right and 3 step up \\ rule \texttt{win} 8 steps to the right
+		and 3 step up \\ rule \texttt{wall} 2 step to the left and 2 step up \\ rule
+		\texttt{is} 1 step to the left and 2 step up \\ rule \texttt{stop} 2 step up
+		\\ wall 3 steps to the right and 2 step up \\ wall 3 steps to the right and 1
+		step up \\ key 4 steps to the right and 1 step up \\ wall 3 steps to the right
+		\\ rule \texttt{ball} 7 steps to the right \\ wall 3 steps to the right and
+		1 step down \\ wall 3 steps to the right and 2 steps down \\ rule \texttt{baba}
+		2 step to the left and 3 steps down \\ rule \texttt{is} 1 step to the left
+		and 3 steps down \\ rule \texttt{you} 3 steps down \\ wall 3 steps to the right
+		and 3 steps down \\ ball 4 steps to the right and 3 steps down\\
+	\end{quote}
 
-First, think about your current goal based on the game state. If an active rule changes, your goal likely changes too.
+	\textit{You should plan your actions as follows:}
+	\begin{enumerate}
+		\item The win condition is not active, so it needs to be built.
 
-\textbf{Most Important Rule:}  
-If "wall is stop" is active, find a way to remove it or gain control of a different object before doing anything else.
+		\item The win rule can be built by pushing the "ball" block on the other side
+			of the wall next to the "is" block.
 
-\textbf{Pushing Strategy:}
-\begin{itemize}
-    \item Always push blocks upward first (maximum 10 spaces), then push them left or right.
-    \item Rule \texttt{blocks} are written in backticks. Objects are not. Only \texttt{blocks} can be pushed.
-    \item Never interact directly with the \texttt{is} or \texttt{win} blocks.
-\end{itemize}
+		\item The "wall is stop" rule is blocking the path to the ball, so you
+			should remove this rule first.
 
-\textbf{Rule Construction Example:}
+		\item The "wall is stop" rule is not bounded by walls, so you can move the
+			blocks to remove the rule.
+			\begin{itemize}
+				\item Move 2 steps to the left and 2 steps up to reach the "wall is stop"
+					rule, and push the "wall" block to remove the rule.
+			\end{itemize}
 
-If \texttt{win} is at (11, 1) and \texttt{is} is at (10, 1), place the object rule at (9, 1) to form a valid rule.
+		\item Once the "wall is stop" rule is removed, you can push the "ball" block
+			to the "is" block to win.
+			\begin{itemize}
+				\item Move 7 steps to the right, 3 steps down to reach the "ball" block.
 
-\textbf{Coordinate System:}
-\begin{itemize}
-    \item Top-left is (1, 1), bottom-right is (x, y).
-    \item Moving right increases x, moving down increases y.
-\end{itemize}
+				\item Move 3 steps up to push the "ball" block to the "is" block.
+			\end{itemize}
 
-\textbf{Goal Planning Example:}
+		\item Once you detect the "ball is win" rule as being active, you can move
+			directly to the ball to win.
+	\end{enumerate}
 
-\textbf{Active rules:}
-\begin{itemize}
-    \item wall is stop — Must be broken under all circumstances!
-\end{itemize}
+	\textbf{PLAY!}
 
-\textbf{Steps to achieve the goal:}
-\begin{enumerate}
-    \item Break "wall is stop" by moving into its blocks from below.
-    \item Build "ball is win" rule.
-    \item \texttt{ball} block is at (7, 4), \texttt{is} is at (8, 1). So:
-    \begin{itemize}
-        \item \texttt{ball} needs to move 3 steps up, 1 step right.
-        \item Push from the left (1 step) and from below (3 steps).
-    \end{itemize}
-    \item If you're at (6, 4), move 1 step down and 1 step right to reach (7, 5), then push from below.
-    \item Move 3 steps up.
-\end{enumerate}
+	\textbf{Current Observation:}
 
-Then, you must choose exactly one of the listed actions and output it strictly in the following format:
+	\textbf{Active rules:} ball is win baba is you
 
-\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
+	\textbf{Objects on the map:}
+	\begin{itemize}
+		\item rule \texttt{ball}: 3 steps to the left and 3 steps up
 
+		\item rule \texttt{is}: 2 steps to the left and 3 steps up
+
+		\item rule \texttt{win}: 1 step to the left and 3 steps up
+
+		\item ball: 3 steps to the left and 2 steps up
+
+		\item key: 3 steps to the left and 1 step up
+
+		\item rule \texttt{baba}: 3 steps to the left and 2 steps down
+
+		\item rule \texttt{is}: 2 steps to the left and 2 steps down
+
+		\item rule \texttt{you}: 1 step to the left and 2 steps down
+	\end{itemize}
+
+	First, think about the best course of action. Then, you must choose exactly one
+	of the listed actions and output it strictly in the following format:
+
+	\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
+
+	Replace \texttt{YOUR\_CHOSEN\_ACTION} with the chosen action.
+\end{GreenBox}
+\newpage
+
+\begin{GreenBox}
+	[frametitle={\textbf{Iteration 3 Baba-is-ai Prompt}}]
+
+	\textbf{Baba Is You} is a puzzle game where you can manipulate the rules of each
+	level. The following are the possible actions you can take in the game, followed
+	by a short description of each action:
+
+	\begin{itemize}
+		\item \textbf{idle}: wait for one step,
+
+		\item \textbf{up}: take one step up,
+
+		\item \textbf{right}: take one step to the right,
+
+		\item \textbf{down}: take one step down,
+
+		\item \textbf{left}: take one step to the left.
+	\end{itemize}
+
+	\textbf{You solve the puzzle by identifying the type of sub-problem, and then applying
+	the following blocks of solution steps:}
+	\begin{enumerate}
+		\item If the win condition is not blocked and its rule is active, move to
+			the win condition object.
+
+		\item If the win condition is blocked by a wall and "wall is stop" rule is active
+			and not bounded by the map boundary:
+			\begin{enumerate}
+				\item Move into the "wall is stop" blocks to remove the rule.
+
+				\item Move to the win condition object.
+			\end{enumerate}
+
+		\item If the win condition is blocked by a wall and "wall is stop" rule is active
+			and bounded by the map boundary:
+			\begin{enumerate}
+				\item Locate and move to an object rule block on your side of the wall.
+
+				\item Push the object rule block towards the "baba is you" rule block by
+					moving into it, and use this rule block to push the "baba" block out
+					of the "baba is you" rule block.
+			\end{enumerate}
+
+		\item If the win condition is not active:
+			\begin{enumerate}
+				\item Locate the object rule block that can be pushed to the "is" rule block
+					to activate the win condition.
+
+				\item Push the object rule block to the "is" rule block, making sure
+					they are adjacent.
+
+				\item Move to the win condition object.
+			\end{enumerate}
+
+		\item If the win condition object is not present:
+			\begin{enumerate}
+				\item Locate an object rule block that can be pushed to the "is" rule block
+					to create the win condition object.
+
+				\item Push the object rule block to the "is" rule block, making sure
+					they are adjacent.
+
+				\item Move to the win condition object.
+			\end{enumerate}
+	\end{enumerate}
+
+	\textbf{Example:}
+
+	\textit{If your observation is:}
+	\begin{quote}
+		\textbf{Active rules:} \\ wall is stop \\ baba is you \\
+
+		\textbf{Objects on the map:} \\ rule \texttt{wall} at (1, 1) \\ rule \texttt{is}
+		at (2, 1) \\ rule \texttt{stop} at (3, 1) \\ rule \texttt{is} at (7, 3) \\
+		rule \texttt{win} at (8, 3) \\ rule \texttt{ball} at (7, 0) \\ rule \texttt{baba}
+		at (5, 6) \\ rule \texttt{is} at (6, 6) \\ rule \texttt{you} at (7, 6) \\
+		wall at (4, 0), (4, 1), (4, 2), (4, 3), (4, 4), (4, 5), (4, 6) \\ key at (5,
+		1) \\ ball at (5, 6) \\
+
+		\textbf{Current position:} (4, 3) in a grid of shape (1, 0) to (8, 6)
+	\end{quote}
+
+	\textit{You should plan your actions as follows:}
+	\begin{enumerate}
+		\item The win condition is not active, so it needs to be built.
+
+		\item The win rule can be built by pushing the \texttt{ball} block on the
+			other side of the wall next to the \texttt{is} block.
+
+		\item The "wall is stop" rule is blocking the path to the ball, so you
+			should remove this rule first.
+
+		\item The "wall is stop" rule is not bounded by walls, so you can move the
+			blocks to remove the rule.
+			\begin{itemize}
+				\item Move 2 steps to the left and 2 steps up to reach the "wall is stop"
+					rule, and push the \texttt{wall} block to remove the rule.
+			\end{itemize}
+
+		\item Once the rule is removed, you can push the \texttt{ball} block to the \texttt{is}
+			block.
+			\begin{itemize}
+				\item Move 7 steps to the right and 3 steps down to reach the \texttt{ball}
+					block.
+
+				\item Move 3 steps up to push the \texttt{ball} block to the \texttt{is}
+					block.
+			\end{itemize}
+
+		\item Once you detect the \texttt{ball is win} rule is active, move directly
+			to the ball to win.
+	\end{enumerate}
+
+	\textbf{PLAY!}
+
+	\textbf{Current Observation:}
+
+	\textbf{Active rules:} \\ baba is you \\
+
+	\textbf{Objects on the map:}
+	\begin{itemize}
+		\item rule \texttt{is}: at (2, 1)
+
+		\item rule \texttt{win}: at (3, 1)
+
+		\item key: at (6, 2)
+
+		\item rule \texttt{key}: at (3, 4)
+
+		\item door: at (6, 5)
+
+		\item rule \texttt{baba}: at (1, 6)
+
+		\item rule \texttt{is}: at (2, 6)
+
+		\item rule \texttt{you}: at (3, 6)
+
+		\item rule \texttt{door}: at (6, 6)
+	\end{itemize}
+
+	\textbf{Current position:} (4, 3) in a grid of shape (1, 1) to (6, 6)
+
+	\textbf{Rule block pushing physics explanation:}
+
+	\begin{itemize}
+		\item Avoid moving into any non-wall rule block unless you are ready to interact
+			with it.
+
+		\item Do not push "wall is stop" blocks if the "wall is stop" rule is not currently
+			active.
+	\end{itemize}
+
+	\textbf{Steps to avoid unwanted interaction:}
+	\begin{enumerate}
+		\item Read all rule block positions.
+
+		\item Read your current position and direction.
+
+		\item If a rule block is in your path, change direction by 90° (e.g., if going
+			up, go left or right).
+
+		\item If a rule is on the wall of the grid, it can only be pushed parallel
+			to that wall.
+	\end{enumerate}
+
+	\textbf{Example:}
+
+	If you are at (3, 3) and a rule block is at (3, 4), you cannot push it up by first
+	moving down. Instead, move to (2, 3) or (4, 3), then move down to (3, 6) to push
+	it upward.
+
+	\textbf{Strategic Planning:}
+
+	First, think about your current goal based on the game state. If an active rule
+	changes, your goal likely changes too.
+
+	\textbf{Most Important Rule:} If "wall is stop" is active, find a way to
+	remove it or gain control of a different object before doing anything else.
+
+	\textbf{Pushing Strategy:}
+	\begin{itemize}
+		\item Always push blocks upward first (maximum 10 spaces), then push them
+			left or right.
+
+		\item Rule \texttt{blocks} are written in backticks. Objects are not. Only
+			\texttt{blocks} can be pushed.
+
+		\item Never interact directly with the \texttt{is} or \texttt{win} blocks.
+	\end{itemize}
+
+	\textbf{Rule Construction Example:}
+
+	If \texttt{win} is at (11, 1) and \texttt{is} is at (10, 1), place the object rule
+	at (9, 1) to form a valid rule.
+
+	\textbf{Coordinate System:}
+	\begin{itemize}
+		\item Top-left is (1, 1), bottom-right is (x, y).
+
+		\item Moving right increases x, moving down increases y.
+	\end{itemize}
+
+	\textbf{Goal Planning Example:}
+
+	\textbf{Active rules:}
+	\begin{itemize}
+		\item wall is stop — Must be broken under all circumstances!
+	\end{itemize}
+
+	\textbf{Steps to achieve the goal:}
+	\begin{enumerate}
+		\item Break "wall is stop" by moving into its blocks from below.
+
+		\item Build "ball is win" rule.
+
+		\item \texttt{ball} block is at (7, 4), \texttt{is} is at (8, 1). So:
+			\begin{itemize}
+				\item \texttt{ball} needs to move 3 steps up, 1 step right.
+
+				\item Push from the left (1 step) and from below (3 steps).
+			\end{itemize}
+
+		\item If you're at (6, 4), move 1 step down and 1 step right to reach (7, 5),
+			then push from below.
+
+		\item Move 3 steps up.
+	\end{enumerate}
+
+	Then, you must choose exactly one of the listed actions and output it strictly
+	in the following format:
+
+	\texttt{<|ACTION|>YOUR\_CHOSEN\_ACTION<|END|>}
 \end{GreenBox}

@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "format": "prettier --parser=latex-parser --print-width=80 --write '**/*.tex'"
+  },
+  "devDependencies": {
+    "@unified-latex/unified-latex-prettier": "^2.4.2",
+    "prettier": "^2.8.8",
+    "prettier-plugin-latex": "^2.0.1"
+  }
+}

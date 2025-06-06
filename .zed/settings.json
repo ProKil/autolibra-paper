@@ -1,0 +1,21 @@
+{
+  "language_overrides": {
+    "LaTeX": {
+      "format_on_save": "on",
+      "formatter": {
+        "command": "npx",
+        "args": [
+          "prettier",
+          "--parser=latex-parser",
+          "--print-width=80",
+          "--embedded-language-formatting=off",
+          "--write",
+          "${file}"
+        ]
+      }
+    }
+  },
+  "file_associations": {
+    "*.tex": "LaTeX"
+  }
+}

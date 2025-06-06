@@ -1,22 +1,16 @@
-\renewcommand{\arraystretch}{1.5} 
+\renewcommand{\arraystretch}{1.5}
 
-\begin{table}[ht]  % 'ht' allows LaTeX to place the table here or at the top of the page
-\centering
-\begin{tabular}{>{\raggedright\arraybackslash}p{6cm}cccc|c}
-\toprule
-\textbf{Iteration} & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Baseline} \\
-\midrule
-\textbf{Babaisai Score GPT-4o} & 30\% & 40\% & 43\% & 55\% & 33\% \\
-\midrule
-\textbf{Babaisai Score GPT-4o (Only Held-Out)} & 33\% & 40\% & 44\% & 53\% & 33\% \\
-\midrule
-\textbf{Babaisai Score Claude 3.5 Sonnet} & 35\% & 40\% & 45\% & 55\% & 37\% \\
-\midrule
-\textbf{Babaisai Score Claude 3.5 Sonnet (Only Held-Out)} & 38\% & 42\% & 47 \% & 58\% & 33\% \\
-\midrule
-\textbf{Average Env. Steps} & 79 & 63 & 60 & 51 & - \\
-\bottomrule
-\end{tabular}
-\caption{\raggedright Baba-is-ai Scores and Average Environment Steps}
-\label{tab:heldout}
+\begin{table}[ht] % 'ht' allows LaTeX to place the table here or at the top of the page
+	\centering
+	\begin{tabular}{>{\raggedright\arraybackslash}p{6cm}cccc|c}
+		\toprule \textbf{Iteration}                                        & \textbf{0} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{Baseline} \\
+		\midrule \textbf{Babaisai Score GPT-4o}                            & 30\%       & 40\%       & 43\%       & 55\%       & 33\%              \\
+		\midrule \textbf{Babaisai Score GPT-4o (Only Held-Out)}            & 33\%       & 40\%       & 44\%       & 53\%       & 33\%              \\
+		\midrule \textbf{Babaisai Score Claude 3.5 Sonnet}                 & 35\%       & 40\%       & 45\%       & 55\%       & 37\%              \\
+		\midrule \textbf{Babaisai Score Claude 3.5 Sonnet (Only Held-Out)} & 38\%       & 42\%       & 47 \%      & 58\%       & 33\%              \\
+		\midrule \textbf{Average Env. Steps}                               & 79         & 63         & 60         & 51         & -                 \\
+		\bottomrule
+	\end{tabular}
+	\caption{\raggedright Baba-is-ai Scores and Average Environment Steps}
+	\label{tab:heldout}
 \end{table}

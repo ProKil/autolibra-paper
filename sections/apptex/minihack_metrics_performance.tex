@@ -1,79 +1,42 @@
-\renewcommand{\arraystretch}{1.5} 
+\renewcommand{\arraystretch}{1.5}
 \begin{table}[ht]
-\centering
-\begin{tabular}{|>{\arraybackslash}p{6cm}|>{\arraybackslash}p{1.5cm}|c|c|c|}
-\hline
-\rowcolor[HTML]{C0C0C0} 
-\textbf{} & \textbf{Iteration} & \textbf{0} & \textbf{1} & \textbf{2} \\ \hline
-
-% Row 1
-Target Navigation Effectiveness & \includegraphics[scale=0.09]{figs/emojis/mini_1.png} 
-  & \cellcolorpercent{16.67} \textbf{16.67\%}
-  & \cellcolorpercent{8.33}  \textbf{8.33\%}
-  & \cellcolorpercent{41.67} \textbf{41.67\%}
-\\ \hline
-
-% Row 2
-Efficient Exploration and Map Memory Utilization & \includegraphics[scale=0.07]{figs/emojis/mini_2.png} 
-  & \cellcolorpercent{16.67} \textbf{16.67\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{25.00} \textbf{25.00\%}
-\\ \hline
-
-% Row 3
-Hazard Awareness and Equipment Utilization & \includegraphics[scale=0.09]{figs/emojis/mini_3.png}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-\\ \hline
-
-% Row 4
-Boulder Manipulation Strategy & \includegraphics[scale=0.09]{figs/emojis/mini_4.png}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-\\ \hline
-
-% Row 5
-Combat Engagement and Survival & \includegraphics[scale=0.09]{figs/emojis/mini_5.png}
-  & \cellcolorpercent{8.33}  \textbf{8.33\%}
-  & \cellcolorpercent{8.33}  \textbf{8.33\%}
-  & \cellcolorpercent{25.00} \textbf{25.00\%}
-\\ \hline
-
-% Row 6
-Role-Specific Ability Utilization & \includegraphics[scale=0.07]{figs/emojis/mini_6.png}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-\\ \hline
-
-% Row 7
-Spatial Awareness and Interpretation & \includegraphics[scale=0.08]{figs/emojis/mini_7.png}
-  & {-}
-  & \cellcolorpercent{16.67} \textbf{16.67\%}
-  & \cellcolorpercent{58.33} \textbf{58.33\%}
-\\ \hline
-
-% Row 8
-Object Pickup Efficiency & \includegraphics[scale=0.08]{figs/emojis/mini_8.png}
-  & {-}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-  & \cellcolorpercent{0.00}  \textbf{0.00\%}
-\\ \hline
-
-% Row 9
-Giant Rats Encounter Handling & \includegraphics[scale=0.08]{figs/emojis/mini_9.png}
-  & {-}
-  & {-}
-  & \cellcolorpercent{25.00} \textbf{25.00\%}
-\\ \thickhline
-
-% Coverage and Redundancy
-\multicolumn{2}{|c|}{Coverage}    & 82.89\% & 81.82\% & 87.84\% \\ \hline
-\multicolumn{2}{|c|}{Redundancy}  & 61.11\% & 65.63\% & 71.30\% \\ \hline
-
-\end{tabular}
-\caption{Metric Performance for MiniHack AutoLibra Iterations 0–2}
-\label{tab:metric_mini_perf}
+	\centering
+	\begin{tabular}{|>{\arraybackslash}p{6cm}|>{\arraybackslash}p{1.5cm}|c|c|c|}
+		\hline
+		\rowcolor[HTML]{C0C0C0} \textbf{}                & \textbf{Iteration}                                   & \textbf{0}                                & \textbf{1}                                & \textbf{2}                                \\
+		\hline
+		% Row 1
+		Target Navigation Effectiveness                  & \includegraphics[scale=0.09]{figs/emojis/mini_1.png} & \cellcolorpercent{16.67} \textbf{16.67\%} & \cellcolorpercent{8.33} \textbf{8.33\%}   & \cellcolorpercent{41.67} \textbf{41.67\%} \\
+		\hline
+		% Row 2
+		Efficient Exploration and Map Memory Utilization & \includegraphics[scale=0.07]{figs/emojis/mini_2.png} & \cellcolorpercent{16.67} \textbf{16.67\%} & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{25.00} \textbf{25.00\%} \\
+		\hline
+		% Row 3
+		Hazard Awareness and Equipment Utilization       & \includegraphics[scale=0.09]{figs/emojis/mini_3.png} & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   \\
+		\hline
+		% Row 4
+		Boulder Manipulation Strategy                    & \includegraphics[scale=0.09]{figs/emojis/mini_4.png} & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   \\
+		\hline
+		% Row 5
+		Combat Engagement and Survival                   & \includegraphics[scale=0.09]{figs/emojis/mini_5.png} & \cellcolorpercent{8.33} \textbf{8.33\%}   & \cellcolorpercent{8.33} \textbf{8.33\%}   & \cellcolorpercent{25.00} \textbf{25.00\%} \\
+		\hline
+		% Row 6
+		Role-Specific Ability Utilization                & \includegraphics[scale=0.07]{figs/emojis/mini_6.png} & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   \\
+		\hline
+		% Row 7
+		Spatial Awareness and Interpretation             & \includegraphics[scale=0.08]{figs/emojis/mini_7.png} & {-}                                       & \cellcolorpercent{16.67} \textbf{16.67\%} & \cellcolorpercent{58.33} \textbf{58.33\%} \\
+		\hline
+		% Row 8
+		Object Pickup Efficiency                         & \includegraphics[scale=0.08]{figs/emojis/mini_8.png} & {-}                                       & \cellcolorpercent{0.00} \textbf{0.00\%}   & \cellcolorpercent{0.00} \textbf{0.00\%}   \\
+		\hline
+		% Row 9
+		Giant Rats Encounter Handling                    & \includegraphics[scale=0.08]{figs/emojis/mini_9.png} & {-}                                       & {-}                                       & \cellcolorpercent{25.00} \textbf{25.00\%} \\
+		\thickhline                                       % Coverage and Redundancy
+		\multicolumn{2}{|c|}{Coverage}                   & 82.89\%                                              & 81.82\%                                   & 87.84\%                                    \\
+		\hline
+		\multicolumn{2}{|c|}{Redundancy}                 & 61.11\%                                              & 65.63\%                                   & 71.30\%                                    \\
+		\hline
+	\end{tabular}
+	\caption{Metric Performance for MiniHack AutoLibra Iterations 0–2}
+	\label{tab:metric_mini_perf}
 \end{table}

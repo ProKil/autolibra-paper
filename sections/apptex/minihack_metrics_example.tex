@@ -1,28 +1,52 @@
 \fontsize{9.5pt}{11pt}\selectfont
-\begin{tcolorbox}[  colback=gray!10!white, colframe=gray!50!black, title=\textbf{Iteration 0: Target Navigation Effectiveness}]
+\begin{tcolorbox}
+	[ colback=gray!10!white, colframe=gray!50!black, title=\textbf{Iteration 0: Target
+	Navigation Effectiveness}]
 
-\textbf{Explanation:} \\
-This metric evaluates the agent’s ability to accurately identify and navigate toward key goal locations (e.g., the downward stairs). Positive behaviors show clear planning and directional focus, while negative examples reveal distractions or failures in goal-oriented movement.
+	\textbf{Explanation:} \\ This metric evaluates the agent’s ability to accurately
+	identify and navigate toward key goal locations (e.g., the downward stairs).
+	Positive behaviors show clear planning and directional focus, while negative examples
+	reveal distractions or failures in goal-oriented movement.
 
-\vspace{1em}
-\textbf{Good Behaviors:}
-\begin{itemize}
-  \item Behavior: The agent decides to move south and reaches the downward stairs.
-  \item Behavior: The agent’s reasoning shows it plans its action to reach the stairs.
-  \item Behavior: From its reasoning, the agent appears to recognize the goal of locating the stairs downward.
-  \item Behavior: From the trajectory and reasoning, the agent consistently aimed toward the general direction of its goal—the stairs down.
-\end{itemize}
+	\vspace{1em}
+	\textbf{Good Behaviors:}
+	\begin{itemize}
+		\item Behavior: The agent decides to move south and reaches the downward
+			stairs.
 
-\vspace{0.5em}
-\textbf{Bad Behaviors:}
-\begin{itemize}
-  \item Behavior: The repeated attempts to kick the goblin instead of progressing towards the stairs.
-  \item Behavior: The agent repeatedly interacts with adjacent stairs up but does not visibly attempt to identify or locate downward stairs.
-  \item Behavior: The agent explored the map but did not identify the downward stair in its trajectory.
-  \item Behavior: Throughout the trajectory, the agent did not manage to locate the downward stairs, despite exploring various places in the environment.
-  \item Behavior: The agent spends multiple actions traversing the map without making meaningful progress toward the downward stairs.
-  \item Behavior: Performed in the sequence of actions where the agent explores but eventually doesn't find the stairway downward, ending the session unsuccessfully.
-  \item Behavior: During its navigation, the agent didn't succeed in reaching the stairs down.
-\end{itemize}
+		\item Behavior: The agent’s reasoning shows it plans its action to reach the
+			stairs.
 
+		\item Behavior: From its reasoning, the agent appears to recognize the goal of
+			locating the stairs downward.
+
+		\item Behavior: From the trajectory and reasoning, the agent consistently aimed
+			toward the general direction of its goal—the stairs down.
+	\end{itemize}
+
+	\vspace{0.5em}
+	\textbf{Bad Behaviors:}
+	\begin{itemize}
+		\item Behavior: The repeated attempts to kick the goblin instead of
+			progressing towards the stairs.
+
+		\item Behavior: The agent repeatedly interacts with adjacent stairs up but
+			does not visibly attempt to identify or locate downward stairs.
+
+		\item Behavior: The agent explored the map but did not identify the downward
+			stair in its trajectory.
+
+		\item Behavior: Throughout the trajectory, the agent did not manage to locate
+			the downward stairs, despite exploring various places in the environment.
+
+		\item Behavior: The agent spends multiple actions traversing the map without
+			making meaningful progress toward the downward stairs.
+
+		\item Behavior: Performed in the sequence of actions where the agent
+			explores but eventually doesn't find the stairway downward, ending the session
+			unsuccessfully.
+
+		\item Behavior: During its navigation, the agent didn't succeed in reaching the
+			stairs down.
+	\end{itemize}
 \end{tcolorbox}
