@@ -6,13 +6,13 @@
             \State $traj_i, eval\_score_i += agent.play(task, prompt)$
             \State $annotations_i += editor.annotate(traj_i)$
         \EndFor
-        \State $metrics_i = AutoLibra.extract_metrics(traj_i, annotations_i)$
-        \State $traj\_scores_i = AutoLibra.llm_eval(metrics_i, traj_i)$
+        \State $metrics_i = AutoLibra.extract\_metrics(traj_i, annotations_i)$
+        \State $traj\_scores_i = AutoLibra.llm\_eval(metrics_i, traj_i)$
         \State $curr\_scores = eval\_score_i$
         \While {$curr\_scores <= eval\_score_i$}
             \State $prompt = updated\_prompt_k$
             \For{$task$ in $selected\_tasks$}
-                \State $\_, curr_scores = agent.play(task, prompt)$
+                \State $\_, curr\_scores = agent.play(task, prompt)$
             \EndFor
         \EndWhile
     \EndFor

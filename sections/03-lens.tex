@@ -2,7 +2,7 @@
 \label{sec:lens}
 
 In this section, we use AutoLibra as a lens to provide grounded, behavior-salient insights into agent trajectories. In three data sets, CoGym \citep{shao2024collaborative}, Sotopia \citep{zhousotopia}, and WebVoyager \citep{he2024webvoyager}, we compare induced metrics with heuristically proposed evaluation dimensions and failure modes summarized by the authors. We find that AutoLibra can discover more concrete metrics than heuristically defined categories, and novel metrics that are overlooked by experts. 
-Tab. \ref{tab:merged_comparison} summarizes the comparison between AutoLibra-induced metrics and evaluation criteria across three datasets (CoGym, Sotopia, and WebVoyager).
+Tab. \ref{tab:merged_comparison} summarizes the comparison between AutoLibra-induced metrics and evaluation criteria across the three aforementioned datasets.
 
 
 % Define colors for matching categories
@@ -71,8 +71,9 @@ Tab. \ref{tab:merged_comparison} summarizes the comparison between AutoLibra-ind
         & \multicolumn{2}{C{0.93\textwidth}}{\cellcolor{unmatched}\textit{Visual Grounding Issue} (25\%)} \\
         \bottomrule
     \end{tabular}
-    \caption{Comparison between AutoLibra-induced metrics and evaluation criteria across three datasets (CoGym, Sotopia, and WebVoyager)}
+    \caption{Comparison between AutoLibra-induced metrics and expert proposed evaluation dimensions and failure categories. The percentages in parenthesis denote frequency of -1 in AutoLibra-induced metrics, and failure frequency or score from the original papers.}
     \label{tab:merged_comparison}
+    \vspace{-20pt}
 \end{table}
 
 
@@ -81,9 +82,9 @@ Tab. \ref{tab:merged_comparison} summarizes the comparison between AutoLibra-ind
 
 \paragraph{CoGym}
 For CoGym \citep{shao2024collaborative}, 
-AutoLibra induces 9 metrics from feedback from \textbf{end users}, which can mathced to the five failure categories proposed by the authors.
-The failure rate (frequency of -1 rating) measured by AutoLibra also roughly matches the failure rate of the CoGym categories manually labeled by the authors.
-This shows that AutoLibra induces metrics that reflect human expert categorization and provide an automated measurement of agent failures.
+AutoLibra induces 9 metrics from feedback from \textbf{end users}, which can correspond to the five failure categories proposed by the authors.
+The failure rate (frequency of a metric score of -1) measured by AutoLibra also roughly matches the failure rate of the manually labeled CoGym categories by the authors.
+This shows that AutoLibra induces metrics that reflect human-expert categorization and provide an automated measurement of agent failures.
 
 %\textit{Communication clarity and user interaction} belongs to Communication,  \textit{Adherence to instructions and consistency} belongs to Situational Awareness, \textit{Adaptability and responsiveness to feedback} belongs to Planning, \textit{Search accuracy and content relevance} belongs to Environment Awareness, and \textit{User preference query and incorporation} belongs to Personalization. All five metrics are more concrete and fine-grained than the larger categories in CoGym; we also discover the following metrics that are not mentioned in the break-down analysis in the CoGym paper:
 %\textit{Responsiveness and Efficiency}, \textit{Content Quality and Coherence}, and \textit{Data Analysis Competence}. We note that this comparison shows the complementary characteristics of automatically 
@@ -91,29 +92,29 @@ This shows that AutoLibra induces metrics that reflect human expert categorizati
 
 
 
-\paragraph{Sotopia} In Sotopia, we \citep{zhousotopia} proposed seven dimensions for evaluating social intelligence in AI agents.
+\paragraph{Sotopia} In Sotopia, the authors \citep{zhousotopia} proposed 7 dimensions for evaluating social intelligence in AI agents.
 With AutoLibra, we recover the exact dimension \emph{Goal Completion}, and 3 metrics as the subdimensions of \emph{Believability},
 indicating that \textit{Believability} could be too high-level, while AutoLibra provides more concrete breakdown metrics. 
-The failure rate (frequency of -1 rating) measured by AutoLibra in these two categories,
+The failure rate (frequency of a score of -1 metric rating, indicating the agent performs poorly on that metric) measured by AutoLibra in these two categories
 roughly matches the score of the Sotopia dimensions of the agent we studied.
-AutoLibra induces another four metrics which are overlooked in the heuristically proposed Sotopia-Eval dimensions.
-We should note that the other five dimensions in Sotopia are still valuable evaluation dimensions for social intelligence.
-However, behaviors captured by \emph{Financial and Material Benefits}, \emph{Knowledge}, and \emph{Secret} dimensions are often also
+AutoLibra induces another four metrics that are overlooked in the heuristically proposed Sotopia-Eval dimensions.
+We note that the other five dimensions in Sotopia are still valuable evaluation dimensions for social intelligence.
+However, behaviors captured by dimensions \emph{Financial and Material Benefits}, \emph{Knowledge}, and \emph{Secret} are often also
 captured by \textit{Goal Completion} and \textit{Believability}.
-As a result, AutoLibra produces the single \textit{Goal Achievement and Outcome Effectiveness} metric through minimizing the redundancy.
-Whereas, \textit{Relationship} and \textit{Social Rules} captures long-tailed behaviors which are not picked up by AutoLibra.
+As a result, AutoLibra produces the single \textit{Goal Achievement and Outcome Effectiveness} by minimizing redundancy.
+Whereas, \textit{Relationship} and \textit{Social Rules} captures long-tailed behaviors not captured by AutoLibra.
 
 
 
 \paragraph{WebVoyager} Similarly, for web navigation tasks, AutoLibra also discovers metrics such as \textit{Access Barrier Handling},
 \textit{Error Recovery and Adjustment},
 \textit{Step Efficiency and Action Redundancy},
-and \textit{Navigation Accuracy} 
+and \textit{Navigation Accuracy},
 which much more closely reflect concrete agent behavior than the failure analysis categories proposed in previous work
 \citep{he2024webvoyager,zhou2024proposeragentevaluatorpaeautonomousskilldiscovery}, where they are often simply classified as ``navigation stuck''.
 We also find additional metrics that are not mentioned in the failure analysis, such as \textit{Query and Search Strategy Efficiency} and
 \textit{Final Output and Summarization Quality}, which are frequent issues (with frequencies of 7\% and 18\%).
-Since AutoLibra only observe the behavior of the agents, it cannot interpret the neural representation,
-it is not able to capture the visual grounding issues which are mentioned in the WebVoyager paper.
+Since AutoLibra only observes the behavior of the agents, it cannot interpret the neural representation,
+not able to capture the visual grounding issues, which are mentioned in the WebVoyager paper.
 This further demonstrates AutoLibra's utility in extracting behavior-salient metrics,
 and particularly demonstrates its ability to obtain \textbf{fine-grained metrics} that expert design would not have been able to extract. 

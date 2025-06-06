@@ -1,25 +1,40 @@
 \section{AutoLibra as a ladder \protect\includegraphics[height=1em]{figs/ladder.png}: Agent improvement with AutoLibra}
 \label{sec:ladder}
 
+\begin{table}[!h]
+\centering
+    \begin{tabular}{rcccc}
+    \toprule
+         & \multicolumn{2}{c}{Baba-Is-AI (\ref{sec:Baba-Is-AI})}  & \multicolumn{2}{c}{WebVoyager (\ref{sec:webvoyager})} \\ 
+        & Avg. Metrics & Success Rate & Avg. Metrics & Success Rate\\ \midrule
+        Iter 0 & 15.8\ & 33.3  & 45.9 & 34.8 \\
+        Iter 1 & 28.2 & 40.0 & 53.8 & 35.5\\
+        Iter 2 & 40.7 & 44.4 & 61.3 & 38.1\\
+        Iter 3 & 56.7 & 52.7  & 69.9 & 39.7\\\bottomrule
+    \end{tabular}
+    \caption{Using AutoLibra-induced metrics as optimization targets for prompt engineering and finetuning leads to improvements in the average metric positive rates (Avg. Metrics) and task success rate (Success Rate) defined by the two environments respectively.}
+\label{tab:baba_wv_scores}
+\end{table}
 As AutoLibra can automatically induce metrics from human feedback, a natural question to ask is whether it can enable self-regulated improvement in agents through iterative feedback. 
 In this section, we will study can AutoLibra be used a `ladder', inducing metrics as new optimization targets in each iteration to improve agent performance. We investigate two methods for optimizing agents:
 prompt engineering and fine-tuning, across two domains: text game and web browsing. Across all tested methods and domains, AutoLibra induces new metrics in each iteration to cover emergent agent behaviors, and enables continuous improvements on both induced metrics and task success.
 Fig. \ref{fig:autolibra-training} illustrates the results. 
-\diyi{do we want to summarize these improvement numbers in a table or something? }
+%\diyi{do we want to summarize these improvement numbers in a table or something? Phil: Done in table 3}
 
 \begin{figure}[!t]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/autolibra-teaser.pdf}
-    \caption{AutoLibra iteratively discovers new optimization targets throughout the agent optimization process. Each emoji pair represents a metric; the text between iterations in prompt engineer experiment represents the improvement in the prompts. Purple boxes indicate the new emerging metrics, and green arrows indicate significant improvements over the previous iteration. The metric names can be found in Tab. \ref{tab:baba_is_ai_metrics} and App. Tab. \ref{tab:app_nnetnav_metrics}.
+    \caption{AutoLibra iteratively discovers new optimization targets throughout the agent optimization process. Each emoji pair represents an induced metric; the arrows and text between iterations represents the changes made to prompts informed by metrics. Purple boxes indicate the newly emerging metrics, and green arrows indicate significant improvements over the previous iteration. The metric names can be found in Tab. \ref{tab:baba_is_ai_metrics} and App. Tab. \ref{tab:app_nnetnav_metrics}.
     }
     \label{fig:autolibra-training}
+    \vspace{-20pt}
 \end{figure}
 
 \subsection{Can AutoLibra induce good optimization targets for prompt engineering?}
 \label{sec:Baba-Is-AI}
 
-To answer this question, we use Baba-Is-AI \citep{cloos2024babaaibreakrules, paglieri2024balrog} as a case study, since it is not yet saturated by state-of-the-art LLM agents. This game requires metacognitive skills, such as breaking and building new rules and planning ordered subtasks; a full list of game rules is listed in App. \ref{appendix:baba_is_ai_rules}.
-We use the top model on the leaderboard\footnote{\url{https://balrogai.com}} (which when we started the experiments, was GPT-4o) \citep{openai2024gpt4ocard} for the agent policy, while we find similar improvements in Claude-3.5-Sonnet\footnote{\url{https://www.anthropic.com/news/claude-3-5-sonnet}} as well.
+To answer this question, we use \textbf{Baba-Is-AI} \citep{cloos2024babaaibreakrules, paglieri2024balrog} as a case study, since it is not yet saturated by state-of-the-art LLM agents. This game requires metacognitive skills, such as breaking and building new rules and planning ordered subtasks; a full list of game rules is listed in App. \ref{appendix:baba_is_ai_rules}.
+We use the top model on the leaderboard\footnote{\url{https://balrogai.com}} (which when we started the experiments, was GPT-4o) \citep{openai2024gpt4ocard} for the agent policy, while we observe similar improvements in Claude-3.5-Sonnet\footnote{\url{https://www.anthropic.com/news/claude-3-5-sonnet}} as well.
 
 % \begin{figure}[ht]
 %     \centering
@@ -30,14 +45,14 @@ We use the top model on the leaderboard\footnote{\url{https://balrogai.com}} (wh
 
 % \subsection{AutoLibra for Baba-Is-AI improvement}
 
-To avoid overfitting to the tasks used in optimization, we use 6 of 40 tasks in Baba-Is-AI \citep{paglieri2024balrog} to induce metrics and optimize prompts and report performance on all 40 tasks. 
+To avoid overfitting to the tasks used in optimization, we fine-tune on 6 of 40 tasks in Baba-Is-AI \citep{paglieri2024balrog}, but report performance on all 40 tasks. 
 In one \textit{Iteration}, the human prompt engineers (two of the authors) generate 18 agent trajectories (3 trajectories / task), use AutoLibra to induce metrics, then optimize the prompt to achieve higher performance on the induced metrics without considering the task success rate, and start a new iteration when one or more metrics improved significantly (over 30\%). The procedure and experiment setup are detailed in App. Alg. \ref{appendix:algo1} and App. \ref{appendix:autolibra_setup}.
 \vspace{-0.4cm}
 
 \paragraph{Results}
-Illustrated in Fig. \ref{fig:autolibra-training}, the performance on Babaisai task increased from 25\% to 55\% between \textit{Iteration 0} and \textit{Iteration 3}, with each iteration resulting in greater performance than the previous; this is replicated across the held-out tasks alone, (complete task results tabulated in App. \ref{appendix:heldout}). This represents a substantial increase compared to the highest base model performance of 33\% on Baba-Is-AI \citep{paglieri2024balrog}. With only 6 tasks used in inducing the metrics, the improvement on all 40 tasks showing the metrics induced by AutoLibra are generalizable to unseen tasks. Among induced metrics (App. Tab. \ref{tab:baba_is_ai_metrics}), agent performance increases correspondingly to prompt changes targeting those metrics, an example being \texttt{Win Condition Recognition} \includegraphics[height=1em]{figs/emojis/emoji_1.png}, which increases from 28\% to 50\% from \textit{Iterations 0-1} after few-shot prompting (prompt in App. \ref{box:baba_is_you_iter_1}) is introduced to teach the identification of a win condition rule. The complete list of observations and reasoning for prompt engineering is in the App. \ref{appendix:baba_is_ai_obs}. With AutoLibra, prompt engineers could receive feedback on whether their prompt changes lead to desired behavior changes in agents. 
+As shown in Fig. \ref{fig:autolibra-training} and Tab. \ref{tab:baba_wv_scores}, the performance on Babaisai task increased from 25\% to 55\% between \textit{Iteration 0} and \textit{Iteration 3}, with each iteration resulting in greater performance than the previous; this is replicated across the held-out tasks alone, (complete task results tabulated in App. \ref{appendix:heldout}). This represents a substantial increase compared to the highest base model performance of 33\% on Baba-Is-AI \citep{paglieri2024balrog}. With only 6 tasks used in inducing the metrics, the improvement on all 40 tasks showing the metrics induced by AutoLibra are generalizable to unseen tasks. Among induced metrics (App. Tab. \ref{tab:baba_is_ai_metrics}), agent performance increases correspondingly to prompt changes targeting those metrics, an example being \texttt{Win Condition Recognition} \includegraphics[height=1em]{figs/emojis/emoji_1.png}, which increases from 28\% to 50\% from \textit{Iterations 0-1} after few-shot prompting (prompt in App. \ref{box:baba_is_you_iter_1}) is introduced to teach the identification of a win condition rule. The complete list of observations and reasoning for prompt engineering is in the App. \ref{appendix:baba_is_ai_obs}. With AutoLibra, prompt engineers could receive feedback on whether their prompt changes lead to desired behavior changes in agents. 
 
-\begin{wraptable}[20]{r}{0.60\textwidth} % 'r' for right, adjust the width as needed
+\begin{wraptable}[19]{r}{0.60\textwidth} % 'r' for right, adjust the width as needed
 \centering
 \small
 \vspace{-10pt}
@@ -57,7 +72,7 @@ Illustrated in Fig. \ref{fig:autolibra-training}, the performance on Babaisai ta
 \midrule
 \rowcolor{gray!30} \includegraphics[scale=0.07]{figs/emojis/emoji_5.png} & 1 & Win Rule Construction \\
 \midrule
-\rowcolor{gray!30} \includegraphics[scale=0.07]{figs/emojis/emoji_6.png} & 1 & Selective Interaction With Relevant Objects  \\
+\rowcolor{gray!30} \includegraphics[scale=0.07]{figs/emojis/emoji_6.png} & 1 & Selective Interaction w/ Relevant Obj.  \\
 \midrule
 \rowcolor{gray!30} \includegraphics[scale=0.07]{figs/emojis/emoji_7.png} & 1 & Rule Manipulation and Execution  \\
 \midrule
@@ -88,7 +103,7 @@ Qualitative observation of agent trajectories reveals behaviors commensurate wit
 
 \subsection{Can AutoLibra induce good optimization targets for agent fine-tuning?}
 \label{sec:webvoyager}
-To answer this question, we use web browsing as the case study domain, as we can compare the effectiveness of AutoLibra with the existing goal-oriented LLM-as-a-Judge method in rejection behavior cloning methods for agent fine-tuning.
-Previously, we collected a diverse dataset (NNetNav-live) of agent trajectories through open-end exploration on 20 live websites, which were labeled with tasks in the hindsight \citep{Murty2025NNetNav}. 
-Through this process, the tasks in NNetNav-live have no overlap and are more complex than the evaluation datasets that we use in this subsection, WebVoyager \citep{he2024webvoyager}.
-We start from the state-of-the-art agent Llama-8b-nnetnav-live, which was finetuned with trajectories selected with LLM-as-a-Judge instructed to evaluate trajectories based on goal completion. Following a similar pipeline in \S\ref{sec:Baba-Is-AI}, we improve the agents for 3 iterations, and get feedback on 18 trajectories in each iteration. The difference is that instead of prompt engineering, we use the induced metrics to choose the sampled trajectories with top 10\% sum scores of all metrics for fine-tuning the agent policy. Throughout the training procedure, we use the tasks in NNetNav-live \citep{Murty2025NNetNav} for metric induction and agent finetuning. This process yields the continuous improvement on WebVoyager \citep{he2024webvoyager}, shown in Fig. \ref{fig:autolibra-training}. In contrast, using LLM-as-a-Judge instructed to evaluate goal completion does not yield significant improvement even for one iteration. This shows that the metrics iteratively induced by AutoLibra also serve as better optimization target than the goal-oriented evaluation metric alone. Metrics induced in each iteration are in App. Tab. \ref{tab:app_nnetnav_metrics}.
+To answer this question, we use web browsing (via the \textbf{WebVoyager} \citep{he2024webvoyager} benchmark) to compare the effectiveness of AutoLibra with existing goal-oriented LLM-as-a-Judge methods in rejection behavior cloning methods for agent fine-tuning.
+We use a diverse dataset (NNetNav-live) composed of agent trajectories of open-end exploration on 20 live websites \citep{Murty2025NNetNav}. 
+NNetNav-live tasks are assigned a task label post-hoc, to ensure they have no overlap with and are more complex than the WebVoyager evaluation datasets used in this subsection.
+Using the state-of-the-art agent Llama-8b-nnetnav-live, which was finetuned with trajectories selected with LLM-as-a-Judge instructed to evaluate trajectories based on goal completion, and following a similar pipeline to \S\ref{sec:Baba-Is-AI}, we improve the agents for 3 iterations, obtaining feedback on 18 trajectories in each iteration. Instead of prompt engineering, we use the induced metrics to choose the sampled trajectories with top 10\% sum scores of all metrics for fine-tuning the agent policy. Throughout the training procedure, we use the tasks in NNetNav-live \citep{Murty2025NNetNav} for metric induction and agent finetuning. This process yields a 4.9\% task completion rate improvement on WebVoyager, shown in Fig. \ref{fig:autolibra-training} and Tab. \ref{tab:baba_wv_scores}, while using naive LLM-as-a-Judge instructed to evaluate goal completion does not yield significant improvement in metrics or success rate. This shows that AutoLibra-induced metrics serve as better optimization targets than the goal-oriented evaluation metric alone; theseinduced metrics are shown in App. Tab. \ref{tab:app_nnetnav_metrics}.

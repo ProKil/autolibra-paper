@@ -1,8 +1,10 @@
 \section{Conclusion and Future Work}
-In this paper, we propose AutoLibra, a new paradigm for agent evaluation.
+In this paper, we propose AutoLibra, a new paradigm for agent evaluation, one of the first works to explore adaptable trajectory-derived evaluation heuristics, offering substantial advantages in agent training over traditional end-to-end evaluation.
 We find that this framework is generalizable to a diverse range of agent tasks, provides new insights into agent behaviors,
 and identifies strong optimization targets for agent improvement. There are a few directions for further extending and applying this framework. 
 
-\paragraph{Sub-trajectory feedback} In AutoLibra, we label each trajectory with one piece of feedback, and ground it into the agents' concrete behavior which is at the sub-trajectory level. In the future, researchers can let users directly give feedback for one or multiple steps in the trajectory, which should lead to better feedback grounding results. Similarly, user feedback can be collected during the interaction instead of after the agent has completed the tasks. 
+\textbf{Behavior-centric evaluation} AutoLibra leads a \emph{paradigm shift} from end-to-end agent evaluation (analogous to ``integration tests'' in software development) to evaluation with granular metrics that measure agents' concrete behaviors (analogous to ``unit tests''). Future work can study whether this process can be improved through better human-AI collaboration.
 
-\paragraph{Wider exploration of  agent improvement methods} In this paper, we only explored two methods for agent improvement to show the utility of AutoLibra. In the future, researchers can use AutoLibra to provide dense rewards for individual steps, and use reinforcement learning to train LLM agents with these dense rewards. 
+\textbf{Sub-trajectory feedback from humans} In AutoLibra, we label each trajectory with one piece of feedback, and ground it into the agents' concrete behavior which is at the sub-trajectory level. In the future, researchers can let users directly give feedback for one or multiple steps in the trajectory, which should lead to better feedback grounding results. Similarly, user feedback can be collected during the interaction instead of after the agent has completed the tasks, which is a more user-friendly way to gather high quality feedback data.
+
+\textbf{Wider exploration of  agent improvement methods} In this paper, we only explored two methods for agent improvement to show the utility of AutoLibra. In the future, researchers can use AutoLibra to provide dense rewards for individual steps, and use reinforcement learning to train LLM agents with these dense rewards. 
