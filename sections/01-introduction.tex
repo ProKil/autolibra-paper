@@ -57,7 +57,9 @@ a common cluster, summarized as \textit{Element Interaction Accuracy}.
 	induces agent evaluation metrics from human feedback, and uses these metrics to
 	evaluate agents, which can be meta-evaluated via evaluating the coverage on
 	unseen human feedback. Here we show real examples of agent trajectories, human
-	feedback, aspects, induced metrics, evaluation results on WebVoyager \citep{he2024webvoyager}.}
+	 feedback, aspects, induced metrics, evaluation results on WebVoyager \citep{he2024webvoyager}. 
+    %\diyi{this figure has too many words in it, making the process hard for people to follow. i suggest simplify it to also avoid content overlap with the next few figures you have for each detailed step.}
+    }
 	\label{fig:teaser}
 \end{figure}
 
@@ -78,18 +80,19 @@ coverage ultimately converges to the maximum coverage.
 
 With AutoLibra, our aim is to answer the following research questions:
 
-\begin{description}
-	\item[\textbf{RQ1:}] How aligned are the results from AutoLibra for each step with
-		human judgment?
+\begin{itemize}\setlength\itemsep{0em}
+	\item[\textbf{RQ1:}] How well do AutoLibra 's step-wise results align with human judgment? % aligned are the results from AutoLibra for each step with
+		% human judgment?
 
-	\item[\textbf{RQ2:}] Can AutoLibra provide more insight into agent behavior that
-		were not provided by expert designed metrics?
+	\item[\textbf{RQ2:}] Can AutoLibra provide additional insight into agent behavior beyond expert-designed metrics?
 
-	\item[\textbf{RQ3:}] Can AutoLibra provide optimization signals for human agent
-		engineers and agent learning algorithms to improve agents' performance?
-\end{description}
+	\item[\textbf{RQ3:}] Can AutoLibra provide optimization signals for 
+   %  human agent
+% 		engineers and agent learning algorithms to improve 
+        improving agents' performance?
+\end{itemize}
 
-\textbf{Key findings:} Experiments within multiple agent domains, including collaborative
+Experiments within multiple agent domains, including collaborative
 agents \citep{shao2024collaborative}, social agents \citep{zhousotopia}, web agents
 \citep{zhouwebarena,he2024webvoyager}, and text game agents \citep{paglieri2024balrog,cloos2024babaaibreakrules},
 demonstrate that AutoLibra is able to induce fine-grained and interpretable metrics

@@ -28,7 +28,7 @@ annotators (five authors in this paper) who observe agent trajectories. All
 other environments belong to this category, these being Sotopia \citep{zhousotopia},
 WebArena \citep{zhouwebarena}, WebVoyager \citep{he2024webvoyager}, Baba-is-ai \citep{cloos2024babaaibreakrules},
 and MiniHack \citep{samvelyan2021minihackplanetsandboxopenended}. For each trajectory,
-we collect only one element of feedback; feedback is given based on the complete
+we collect only one element of feedback based on the complete
 agent trajectories.\footnote{While in theory we can leverage feedback on
 	specific steps to achieve better feedback grounding and multiple feedback for
 	single trajectory, we leave it as future work.}
@@ -94,7 +94,7 @@ two aspects.
 
 \paragraph{Behavior Clustering}
 \begin{wrapfigure}
-	[16]{l}{0.4\linewidth}
+	[17]{l}{0.4\linewidth}
 	\vspace{-10pt}
 	\includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
 	\vspace{-10pt}
@@ -134,6 +134,14 @@ different tasks.
 \label{sec:evaluation_process}
 
 \paragraph{Evaluating agents with induced metrics}
+\begin{wrapfigure}
+	[16]{r}{0.4\linewidth}
+    \vspace{-23pt}
+	\includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
+	\vspace{-15pt}
+	\caption{Evaluation with induced metrics}
+	\label{fig:llm_as_a_judge}
+\end{wrapfigure}
 LLM-as-a-Judge \citep{zheng2023judging}, or more broadly, model-based evaluation
 \citep{zhang2019bertscore,celikyilmaz2021evaluationtextgenerationsurvey} is a
 method to use machine learning models to evaluate the output of other machine
@@ -150,13 +158,7 @@ interacts with valid elements on the webpage. Wenote that AutoLibra could be use
 with other evaluation methods, such as programmatic evaluation \citep{maeureka};
 we leave generating programs for the induced metrics for future work.
 
-\begin{wrapfigure}
-	[16]{r}{0.4\linewidth}
-	\includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
-	\vspace{-10pt}
-	\caption{Evaluating agents with \\ induced metrics}
-	\label{fig:llm_as_a_judge}
-\end{wrapfigure}
+
 As illustrated in Fig. \ref{fig:llm_as_a_judge}, taking the induced metrics as
 input, an LLM (we use o3-mini medium, as it provides similar results in this step
 to o3-mini high) is prompted to rate the agent trajectories to \{+ 1, -1, N/A\} for
@@ -230,19 +232,6 @@ avoid redundancy, thus maximizing the utility of induced metrics. To optimize fo
 this objective, we generate 20 different sets of metrics, with $N$ ranging from 4
 to 13, and calculate the coverage and redundancy of the metrics in human
 feedback.
-\begin{wrapfigure}
-	[27]{r}{0.6\textwidth}
-	\vspace{-10pt}
-	\includegraphics[width=0.6\textwidth]{figs/four_datasets_grid.pdf}
-	\vspace{-15pt}
-	\caption{Coverage and redundancy of AutoLibra metrics on four agentic datasets.
-		Circles indicate coverage and redundancy for different induced metrics; stars
-		indicate the the best metrics' coverage and redundancy on held-out human feedback;
-		squares show an ablation test, indicating the effect when good and bad behavior
-		examples are removed from metrics, demonstrating the criticality of concrete
-		behavior examples}
-	\label{fig:coverage-redundancy}
-\end{wrapfigure}
 We then select metrics with a coverage of at least the highest coverage minus 1\%,
 and the lowest redundancy. This is performed iteratively, by resetting the range
 of $N$ to the number of metrics selected previously $\pm$2, repeating until the coverage
@@ -260,7 +249,19 @@ we use to induce the metrics, which is expected since we use the exact examples
 extracted from the latter. Lastly, we show that the good and bad behaviors are
 crucial in the metrics, dropping which resulting in up to $30\%$ coverage decrease
 (on CoGym \citep{shao2024collaborative}).
-
+\begin{wrapfigure}
+	[23]{r}{0.6\textwidth}
+	\vspace{-10pt}
+	\includegraphics[width=0.6\textwidth]{figs/four_datasets_grid.pdf}
+	\vspace{-15pt}
+	\caption{Coverage and redundancy of AutoLibra metrics on four agentic datasets.
+		Circles indicate coverage and redundancy for different induced metrics; stars
+		indicate the the best metrics' coverage and redundancy on held-out human feedback;
+		squares show an ablation test, indicating the effect when good and bad behavior
+		examples are removed from metrics, demonstrating the criticality of concrete
+		behavior examples}
+	\label{fig:coverage-redundancy}
+\end{wrapfigure}
 \subsection{Iterative Metric Induction}
 \label{sec:iterative-induction} When applying AutoLibra to agent optimization, we
 can iteratively induce new metrics, as agents develop new failure modes or new

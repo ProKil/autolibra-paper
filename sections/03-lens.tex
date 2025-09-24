@@ -84,14 +84,14 @@ of agent failures.
 %induced metrics, which are more concrete on the issues that users are noticing, while the expert-designed categories measure the high-level capabilities of AI agents.
 
 \paragraph{Sotopia}
-In Sotopia, the authors \citep{zhousotopia} proposed 7 dimensions for evaluating
+Sotopia \citep{zhousotopia} proposed 7 dimensions for evaluating
 social intelligence in AI agents. With AutoLibra, we recover the exact dimension
 \emph{Goal Completion}, and 3 metrics as the subdimensions of \emph{Believability},
 indicating that \textit{Believability} could be too high-level, while AutoLibra provides
 more concrete breakdown metrics. The failure rate (frequency of a score of -1
 metric rating, indicating the agent performs poorly on that metric) measured by
 AutoLibra in these two categories roughly matches the score of the Sotopia
-dimensions of the agent we studied. AutoLibra induces another four metrics that are
+dimensions of the agent we studied. AutoLibra induces another four metrics 
 overlooked in the heuristically proposed Sotopia-Eval dimensions. We note that
 the other five dimensions in Sotopia are still valuable evaluation dimensions
 for social intelligence. However, behaviors captured by dimensions \emph{Financial
@@ -114,6 +114,6 @@ Quality}, which are frequent issues (with frequencies of 7\% and 18\%). Since Au
 only observes the behavior of the agents, it cannot interpret the neural
 representation, not able to capture the visual grounding issues, which are
 mentioned in the WebVoyager paper. This further demonstrates AutoLibra's utility
-in extracting behavior-salient metrics, and particularly demonstrates its
+in extracting behavior-salient metrics, and particularly its
 ability to obtain \textbf{fine-grained metrics} that expert design would not have
 been able to extract.

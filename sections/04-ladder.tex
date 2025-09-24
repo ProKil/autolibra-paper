@@ -25,26 +25,26 @@ question to ask is whether it can enable self-regulated improvement in agents
 through iterative feedback. In this section, we will study can AutoLibra be used
 a `ladder', inducing metrics as new optimization targets in each iteration to improve
 agent performance. We investigate two methods for optimizing agents: prompt engineering
-and fine-tuning, across two domains: text game and web browsing. Across all
-tested methods and domains, AutoLibra induces new metrics in each iteration to cover
+and fine-tuning. Across all
+tested methods, AutoLibra induces new metrics in each iteration to cover
 emergent agent behaviors, and enables continuous improvements on both induced
-metrics and task success. Fig. \ref{fig:autolibra-training} illustrates the
+metrics and task success. Fig. \ref{} (TODO:fix link) illustrates the
 results.
 %\diyi{do we want to summarize these improvement numbers in a table or something? Phil: Done in table 3}
 
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=0.8\textwidth]{figs/autolibra-teaser.pdf}
-	\caption{AutoLibra iteratively discovers new optimization targets throughout
-	the agent optimization process. Each emoji pair represents an induced metric;
-	the arrows and text between iterations represents the changes made to prompts
-	informed by metrics. Purple boxes indicate the newly emerging metrics, and
-	green arrows indicate significant improvements over the previous iteration. The
-	metric names can be found in Tab. \ref{tab:baba_is_ai_metrics} and App. Tab.
-	\ref{tab:app_nnetnav_metrics}. }
-	\label{fig:autolibra-training}
-	\vspace{-20pt}
-\end{figure}
+% \begin{figure}[!t]
+% 	\centering
+% 	\includegraphics[width=0.8\textwidth]{figs/autolibra-teaser.pdf}
+% 	\caption{AutoLibra iteratively discovers new optimization targets throughout
+% 	the agent optimization process. Each emoji pair represents an induced metric;
+% 	the arrows and text between iterations represents the changes made to prompts
+% 	informed by metrics. Purple boxes indicate the newly emerging metrics, and
+% 	green arrows indicate significant improvements over the previous iteration. The
+% 	metric names can be found in Tab. \ref{tab:baba_is_ai_metrics} and App. Tab.
+% 	\ref{tab:app_nnetnav_metrics}. }
+% 	\label{fig:autolibra-training}
+% 	\vspace{-20pt}
+% \end{figure}
 
 \subsection{Can AutoLibra induce good optimization targets for prompt
 engineering?}
@@ -159,7 +159,17 @@ AutoLibra's general utility in improving agent performance; full results are ava
 in the Appendices \ref{appendix:minihack_rules}-\ref{appendix:minihack_obs}.
 %\diyi{use a paragraph title to illustrate that this is about generalization? i also didn't quite follow why minihack is only summarized using these two sentences. if you want to emphasize it, explain it clearly; otherwise, no need to mention it? }
 
+\begin{wrapfigure}
+	[23]{r}{0.7\textwidth}
+	\vspace{-20pt}
+	\includegraphics[width=0.7\textwidth]{figs/running_maximum_plot.pdf}
+	\vspace{-15pt}
+	\caption{AutoLibra iteratively induce metrics and improves the agent prompts through optimizing for the induced metrics. Although not optimized for, the success rate of the agent continuously improve until Stage 3, when the agent begins to overthink.}
+	\label{fig:autolibra_self_improving}
+\end{wrapfigure}
+
 \subsection{Can AutoLibra induce good optimization targets for agent fine-tuning?}
+(TODO: This subsection is outdated. Figure 8 is up-to-date. We use automatic prompt optimization for agents to improve on Baba-is-ai.)
 \label{sec:webvoyager} To answer this question, we use web browsing (via the \textbf{WebVoyager}
 \citep{he2024webvoyager} benchmark) to compare the effectiveness of AutoLibra
 with existing goal-oriented LLM-as-a-Judge methods in rejection behavior cloning
@@ -176,8 +186,9 @@ use the induced metrics to choose the sampled trajectories with top 10\% sum sco
 of all metrics for fine-tuning the agent policy. Throughout the training
 procedure, we use the tasks in NNetNav-live \citep{Murty2025NNetNav} for metric
 induction and agent finetuning. This process yields a 4.9\% task completion rate
-improvement on WebVoyager, shown in Fig. \ref{fig:autolibra-training} and Tab. \ref{tab:baba_wv_scores},
+improvement on WebVoyager, shown in Fig. \ref{fig:autolibra-training} \diyi{missing?} and Tab. \ref{tab:baba_wv_scores},
 while using naive LLM-as-a-Judge instructed to evaluate goal completion does not
 yield significant improvement in metrics or success rate. This shows that AutoLibra-induced
 metrics serve as better optimization targets than the goal-oriented evaluation metric
-alone; theseinduced metrics are shown in App. Tab. \ref{tab:app_nnetnav_metrics}.
+alone; these induced metrics are shown in App. Tab. \ref{tab:app_nnetnav_metrics}.
+\diyi{the result of this paragraph is good, but it focuses too much on "how we did it", rather than the result explanation of whether autolibra led to optimization gains and why. }
