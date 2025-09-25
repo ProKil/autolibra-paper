@@ -9,7 +9,6 @@ predefined by human experts, (2) \emph{self-validating}: Allows choosing minimal
 set of metrics that cover unseen human feedback with sufficient abstraction to
 be useful across different tasks, and (3) \emph{generalizable}: Applicable to various
 agent environments, independent of domain-specific design.
-
 Based on feedback data collected from humans (\S\ref{sec:collecting-human-feedback}),
 AutoLibra achieves these desiderata through a closed-loop pipeline consisting of
 two processes: \textbf{Induction Process} that converts agent behaviors and
@@ -33,20 +32,12 @@ agent trajectories.\footnote{While in theory we can leverage feedback on
 	specific steps to achieve better feedback grounding and multiple feedback for
 	single trajectory, we leave it as future work.}
 
-\begin{wrapfigure}
-	[17]{r}{0.4\linewidth}
-	\vspace{-10pt}
-	\includegraphics[width=\linewidth]{figs/autolibra_step_1.pdf}
-	\vspace{-10pt}
-	\caption{Feedback Grounding}
-	\label{fig:feedback_grounding}
-\end{wrapfigure}
+
 Annotators are instructed to explicitly indicate the aspects of agent behavior
-that they classify as good or bad, and to avoid general comments such as \textsf{"The
-	agent is good at solving the task"}. The annotators can also choose from a TTY (TeleTYpewriter)
+that they classify as good or bad, and to avoid general comments such as \textsl{"The
+	agent is good at solving the task"}. The annotators can also choose from a terminal
 or a web interface; in both cases the annotator is provided with the agent's
-task and then view the agent's observation and actions step by step, in text form.
-\footnote{While viewing screenshots is standard for web navigation tasks, we keep
+task and then view the agent's observation and actions step by step, in text form.\footnote{While viewing screenshots is standard for web navigation tasks, we keep
 	the observation format consistent across agents and humans to encourage more grounded
 	feedback.} For multi-agent tasks, we annotate each agent's trajectory in a given
 interaction separately. For Sotopia \citep{zhousotopia}, WebArena \citep{zhouwebarena},
@@ -64,12 +55,10 @@ hold out 20\% of the trajectories for validation.
 % Caption    \label{fig:enter-label}
 % \end{figure}
 
-\subsection{Induction Process: agent trajectories and human feedback $\rightarrow$
-	evaluation metrics}
+\subsection{Induction Process}
 \label{sec:induction_process}
-
-\paragraph{Feedback Grounding}
-The feedback of human annotators can contain multiple aspects; e.g. \textsf{``AI
+\textbf{Feedback Grounding}
+The feedback of human annotators can contain multiple aspects; e.g. \textsl{``AI
 	agent was pretty good at giving me a consistent itinerary and vacation plan, although
 	it froze on the last couple of minutes.''},
 collected from human annotators in CoGym \citep{shao2024collaborative}, contains
@@ -79,10 +68,9 @@ as a triple $(\texttt{behavior}, \texttt{feedback}, \texttt{sign})$. In the
 positive aspect of the previous example, the \texttt{behavior} is the agent's
 actions to create a 20-day itinerary for the Maldives, the \texttt{feedback} is
 that the created itinerary is consistent and the \texttt{sign} is positive. This
-grounding procedure is similar to the coding procedure in thematic analysis by
-humans.
+grounding procedure is similar to the coding procedure in thematic analysis.
 
-Illustrated in Fig. \ref{fig:feedback_grounding}, in this step, we feed the trajectory
+We feed the trajectory
 and the feedback into the LLM (we use GPT-4o \citep{openai2024gpt4ocard} as it yields
 good results in our pilot experiments) and prompt the LLM with the following
 instructions: (1) break down the feedback into bullet points; (2) for each
@@ -93,16 +81,9 @@ each trajectory, the LLM can generate one to five aspects, with a mean of one to
 two aspects.
 
 \paragraph{Behavior Clustering}
-\begin{wrapfigure}
-	[17]{l}{0.4\linewidth}
-	\vspace{-10pt}
-	\includegraphics[width=\linewidth]{figs/autolibra_step_2.pdf}
-	\vspace{-10pt}
-	\caption{Behavior Clustering}
-	\label{fig:behavior_clustering}
-\end{wrapfigure}
+
 The second step of the extraction process is to group the aspects into $N$ metrics.
-To illustrate this step, we consider another example in the same dataset \textsf{``The
+To illustrate this step, we consider another example in the same dataset \textsl{``The
 	AI responds quickly to write and run the Python script``} where the \texttt{behavior}
 is the agent's action to quickly write and run a Python script, the \texttt{feedback}
 is that the agent responds quickly, and the \texttt{sign} is positive. Although
@@ -129,19 +110,11 @@ We provide the LLM with the following instructions: \emph{The granularity of the
 empirically makes the metrics more concrete but still applicable across
 different tasks.
 
-\subsection{Evaluation Process: evaluating agents and the quality of the induced
-	metrics}
+\subsection{Evaluation Process}
 \label{sec:evaluation_process}
 
 \paragraph{Evaluating agents with induced metrics}
-\begin{wrapfigure}
-	[16]{r}{0.4\linewidth}
-    \vspace{-23pt}
-	\includegraphics[width=\linewidth]{figs/autolibra_step_3.pdf}
-	\vspace{-15pt}
-	\caption{Evaluation with induced metrics}
-	\label{fig:llm_as_a_judge}
-\end{wrapfigure}
+
 LLM-as-a-Judge \citep{zheng2023judging}, or more broadly, model-based evaluation
 \citep{zhang2019bertscore,celikyilmaz2021evaluationtextgenerationsurvey} is a
 method to use machine learning models to evaluate the output of other machine
@@ -170,7 +143,7 @@ as N/A, since not all metrics are applicable to all trajectories (some metrics l
 \texttt{valid-search-terms} are only applicable when the task involves searching).
 
 \paragraph{Meta evaluation}
-The last component of the loop is the meta-evaluation, i.e. evaluating the
+The final loop component is the meta-evaluation, i.e. evaluating the
 evaluation metrics induced by AutoLibra. This step matches the traits detected by
 the LLM-as-a-Judge with aspects grounded from the human feedback. The goal is to
 verify whether (1) the induced metrics cover the behaviors the human annotators
@@ -181,14 +154,17 @@ annotators, then this aspect is considered as successfully covered. If either a 
 metric was not extracted, or the LLM-as-a-Judge assigns a different score, then this
 aspect is considered as not covered.
 
-\begin{wrapfigure}
-	[15]{l}{0.4\textwidth}
-	\vspace{-10pt}
-	\includegraphics[width=\linewidth]{figs/autolibra_step_4.pdf}
-	\vspace{-10pt}
-	\caption{Meta evaluation}
-	\label{fig:meta_evaluation}
-\end{wrapfigure}
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\linewidth]{figs/autolibra_optimization.pdf}
+	\caption{Metric optimization: optimizing the induction process through maximizing
+		the coverage while minimizing redundancy of the metrics, calculated via the
+		evaluation process.}
+	\label{fig:autolibra_optimization}
+\end{figure}
+
+
+
 As illustrated in Fig. \ref{fig:meta_evaluation}, we perform meta-evaluation for
 each trajectory-feedback pair by classifying the aspects into positive and negative
 aspects, classifying traits into positive and negative traits based on rating, then
@@ -215,44 +191,25 @@ judgment.
 \subsection{Metric Optimization}
 \label{sec:metric-optimization}
 
-\begin{figure}[!t]
-	\centering
-	\includegraphics[width=0.8\linewidth]{figs/autolibra_optimization.pdf}
-	\caption{Metric optimization: optimizing the induction process through maximizing
-		the coverage while minimizing redundancy of the metrics, calculated via the
-		evaluation process.}
-	\label{fig:autolibra_optimization}
-\end{figure}
+
+
 
 As illustrated in Fig. \ref{fig:autolibra_optimization}, we optimize the metric
 induction process to maximize \textbf{coverage} and minimize \textbf{redundancy}.
 Among the two, we prioritize coverage of the metrics to provide a comprehensive
 evaluation of the agent behavior, while minimizing overlap within the metrics to
 avoid redundancy, thus maximizing the utility of induced metrics. To optimize for
-this objective, we generate 20 different sets of metrics, with $N$ ranging from 4
+this objective, we generate 20 different sets of metrics, with metric count $N$ ranging from 4
 to 13, and calculate the coverage and redundancy of the metrics in human
 feedback.
 We then select metrics with a coverage of at least the highest coverage minus 1\%,
 and the lowest redundancy. This is performed iteratively, by resetting the range
 of $N$ to the number of metrics selected previously $\pm$2, repeating until the coverage
 and redundancy of the selected metrics converge, normally within 3 iterations. While
-this optimization process is simple, experiments with various other optimization
-strategies, including genetic algorithms and iterative clustering saw none of them
-yield better results than the simple strategy. Fig. \ref{fig:coverage-redundancy}
-shows the highest coverages of the metrics of size $N$, which converge around
-$N=6$ to $10$ depending on the datasets. The best coverage on Sotopia \citep{zhousotopia}
-is the lowest among all four datasets, $60\%$, likely due to the diversity of
-the tasks in the dataset, while coverage on WebArena \citep{zhouwebarena} and
-WebVoyager \citep{he2024webvoyager} are the highest, $88\%$. We also find that the
-coverage of the held-out trajectories is only slightly worse ($<5\%$) than the trajectories
-we use to induce the metrics, which is expected since we use the exact examples
-extracted from the latter. Lastly, we show that the good and bad behaviors are
-crucial in the metrics, dropping which resulting in up to $30\%$ coverage decrease
-(on CoGym \citep{shao2024collaborative}).
-\begin{wrapfigure}
-	[23]{r}{0.6\textwidth}
+this optimization process is simple, experiments with various other  \begin{wrapfigure}
+	[22]{r}{0.5\textwidth}
 	\vspace{-10pt}
-	\includegraphics[width=0.6\textwidth]{figs/four_datasets_grid.pdf}
+	\includegraphics[width=0.5\textwidth]{figs/four_datasets_grid.pdf}
 	\vspace{-15pt}
 	\caption{Coverage and redundancy of AutoLibra metrics on four agentic datasets.
 		Circles indicate coverage and redundancy for different induced metrics; stars
@@ -261,7 +218,20 @@ crucial in the metrics, dropping which resulting in up to $30\%$ coverage decrea
 		examples are removed from metrics, demonstrating the criticality of concrete
 		behavior examples}
 	\label{fig:coverage-redundancy}
-\end{wrapfigure}
+\end{wrapfigure}optimization
+strategies, including genetic algorithms and iterative clustering saw none of them
+yield better results than the simple strategy. Fig. \ref{fig:coverage-redundancy} 
+shows the highest coverages of the metrics of size $N$, which converge around
+$N=6$ to $10$ depending on the datasets. The best coverage on Sotopia \citep{zhousotopia}
+is the lowest among all four datasets, $60\%$, likely due to the diversity of
+the tasks in the dataset, while coverage on WebArena \citep{zhouwebarena} and
+WebVoyager \citep{he2024webvoyager} are the highest, $88\%$. We also find that the
+coverage of the held-out trajectories is only slightly worse ($<5\%$) than the trajectories
+we use to induce the metrics, which is expected since we use the exact examples
+extracted from the latter. Lastly, we show that the good and bad behaviors are
+crucial in the metrics, dropping which resulting in up to $30\%$ coverage decrease on CoGym. % \citep{shao2024collaborative}).
+
+
 \subsection{Iterative Metric Induction}
 \label{sec:iterative-induction} When applying AutoLibra to agent optimization, we
 can iteratively induce new metrics, as agents develop new failure modes or new
@@ -269,16 +239,32 @@ behaviors as they improve, which is useful for tracking agents' progress across
 different iterations.\footnote{Alternatively, a new set of metrics can be induced
 	from scratch for each iteration - in practice, we do not find that this results
 	in any coverage loss, but we choose the former method for consistency}
-%For example, in the Baba-is-AI task \citep[\S\ref{sec:Baba-Is-AI}]{cloos2024babaaibreakrules}, the agent initially fails to recognize the win condition and acts randomly; after the agent improves with an in-context example in the prompt, the agent starts to follow existing win conditions, but fails to construct new win conditions. This was not mentioned in human feedback before the agent improvement, since the agent was too random to even reach the stage where constructing new win conditions is possible. Therefore, in the second iteration, a new metric \texttt{win-rule construction} should be induced to provide a new signal for further optimizing the agent.
-
-%\diyi{did we do this, or is the below only a comment?}}
-
 To do this, we modify the behavior clustering step, by providing the LLM with
 the existing metrics and their definitions, and ask the LLM not to change the definitions
 of the existing metrics, to only add new behaviors to the existing metrics, and add
 new metrics if necessary. We apply the same optimization strategy as in the
 metric optimization step ensure the newly induced metrics cover emerging
-behaviors and do not overlap with existing metrics.
+behaviors and do not overlap with existing metrics.\smallskip
+
+\begin{table}[!h]
+	\centering
+	\small
+    \vspace{-20pt}
+    	\caption{ The ratio of instances marked as fully correct in human validation.
+		For each step and each task, we randomly sample 40 instances to reach a relatively
+		small confidence interval of $0.04$ and ask human annotators to label them as completely
+		correct or not. Although the agreement scores vary across tasks and steps, the
+		average agreement for each step and dataset is above 0.85 significantly. }
+	\begin{tabular}{cccccc|c}
+		\toprule Steps     & CoGym & Sotopia & WebArena & WebVoyager & Baba-is-AI & Average           \\
+		\midrule Grounding & 0.95  & 0.95    & 0.98     & 0.93       & 0.93       & 0.95 ($\pm 0.03$) \\
+		LLM-as-a-Judge     & 0.90  & 0.85    & 0.95     & 1.00       & 0.90       & 0.92 ($\pm 0.04$) \\
+		Meta-Evaluation    & 0.98  & 0.90    & 0.85     & 0.83       & 0.95       & 0.90 ($\pm 0.04$) \\
+		\bottomrule
+	\end{tabular}
+
+	\label{tab:validation}
+\end{table}
 
 \subsection{How aligned are the steps in AutoLibra with human judgment?}
 Since AutoLibra uses LLMs in each step, we first ask whether LLM outputs are reliable
@@ -298,22 +284,6 @@ the length and wide action space of the trajectory, and LLM-as-a-Judge for Sotop
 social interactions. Our results show that the majority (significantly over 85\%)
 of results in AutoLibra are reliable according to human validation.
 
-\begin{table}[!t]
-	\centering
-	\small
-	\begin{tabular}{cccccc|c}
-		\toprule Steps     & CoGym & Sotopia & WebArena & WebVoyager & Baba-is-AI & Average           \\
-		\midrule Grounding & 0.95  & 0.95    & 0.98     & 0.93       & 0.93       & 0.95 ($\pm 0.03$) \\
-		LLM-as-a-Judge     & 0.90  & 0.85    & 0.95     & 1.00       & 0.90       & 0.92 ($\pm 0.04$) \\
-		Meta-Evaluation    & 0.98  & 0.90    & 0.85     & 0.83       & 0.95       & 0.90 ($\pm 0.04$) \\
-		\bottomrule
-	\end{tabular}
-	\caption{ The ratio of instances marked as fully correct in human validation.
-		For each step and each task, we randomly sample 40 instances to reach a relatively
-		small confidence interval of $0.04$ and ask human annotators to label them as completely
-		correct or not. Although the agreement scores vary across tasks and steps, the
-		average agreement for each step and dataset is above 0.85 significantly. }
-	\label{tab:validation}
-\end{table}
+
 
 %\diyi{S2 would benefit from a bit reorg. if you want, you can put 2.1, 2.2, 2.3 into one new subsection "Introducing AutoLibra (Pipeline)", and then use them as subsubsections; i would merge 2.4 and 2.5 as a second new subsection "Optimizing AutoLibra" and put the original 2.4 and 2.5 as subsubsections within it, to create more logic structures. i would move 2.6 to S3 as how you set up the initialization for using autolibra, etc.}

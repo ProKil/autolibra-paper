@@ -88,8 +88,8 @@ Website: \url{https://autolibra.opensocial.world} }
 		intermediate emergent behaviors. We propose \emph{AutoLibra} \protect
 		\includegraphics[height=1em]{figs/scale.png}, a framework for agent evaluation,
         that transforms open-ended human feedback
-		\emph{e.g.} ``\textsf{If you find that the button is disabled, don't click it
-		again}'', or ``\textsf{This agent has too much autonomy to decide what to do
+		\emph{e.g.} ``\textsl{If you find that the button is disabled, don't click it
+		again}'', or ``\textsl{This agent has too much autonomy to decide what to do
 		on its own}'' into metrics for evaluating fine-grained behaviors in agent trajectories.
 		AutoLibra accomplishes this by grounding feedback to an agent's behavior, clustering
 		similar positive and negative behaviors, and creating concrete metrics with
@@ -118,25 +118,30 @@ Website: \url{https://autolibra.opensocial.world} }
 	\input{sections/05-related-work}
 	\input{sections/06-conclusion-and-future-work}
 
-	\section*{Broader Impact Statement}
-	The scope of this paper is text-based agents, which does not include agents
-	with multimodal observation or action spaces. Within human-aided experiments,
-	we are also limited by the diversity of human annotators. The annotation of the
-	data in this paper, except for the feedback collected by \citet{shao2024collaborative},
-	is done by the authors, who are experts in AI agents. We do not address the
-	effect of the experience of the annotators on the induced metrics. Finally,
-	induced metrics should be used with caution, these could reflect the internal biases
-	of the LLMs used to extract them.
+	\section*{Ethics Statement}
+	This research adheres to the ICLR Code of Ethics.
+    Within human-aided experiments,
+	we are also limited by the diversity of human annotators. The annotation of the data in this paper,
+    are performed through objective and blinded surveys filled out by the authors
+    who do not know which models that they are annotating.
+    The human feedback for CoGym \citep{shao2024collaborative}
+    is published by the original authors.
+    Since the annotations are objective surveys on the performance of the agents
+    without any harm to the authors or personal information gathered, this is exempted from IRB review based on the policy
+    of authors' institution.
+    \section*{Reproducibility Statement}
+To ensure reproducibility of our results, we provide comprehensive documentation of our experimental setup and methodology in the appendix of our work. All experimental details, including
+model configurations, prompting strategies, and evaluation metrics, are specified in the relevant sections and supplementary materials. All code and data will be available upon acceptance. 
 
 	% \section*{Author Contributions}
 
-	\section*{Acknowledgments}
-	This work is supported by ONR grant N000142412532, and NSF grant IIS-2247357, and DARPA grant Friction for Accountability in Conversational Transactions.
-	We thank Google Cloud Platform and Modal Platform for their credits. We thank Yutong
-	Zhang, Hayley Zhang, Yijia Shao, Michelle S Lam, Manling Li, Ryan Louie, Yanzhe
-	Zhang, Xuhui Zhou, Maarten Sap, Sherry Tongshuang Wu, Shikhar Murty, Saujas
-	Vaduguru, Chenghao Yang, Xizhi Xiao, Anant Sinha and all members of Stanford SALT
-	Lab for their help and feedback throughout this project.
+	% \section*{Acknowledgments}
+	% This work is supported by ONR grant N000142412532, and NSF grant IIS-2247357, and DARPA grant Friction for Accountability in Conversational Transactions.
+	% We thank Google Cloud Platform and Modal Platform for their credits. We thank Yutong
+	% Zhang, Hayley Zhang, Yijia Shao, Michelle S Lam, Manling Li, Ryan Louie, Yanzhe
+	% Zhang, Xuhui Zhou, Maarten Sap, Sherry Tongshuang Wu, Shikhar Murty, Saujas
+	% Vaduguru, Chenghao Yang, Xizhi Xiao, Anant Sinha and all members of Stanford SALT
+	% Lab for their help and feedback throughout this project.
 
 	\bibliography{main}
 \bibliographystyle{iclr2026_conference}

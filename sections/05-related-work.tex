@@ -3,7 +3,7 @@ AutoLibra unifies three areas of research: it draws inspiration from \textit{the
 analysis} to create \textit{nautral language-derived evaluation metrics} to evaluate
 and reward \textit{AI agents}.
 
-\paragraph{Evaluating AI agents}
+\noindent\textbf{Evaluating AI agents}
 Much of the work in AI agent evaluation focuses around benchmarks which contains
 both task suites and evaluation metrics. In addition to the datasets we used in
 this paper, SWE-Bench \citep{jimenezswe} uses human-written unit tests as
@@ -19,7 +19,7 @@ to encourage exploration, sub-task completion, or skill discovery. In contrast
 to these, AutoLibra is a pure data-driven task-agnostic method without predefined
 failure taxonomy for generating interpretable metrics for agents.
 
-\paragraph{Learning from natural language and human feedback}
+\noindent\textbf{Learning from natural language and human feedback}
 Researchers have been studying reinforcement learning with language feedback to
 provide a dense reward to agents \citep{goyal2019using}. Since LLM agents are
 even harder to train with sparse reward, there is substantial interest in training
@@ -36,12 +36,12 @@ Unlike these papers, AutoLibra induces metrics from feedback from all annotated 
 and generates metrics that are generalizable to different tasks and useful for both
 evaluation and agent fine-tuning.
 
-\paragraph{Automatic thematic analysis}
+\noindent\textbf{Thematic analysis}
 Thematic analysis is a powerful tool for qualitative study through coding and
 iterative creation of themes. \citet{gauthier2022computational} provide
 computational tools to aid this process; \citet{hong2022scholastic} and \citet{gebreegziabher2023patat}
 explore human-AI collaboration in thematic analysis; LLooM \citep{lam2024concept},
-is an automatic method for concept induction, is closest to and influences our approach.
+an automatic method for concept induction, closly aligns with and informs our approach.
 This paper completes the loop of concept induction by using the meta-evaluation
-step to optimize the induced metrics, and apply this social science technique to
+step to optimize the induced metrics, and apply it to
 agent evaluation.
