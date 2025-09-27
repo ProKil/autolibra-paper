@@ -1,6 +1,7 @@
-\documentclass{article} % For LaTeX2e
-\usepackage{iclr2026_conference,times}
+\pdfoutput=1
+\documentclass[11pt, a4paper]{googledeepmind}
 
+\usepackage[authoryear, sort&compress, round]{natbib}
 \usepackage{microtype}
 \usepackage{hyperref}
 \usepackage{url}
@@ -61,9 +62,8 @@ Yan\raisebox{0.5em}{\includegraphics[height=1em]{figs/scale.png}} Jason Zhang\ra
 University \raisebox{0.5em}{\includegraphics[height=1em]{figs/microscope.png}}University
 of Toronto \raisebox{0.5em}{\includegraphics[height=1em]{figs/ladder.png}}University
 of Pennsylvania\\ \texttt{\{zhuhao,ckyy,jasonbz,diyiy\}@stanford.edu}\\ \texttt{philippe.cuvin@mail.utoronto.ca},
-\texttt{xinkaiyu@sas.upenn.edu}\\\\
-\href{https://github.com/Open-Social-World/autolibra}{Code}\quad\href{https://huggingface.co/datasets/open-social-world/autolibra}{Data}\quad
-Website: \url{https://autolibra.opensocial.world} }
+\texttt{xinkaiyu@sas.upenn.edu}\\ \href{https://github.com/Open-Social-World/autolibra}{Code}\quad\href{https://huggingface.co/datasets/open-social-world/autolibra}{Data}\quad
+Website: \url{https://autolibra.opensocial.world}}
 % The \author macro works with any number of authors. There are two commands
 % used to separate the names and addresses of multiple authors: \And and \AND.
 %
@@ -75,38 +75,41 @@ Website: \url{https://autolibra.opensocial.world} }
 \newcommand{\fix}{\marginpar{FIX}}
 \newcommand{\new}{\marginpar{NEW}}
 
-\def\month{06} % Insert correct month for camera-ready version
+\def\month{10} % Insert correct month for camera-ready version
 \def\year{2025} % Insert correct year for camera-ready version
 \def\openreview{\url{https://openreview.net/forum?id=XXXX}} % Insert correct link to OpenReview for camera-ready version
 
+% Ensure theabstract is defined (fallback)
+\providecommand{\theabstract}{}
+
+\begin{abstract}
+	Agents are predominantly evaluated and optimized via task success metrics,
+	which are coarse, rely on manual design from experts, and fail to reward
+	intermediate emergent behaviors. We propose \emph{AutoLibra} \protect
+	\includegraphics[height=1em]{figs/scale.png}
+	, a framework for agent evaluation, that transforms open-ended human feedback \emph{e.g.}
+	``\textsl{If you find that the button is disabled, don't click it again}'', or
+	``\textsl{This agent has too much autonomy to decide what to do on its own}'' into
+	metrics for evaluating fine-grained behaviors in agent trajectories. AutoLibra
+	accomplishes this by grounding feedback to an agent's behavior, clustering similar
+	positive and negative behaviors, and creating concrete metrics with clear
+	definitions and concrete examples, which can be used for prompting LLM-as-a-Judge
+	as evaluators. We further propose two \emph{meta-metrics} to evaluate the alignment
+	of a set of (induced) metrics with open feedback: ``coverage'' and ``redundancy''.
+	Through optimizing these meta-metrics, we experimentally demonstrate AutoLibra's
+	ability to induce more concrete \textbf{agent evaluation} metrics than the ones
+	proposed in previous agent evaluation benchmarks and discover new metrics to analyze
+	agents. We also present two applications of AutoLibra in \textbf{agent
+	improvement}: First, we show that AutoLibra serve human prompt engineers for diagonalize
+	agent failures and improve prompts iterative. Moreover, we find that AutoLibra
+	can induce metrics for automatic optimization for agents, which makes agents
+	improve through self-regulation. Our results suggest that AutoLibra is a powerful
+	task-agnostic tool for evaluating and improving language agents.
+\end{abstract}
+\setcounter{tocdepth}{1}
 \begin{document}
 	\maketitle
-
-	\begin{abstract}
-		Agents are predominantly evaluated and optimized via task success metrics,
-		which are coarse, rely on manual design from experts, and fail to reward
-		intermediate emergent behaviors. We propose \emph{AutoLibra} \protect
-		\includegraphics[height=1em]{figs/scale.png}, a framework for agent evaluation,
-        that transforms open-ended human feedback
-		\emph{e.g.} ``\textsl{If you find that the button is disabled, don't click it
-		again}'', or ``\textsl{This agent has too much autonomy to decide what to do
-		on its own}'' into metrics for evaluating fine-grained behaviors in agent trajectories.
-		AutoLibra accomplishes this by grounding feedback to an agent's behavior, clustering
-		similar positive and negative behaviors, and creating concrete metrics with
-		clear definitions and concrete examples, which can be used for prompting LLM-as-a-Judge
-		as evaluators. We further propose two \emph{meta-metrics} to evaluate the alignment
-		of a set of (induced) metrics with open feedback: ``coverage'' and ``redundancy''.
-		Through optimizing these meta-metrics, we experimentally demonstrate
-		AutoLibra's ability to induce more concrete \textbf{agent evaluation} metrics
-		than the ones proposed in previous agent evaluation benchmarks and discover new
-		metrics to analyze agents. We also present two applications of AutoLibra in
-		\textbf{agent improvement}: First, we show that AutoLibra serve
-		human prompt engineers for diagonalize agent failures and improve
-        prompts iterative. Moreover, we find that AutoLibra can induce 
-        metrics for automatic optimization for agents, which makes agents improve through self-regulation.
-        Our results suggest that AutoLibra is a
-		powerful task-agnostic tool for evaluating and improving language agents.
-	\end{abstract}
+	\tableofcontents
 
 	\input{sections/01-introduction}
 
@@ -119,19 +122,20 @@ Website: \url{https://autolibra.opensocial.world} }
 	\input{sections/06-conclusion-and-future-work}
 
 	\section*{Ethics Statement}
-	This research adheres to the ICLR Code of Ethics.
-    Within human-aided experiments,
-	we are also limited by the diversity of human annotators. The annotation of the data in this paper,
-    are performed through objective and blinded surveys filled out by the authors
-    who do not know which models that they are annotating.
-    The human feedback for CoGym \citep{shao2024collaborative}
-    is published by the original authors.
-    Since the annotations are objective surveys on the performance of the agents
-    without any harm to the authors or personal information gathered, this is exempted from IRB review based on the policy
-    of authors' institution.
-    \section*{Reproducibility Statement}
-To ensure reproducibility of our results, we provide comprehensive documentation of our experimental setup and methodology in the appendix of our work. All experimental details, including
-model configurations, prompting strategies, and evaluation metrics, are specified in the relevant sections and supplementary materials. All code and data will be available upon acceptance. 
+	This research adheres to the ICLR Code of Ethics. Within human-aided experiments,
+	we are also limited by the diversity of human annotators. The annotation of the
+	data in this paper, are performed through objective and blinded surveys filled
+	out by the authors who do not know which models that they are annotating. The human
+	feedback for CoGym \citep{shao2024collaborative} is published by the original
+	authors. Since the annotations are objective surveys on the performance of the
+	agents without any harm to the authors or personal information gathered, this
+	is exempted from IRB review based on the policy of authors' institution.
+	\section*{Reproducibility Statement}
+	To ensure reproducibility of our results, we provide comprehensive documentation
+	of our experimental setup and methodology in the appendix of our work. All
+	experimental details, including model configurations, prompting strategies, and
+	evaluation metrics, are specified in the relevant sections and supplementary
+	materials. All code and data will be available upon acceptance.
 
 	% \section*{Author Contributions}
 
@@ -144,11 +148,12 @@ model configurations, prompting strategies, and evaluation metrics, are specifie
 	% Lab for their help and feedback throughout this project.
 
 	\bibliography{main}
-\bibliographystyle{iclr2026_conference}
-
+	\bibliographystyle{iclr2026_conference}
 
 	\newpage
 	\appendix
+	\addtocontents{toc}{\protect
+	\setcounter{tocdepth}{-1}}
 	\section*{Appendix}
 	\input{sections/appendix}
 \end{document}
