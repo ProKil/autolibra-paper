@@ -1,5 +1,5 @@
 \pdfoutput=1
-\documentclass[11pt, a4paper]{googledeepmind}
+\documentclass[11pt, a4paper, logo]{hzpaper}
 
 \usepackage[authoryear, sort&compress, round]{natbib}
 \usepackage{microtype}
@@ -28,18 +28,19 @@
 \usepackage{nicematrix} % Better handling of colored cells with multirow
 \usepackage{rotating}
 \usepackage{xcolor}
+\usepackage{subfiles} % For modular document structure
 \usetikzlibrary{decorations.pathreplacing}
 
 % Algorithm formatting
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \newcommand{\diyi}[1]{{\color{red} Diyi: #1}}
-\definecolor{darkblue}{rgb}{0, 0, 0.5}
+\definecolor{accentcolor}{HTML}{175E54}
 \hypersetup{
 	colorlinks=true,
-	citecolor=darkblue,
-	linkcolor=darkblue,
-	urlcolor=darkblue
+	citecolor=accentcolor,
+	linkcolor=accentcolor,
+	urlcolor=accentcolor
 }
 \input{math_commands.tex}
 
@@ -111,41 +112,27 @@ Website: \url{https://autolibra.opensocial.world}}
 	\maketitle
 	\tableofcontents
 
-	\input{sections/01-introduction}
+	\subfile{sections/01-introduction}
 
-	\input{sections/02-method.tex}
+	\subfile{sections/02-method}
 
-	\input{sections/03-lens.tex}
+	\subfile{sections/03-lens}
 
-	\input{sections/04-ladder}
-	\input{sections/05-related-work}
-	\input{sections/06-conclusion-and-future-work}
-
-	\section*{Ethics Statement}
-	This research adheres to the ICLR Code of Ethics. Within human-aided experiments,
-	we are also limited by the diversity of human annotators. The annotation of the
-	data in this paper, are performed through objective and blinded surveys filled
-	out by the authors who do not know which models that they are annotating. The human
-	feedback for CoGym \citep{shao2024collaborative} is published by the original
-	authors. Since the annotations are objective surveys on the performance of the
-	agents without any harm to the authors or personal information gathered, this
-	is exempted from IRB review based on the policy of authors' institution.
-	\section*{Reproducibility Statement}
-	To ensure reproducibility of our results, we provide comprehensive documentation
-	of our experimental setup and methodology in the appendix of our work. All
-	experimental details, including model configurations, prompting strategies, and
-	evaluation metrics, are specified in the relevant sections and supplementary
-	materials. All code and data will be available upon acceptance.
+	\subfile{sections/04-ladder}
+	\subfile{sections/05-related-work}
+	\subfile{sections/06-conclusion-and-future-work}
+	\subfile{sections/07-bigger-picture}
+	
 
 	% \section*{Author Contributions}
 
-	% \section*{Acknowledgments}
-	% This work is supported by ONR grant N000142412532, and NSF grant IIS-2247357, and DARPA grant Friction for Accountability in Conversational Transactions.
-	% We thank Google Cloud Platform and Modal Platform for their credits. We thank Yutong
-	% Zhang, Hayley Zhang, Yijia Shao, Michelle S Lam, Manling Li, Ryan Louie, Yanzhe
-	% Zhang, Xuhui Zhou, Maarten Sap, Sherry Tongshuang Wu, Shikhar Murty, Saujas
-	% Vaduguru, Chenghao Yang, Xizhi Xiao, Anant Sinha and all members of Stanford SALT
-	% Lab for their help and feedback throughout this project.
+	\section*{Acknowledgments}
+	This work is supported by ONR grant N000142412532, and NSF grant IIS-2247357, and DARPA grant Friction for Accountability in Conversational Transactions.
+	We thank Google Cloud Platform and Modal Platform for their credits. We thank Yutong
+	Zhang, Hayley Zhang, Yijia Shao, Michelle S Lam, Manling Li, Ryan Louie, Yanzhe
+	Zhang, Xuhui Zhou, Maarten Sap, Sherry Tongshuang Wu, Shikhar Murty, Saujas
+	Vaduguru, Chenghao Yang, Xizhi Xiao, Anant Sinha and all members of Stanford SALT
+	Lab for their help and feedback throughout this project.
 
 	\bibliography{main}
 	\bibliographystyle{iclr2026_conference}
@@ -155,5 +142,5 @@ Website: \url{https://autolibra.opensocial.world}}
 	\addtocontents{toc}{\protect
 	\setcounter{tocdepth}{-1}}
 	\section*{Appendix}
-	\input{sections/appendix}
+	\subfile{sections/appendix}
 \end{document}

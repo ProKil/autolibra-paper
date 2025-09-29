@@ -1,44 +1,41 @@
-The metrics induced by AutoLibra (Table \ref{tab:baba_is_ai_metrics}) capture
-the behavior of the agent effectively, with coverage increasing from 65\% at
-Iteration 0 to 92\% at \emph{Iteration 3} and a low mean redundancy of 56\%.
-Notably, earlier metrics were found to describe higher-level behaviors than later
-metrics, reflective of the more complex behaviors that the agent demonstrated in
-later iterations, as well as the compositionality of induced metrics. Code
-changes were selected to specifically target given metrics, and as seen in Figure
-\ref{fig:autolibra-training}, the agent's performance on the targeted metric
-improved significantly in the iteration following the code change. This demonstrates
-the utility of AutoLibra for fine-grained agent improvement, as well as the
-human interpretability of the induced metrics.
+The metrics induced by AutoLibra capture the behavior of the agent effectively, with
+coverage increasing from 65\% at Iteration 0 to 92\% at \emph{Iteration 3} and a
+low mean redundancy of 56\%. Notably, earlier metrics were found to describe higher-level
+behaviors than later metrics, reflective of the more complex behaviors that the
+agent demonstrated in later iterations, as well as the compositionality of induced
+metrics. Code changes were selected to specifically target given metrics, and the
+agent's performance on the targeted metric improved significantly in the iteration
+following the code change. This demonstrates the utility of AutoLibra for fine-grained
+agent improvement, as well as the human interpretability of the induced metrics.
 
 The section below discusses iteration-by-iteration induced metrics, code changes
-directed by the metrics, and the results of these code changes on agent
-environment and trajectory performance.
+directed by the metrics, and the results of these code changes on agent environment
+and trajectory performance.
 
-\textbf{Iteration 0} The agent behavior is stochastic and inconsistent, with no
-clear strategy or goal. Any progress in the environment is the consequence of a random
+\textbf{Iteration 0} The agent behavior is stochastic and inconsistent, with no clear
+strategy or goal. Any progress in the environment is the consequence of a random
 walk. \texttt{Win Condition Recognition}
 \includegraphics[scale=0.07]{figs/emojis/emoji_1.png}
 was identified as a prerequisite to all other metrics induced in this iteration,
-as progress in the environment is impossible without recognizing the win
-condition, and was therefore targeted for improvement. Improvements took the
-form of few-shot prompting, by supplying an example of observations and the corresponding
-win condition and subtasks, and guidance on subtask-level planning, by mapping specific
-environmental observations to actions that would progress the agent towards the win
-condition. \textbf{Iteration 1} An increase in
+as progress in the environment is impossible without recognizing the win condition,
+and was therefore targeted for improvement. Improvements took the form of few-shot
+prompting, by supplying an example of observations and the corresponding win
+condition and subtasks, and guidance on subtask-level planning, by mapping
+specific environmental observations to actions that would progress the agent
+towards the win condition. \textbf{Iteration 1} An increase in
 \includegraphics[scale=0.07]{figs/emojis/emoji_1.png}
 performance of 22\% was observed between \emph{Iteration 0} and \emph{Iteration
-1}, indicating that the code changes were effective in improving the agent's ability
-to recognize the win condition. A slight but statistically insignificant
-increase was observed for the other metrics induced in \emph{Iteration 0}, but
-the agent's overall baba-is-ai environment score increased by 10\%, indicating
-that
+1}, indicating that the code changes were effective in improving the agent's
+ability to recognize the win condition. A slight but statistically insignificant
+increase was observed for the other metrics induced in \emph{Iteration 0}, but the
+agent's overall baba-is-ai environment score increased by 10\%, indicating that
 \includegraphics[scale=0.07]{figs/emojis/emoji_1.png}
-was correctly identified by AutoLibra as a key bottleneck to the agent's
-performance in the environment.
+was correctly identified by AutoLibra as a key bottleneck to the agent's performance
+in the environment.
 
-The agent now targets specific blocks and objects instead of moving randomly, but
-gets stuck in loops and on immovable objects, and is unable to consistently
-complete multi-step tasks.
+The agent now targets specific blocks and objects instead of moving randomly,
+but gets stuck in loops and on immovable objects, and is unable to consistently complete
+multi-step tasks.
 
 Based on the metrics induced in \emph{Iteration 1}, several changes to the agent
 code were implemented:
@@ -58,7 +55,7 @@ code were implemented:
 		\includegraphics[scale=0.07]{figs/emojis/emoji_4.png}
 
 	\item Augmentation of single-shot example with movement instructions,
-		targeting improvement of \texttt{Rule Manipulation and Execution}
+		targeting improvement of \texttt{Rule Manipulation and \\Execution}
 		\includegraphics[scale=0.07]{figs/emojis/emoji_7.png}
 \end{itemize}
 
@@ -67,22 +64,22 @@ code were implemented:
 were observed due to more detailed single-shot examples and reasoning templates,
 and the corresponding increase in other metrics supports idea that
 \includegraphics[scale=0.07]{figs/emojis/emoji_1.png}
-is a key bottleneck to the agent's performance. We further observed a significant
-increase in
+is a key bottleneck to the agent's performance. We further observed a
+significant increase in
 \includegraphics[scale=0.07]{figs/emojis/emoji_2.png}
 and
 \includegraphics[scale=0.07]{figs/emojis/emoji_7.png}
-, indicating that the changes targeting these metrics were effective in improving
-the agent's reasoning performance and consequent avoidance of irrelevant objects.
-\texttt{Subtask Identification}
+, indicating that the changes targeting these metrics were effective in
+improving the agent's reasoning performance and consequent avoidance of
+irrelevant objects. \texttt{Subtask Identification}
 \includegraphics[scale=0.07]{figs/emojis/emoji_5.png}
 saw no significant improvement, as the agent still misunderstands map directions
 and confuses rule blocks with objects.
 
-Qualitatively, the agent now recognizes when wall rules need to be broken and breaks
-them, but still cannot assemble rules to win, as it gets stuck on immovable blocks
-and walls and does not understand where rule blocks need to be placed to form a win
-condition.
+Qualitatively, the agent now recognizes when wall rules need to be broken and
+breaks them, but still cannot assemble rules to win, as it gets stuck on
+immovable blocks and walls and does not understand where rule blocks need to be
+placed to form a win condition.
 
 Based on the metrics induced in \emph{Iteration 2}, several changes to the agent
 code were implemented:
@@ -113,23 +110,20 @@ code were implemented:
 \includegraphics[scale=0.07]{figs/emojis/emoji_4.png}
 and
 \includegraphics[scale=0.07]{figs/emojis/emoji_6.png}
-, indicating that the changes targeting these metrics were effective in
-improving the agent's reasoning performance and consequent avoidance of
-irrelevant objects.
+, indicating that the changes targeting these metrics were effective in improving
+the agent's reasoning performance and consequent avoidance of irrelevant objects.
 \includegraphics[scale=0.07]{figs/emojis/emoji_3.png}
-saw further improvement, indicating that the use of absolute position and
-immovable/movable block listing was effective in improving the agent's
-navigation efficiency.
+saw further improvement, indicating that the use of absolute position and immovable/movable
+block listing was effective in improving the agent's navigation efficiency.
 \includegraphics[scale=0.07]{figs/emojis/emoji_7.png}
-saw a slight increase, indicating that the changes targeting this metric were
-effective in improving the agent's ability to manipulate rules to achieve the
-win condition.
+saw a slight increase, indicating that the changes targeting this metric were effective
+in improving the agent's ability to manipulate rules to achieve the win condition.
 \includegraphics[scale=0.07]{figs/emojis/emoji_5.png}
-saw its first improvement, indicating that more complex metrics are effectively
-targeted when the base performance and simpler metrics are improved.
+saw its first improvement, indicating that more complex metrics are effectively targeted
+when the base performance and simpler metrics are improved.
 
-Qualitatively, nearly every agent always understands when wall rules can be and cannot
-be broken, as well as when it's not necessary to break the wall rule, covers nearly
-all tasks that involve going to win. The agent understands how to assemble win
-rules but still struggles with changing block direction and understanding that
+Qualitatively, nearly every agent always understands when wall rules can be and
+cannot be broken, as well as when it's not necessary to break the wall rule,
+covers nearly all tasks that involve going to win. The agent understands how to assemble
+win rules but still struggles with changing block direction and understanding that
 blocks get stuck against walls.

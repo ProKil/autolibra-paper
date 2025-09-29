@@ -1,6 +1,10 @@
-\section{AutoLibra as a ladder \protect
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+\section{AutoLibra as A Ladder \protect
 \includegraphics[height=1em]{figs/ladder.png}
-: Agent improvement with AutoLibra}
+: Agent Improvement with AutoLibra}
 \label{sec:ladder}
 
 % \begin{table}[!h]
@@ -21,7 +25,6 @@
 % 	\label{tab:baba_wv_scores}
 % \end{table}
 
-
 % \begin{figure}[!t]
 % 	\centering
 % 	\includegraphics[width=0.8\textwidth]{figs/autolibra-teaser.pdf}
@@ -33,7 +36,7 @@
 % 	metric names can be found in Tab. \ref{tab:baba_is_ai_metrics} and App. Tab.
 % 	\ref{tab:app_nnetnav_metrics}. }
 % 	\label{fig:autolibra-training}
-% 	\vspace{-20pt}
+% 	% 	\vspace{-20pt}
 % \end{figure}
 
 % \subsection{Can AutoLibra induce good optimization targets for prompt
@@ -149,39 +152,71 @@
 % in the Appendices \ref{appendix:minihack_rules}-\ref{appendix:minihack_obs}.
 % %\diyi{use a paragraph title to illustrate that this is about generalization? i also didn't quite follow why minihack is only summarized using these two sentences. if you want to emphasize it, explain it clearly; otherwise, no need to mention it? }
 
-
-
 % \subsection{Can AutoLibra induce good optimization targets for agent fine-tuning?}
 
-\begin{figure}[!t]
-\centering
-	\vspace{-20pt}
+\begin{figure}[!b]
+	\centering
 	\includegraphics[width=0.8\textwidth]{figs/running_maximum_plot.pdf}
-	\vspace{-15pt}
-	\caption{AutoLibra iteratively induce metrics and improves the agent prompts through optimizing for the induced metrics. Although not optimized for, the success rate of the agent continuously improve until Stage 3, when the agent begins to overthink.}
+	\caption{AutoLibra iteratively induce metrics and improves the agent prompts
+	through optimizing for the induced metrics. Although not optimized for, the
+	success rate of the agent continuously improve until Stage 3, when the agent begins
+	to overthink.}
 	\label{fig:autolibra_self_improving}
 \end{figure}
 
-
 As AutoLibra can automatically induce metrics from human feedback, a natural
 question to ask is whether it can enable self-regulated improvement in agents
-through iterative feedback.
-This can be achieved through optimizing the agent
-prompts towards higher scores on the metrics extracted by AutoLibra. 
-To answer this question, we use a challenging 2D game Baba-Is-AI  \citep{cloos2024babaaibreakrules, paglieri2024balrog}
-as a benchmark.
-Inspired by \href{https://hempuli.com/baba/}{Baba-Is-You}, this game requires not only following rules to 
-achieve goals, but also manipulating the rules, 
-even self-referential ones. 
-For example, in the game illustrated in App. Fig. \ref{fig:baba-is-ai}, the agent needs to change self-referential rules from \textsl{baba is you}, to \textsl{door is you} to control the green door on the other side of the wall, form a new win rule \textsl{ball is win}, and navigate to the red ball to achieve the win condition.
-To achieve a high score on this dataset, the agent needs not only planning, but also metacognitive skills, which is very challenging for LLM agents with frontier models as shown in the Balrog benchmark \citep{paglieri2024balrog}. In this experiment, we use Gemini-2.5-Flash \citep{geminiteam2025geminifamilyhighlycapable} for the agent, AutoLibra, and agent prompt optimization, throughout the experiment, which will be referred as the LLM in this section. Gemini-2.5-Flash is ranked as the 3rd place, with a success rate of $50.8\%\pm 4.6\%$ on the Balrog leaderboard for Baba-is-AI at the time of submission, and the state-of-the-art result is $56.7\%\pm4.5\%$.
+through iterative feedback. This can be achieved through optimizing the agent prompts
+towards higher scores on the metrics extracted by AutoLibra. To answer this
+question, we use a challenging 2D game Baba-Is-AI \citep{cloos2024babaaibreakrules, paglieri2024balrog}
+as a benchmark. Inspired by \href{https://hempuli.com/baba/}{Baba-Is-You}, this
+game requires not only following rules to achieve goals, but also manipulating the
+rules, even self-referential ones. For example, in the game illustrated in App. Fig.
+\ref{fig:baba-is-ai}, the agent needs to change self-referential rules from \textsl{baba
+is you}, to \textsl{door is you} to control the green door on the other side of
+the wall, form a new win rule \textsl{ball is win}, and navigate to the red ball
+to achieve the win condition. To achieve a high score on this dataset, the agent
+needs not only planning, but also metacognitive skills, which is very challenging
+for LLM agents with frontier models as shown in the Balrog benchmark \citep{paglieri2024balrog}.
+In this experiment, we use Gemini-2.5-Flash \citep{geminiteam2025geminifamilyhighlycapable}
+for the agent, AutoLibra, and agent prompt optimization, throughout the
+experiment, which will be referred as the LLM in this section. Gemini-2.5-Flash
+is ranked as the 3rd place, with a success rate of $50.8\%\pm 4.6\%$ on the Balrog
+leaderboard for Baba-is-AI at the time of submission, and the state-of-the-art
+result is $56.7\%\pm4.5\%$.
 
-Fig. \ref{fig:autolibra_self_improving} illustrated our procedure, and summarized the results. 
-We employ an iterative process by improving the agents in 3 stages through providing human feedback on 6 out of 40 tasks in the Baba-Is-AI. Before each stage we show human annotators 3 trajectories for the 6 tasks, gather the feedback, and apply AutoLibra iterative metric induction process (\S\ref{sec:iterative-induction}). This results in 5 metrics for Stage 1 and 2, and another 1 metric for Stage 3. 
-Within each stage, we iteratively feed 1 LLM agent trajectory on each of these 6 tasks, together with evaluation results based on these AutoLibra-induced metrics to the LLM to improve the prompt of the LLM agent. 
-This process results in continuous improvement not only on the running maximum metric scores, the cumulative average metrics, but also game success rate. Fig. \ref{fig:autolibra_self_improving} shows these statistics on the whole 40 tasks, although we only use 6 out of the 40 tasks in the whole optimization process. 
-Upon examining the agent trajectories, we find the 
-skills learned in the process. In the first stage, the agent learns to find rules to form based on the map boundary, which could be a result of an induced metric \texttt{map-n-constraint-recognition}.
-Similarly, more advanced skills are learned in Stage 2 and 3, including forming win conditions and self-referential rules, probably as a result of metric \texttt{rule-manipulation-proficiency}.
+\begin{figure}[!t]
+\centering
+\includegraphics[width=0.5\textwidth]{figs/babaisai-self-referential.pdf}
+\caption{Example of Baba-Is-AI game.}
+\label{fig:baba-is-ai}
+\end{figure}
 
-Our results show that the metrics induced by AutoLibra form effective objectives for improving the agents through prompt optimization. It should note that AutoLibra is a metric induction method, which is orthogonal to learning algorithms, including prompt optimization, fine-tuning or reinforcement learning. We show that this process improves agent success rate by 20\% without optimizing for success rate, and in the future, researchers can study the effect of employing other learning algorithm. 
+
+Fig. \ref{fig:autolibra_self_improving} illustrated our procedure, and
+summarized the results. We employ an iterative process by improving the agents in
+3 stages through providing human feedback on 6 out of 40 tasks in the Baba-Is-AI.
+Before each stage we show human annotators 3 trajectories for the 6 tasks, gather
+the feedback, and apply AutoLibra iterative metric induction process (\S\ref{sec:iterative-induction}).
+This results in 5 metrics for Stage 1 and 2, and another 1 metric for Stage 3. Within
+each stage, we iteratively feed 1 LLM agent trajectory on each of these 6 tasks,
+together with evaluation results based on these AutoLibra-induced metrics to the
+LLM to improve the prompt of the LLM agent. This process results in continuous
+improvement not only on the running maximum metric scores, the cumulative average
+metrics, but also game success rate. Fig. \ref{fig:autolibra_self_improving}
+shows these statistics on the whole 40 tasks, although we only use 6 out of the 40
+tasks in the whole optimization process. Upon examining the agent trajectories, we
+find the skills learned in the process. In the first stage, the agent learns to find
+rules to form based on the map boundary, which could be a result of an induced
+metric \texttt{map-n-constraint-recognition}. Similarly, more advanced skills are
+learned in Stage 2 and 3, including forming win conditions and self-referential
+rules, probably as a result of metric \texttt{rule-manipulation-proficiency}.
+
+Our results show that the metrics induced by AutoLibra form effective objectives
+for improving the agents through prompt optimization. It should note that AutoLibra
+is a metric induction method, which is orthogonal to learning algorithms, including
+prompt optimization, fine-tuning or reinforcement learning. We show that this process
+improves agent success rate by 20\% without optimizing for success rate, and in the
+future, researchers can study the effect of employing other learning algorithm.
+
+\end{document}

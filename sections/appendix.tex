@@ -1,3 +1,7 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
 \section*{Content of Appendix}
 \begin{itemize}
 	\item[\textbf{1.}] \textbf{AutoLibra Ladder Methodology}
@@ -11,7 +15,6 @@
 
 	\item[\textbf{2.}] \textbf{Baba-is-ai}
 		\begin{itemize}
-            \item \ref{appendix:baba-is-ai}Baba-Is-AI Game Illustration
 
 			\item \ref{appendix:baba_is_ai_rules} Rules and Environment Details
 
@@ -78,55 +81,6 @@
 	\label{fig:meta_evaluation}
 \end{figure}
 
-
-\section{Analysis of AutoLibra as a Lens}
-\label{sec:autolibra_as_a_lens_analysis}
-
-\paragraph{CoGym}
-For CoGym \citep{shao2024collaborative}, AutoLibra induces 9 metrics from
-feedback from \textbf{end users}, which can correspond to the five failure
-categories proposed by the authors. The failure rate (frequency of a metric
-score of -1) measured by AutoLibra also roughly matches the failure rate of the
-manually labeled CoGym categories by the authors. This shows that AutoLibra induces
-metrics that reflect human-expert categorization and provide an automated measurement
-of agent failures.
-
-
-
-\paragraph{Sotopia}
-Sotopia \citep{zhousotopia} proposed 7 dimensions for evaluating
-social intelligence in AI agents. With AutoLibra, we recover the exact dimension
-\emph{Goal Completion}, and 3 metrics as the subdimensions of \emph{Believability},
-indicating that \textit{Believability} could be too high-level, while AutoLibra provides
-more concrete breakdown metrics. The failure rate (frequency of a score of -1
-metric rating, indicating the agent performs poorly on that metric) measured by
-AutoLibra in these two categories roughly matches the score of the Sotopia
-dimensions of the agent we studied. AutoLibra induces another four metrics 
-overlooked in the heuristically proposed Sotopia-Eval dimensions. We note that
-the other five dimensions in Sotopia are still valuable evaluation dimensions
-for social intelligence. However, behaviors captured by dimensions \emph{Financial
-and Material Benefits}, \emph{Knowledge}, and \emph{Secret} are often also captured
-by \textit{Goal Completion} and \textit{Believability}. As a result, AutoLibra produces
-the single \textit{Goal Achievement and Outcome Effectiveness} by minimizing
-redundancy. Whereas, \textit{Relationship} and \textit{Social Rules} captures
-long-tailed behaviors not captured by AutoLibra.
-
-\paragraph{WebVoyager}
-Similarly, for web navigation tasks, AutoLibra also discovers metrics such as \textit{Access
-Barrier Handling}, \textit{Error Recovery and Adjustment}, \textit{Step
-Efficiency and Action Redundancy}, and \textit{Navigation Accuracy}, which much more
-closely reflect concrete agent behavior than the failure analysis categories proposed
-in previous work \citep{he2024webvoyager,zhou2024proposeragentevaluatorpaeautonomousskilldiscovery},
-where they are often simply classified as ``navigation stuck''. We also find
-additional metrics that are not mentioned in the failure analysis, such as \textit{Query
-and Search Strategy Efficiency} and \textit{Final Output and Summarization
-Quality}, which are frequent issues (with frequencies of 7\% and 18\%). Since AutoLibra
-only observes the behavior of the agents, it cannot interpret the neural
-representation, not able to capture the visual grounding issues, which are
-mentioned in the WebVoyager paper. This further demonstrates AutoLibra's utility
-in extracting behavior-salient metrics, and particularly its
-ability to obtain \textbf{fine-grained metrics} that expert design would not have
-been able to extract.
 
 \section{Baba-Is-AI Game Illustration}
 \label{appendix:baba-is-ai}
@@ -204,3 +158,5 @@ been able to extract.
 \section{NNetNav-Live Induced Metrics}
 \label{appendix:nnetnav_live}
 \input{sections/apptex/webvoyager_metrics}
+
+\end{document}
