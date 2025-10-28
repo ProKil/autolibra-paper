@@ -3,34 +3,39 @@
 \begin{document}
 	\section{The Bigger Picture}
 
-	Bring human in the loop of the developing machine learning models has been 
-    studied for decades \citep{monarch2021human}. The raise of AI systems with
-    agency bring new opportunies and challenges of this mission, 
+	Humans learn not only from their own experience, but crucially from collective
+	knowledge transmitted through social interaction \citep{tomasello1993cultural}. This
+	capacity for social learning and teaching enables knowledge accumulation across
+	generations, allowing us to build upon rather than reinvent skills and artifacts
+	\citep{humphrey1976social}. At the core of this capability lies a distinctive
+	form of intelligence that sets humans apart from species lacking cumulative culture:
+	social intelligence. A fundamental question emerges: how can we leverage this social
+	intelligence to enable AI agents to learn from humans and potentially teach them
+	in similar ways?
 
-	\textbf{Human-in-the-Loop Evaluation.} AutoLibra transforms casual human
-	observations into structured evaluation frameworks. Rather than requiring domain
-	experts to anticipate all possible evaluation criteria upfront, our approach
-	allows end-users to provide natural language feedback that gets systematically
-	converted into actionable metrics. This democratizes agent evaluation,
-	enabling non-technical stakeholders to contribute meaningfully to the
-	assessment process.
+	Current training paradigms for language agents predominantly focus on behavior
+	cloning or reinforcement learning from self-generated experience. However, behavior
+	cloning has inherent limitations for skill acquisition. First, it requires teachers
+	or demonstrators to operate in the same environment as the learning agent, constraining
+	the scalability of knowledge transfer. Second, agents learning from one or a few
+	demonstrations may develop misunderstandings about what constitutes appropriate
+	behavior. In such cases, explicit verbal feedback from teachers becomes crucial for
+	establishing the boundaries of acceptable behaviors and clarifying underlying principles
+	that cannot be easily inferred from demonstrations alone.
 
-	\textbf{Iterative Agent Training.} By converting human feedback into concrete metrics,
-	AutoLibra enables a new paradigm of iterative agent improvement. Developers can
-	collect feedback from diverse users, automatically generate evaluation
-	criteria, and use these metrics to guide both prompt engineering and model training.
-	This creates a feedback loop where human insights directly inform agent
-	optimization, moving beyond simple task success metrics to capture nuanced behavioral
-	preferences.
+	AutoLibra offers a computational approach to address these limitations by incorporating
+	the verbal feedback that humans naturally exchange in daily interactions to systematically
+	improve agent behavior. Looking forward, the broader vision is to deploy AI agents
+	in real-world settings where they can learn from diverse human feedback at scale.
+	This approach could enable agents to acquire skills from the collective experience
+	of all users, forming both general competencies and specialized skill sets at
+	\emph{personal} and \emph{organizational} levels, mirroring how human communities
+	accumulate and share knowledge.
 
-	\textbf{Scalable Human Oversight.} Perhaps most importantly, AutoLibra provides
-	a pathway for scalable human oversight of autonomous systems. As agents become
-	more capable and deployed in diverse contexts, the ability to quickly translate
-	human concerns into systematic evaluation becomes crucial. Our framework
-	enables organizations to maintain human agency in agent development while
-	scaling beyond what manual evaluation could achieve.
-
-	This work lays the groundwork for a future where agent development is
-	inherently collaborative between humans and machines, ensuring that autonomous
-	systems remain aligned with human values and expectations throughout their evolution.
+	Going one step further, such agents could serve as intermediaries for accelerating
+	skill and culture transmission between humans themselves---distilling expertise from
+	proficient users into interpretable metrics and actionable feedback that can guide
+	novices, thereby compressing traditional learning curves and democratizing access
+	to specialized knowledge.  
+	
 \end{document}

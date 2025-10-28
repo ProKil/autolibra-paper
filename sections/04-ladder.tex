@@ -171,7 +171,7 @@ towards higher scores on the metrics extracted by AutoLibra. To answer this
 question, we use a challenging 2D game Baba-Is-AI \citep{cloos2024babaaibreakrules, paglieri2024balrog}
 as a benchmark. Inspired by \href{https://hempuli.com/baba/}{Baba-Is-You}, this
 game requires not only following rules to achieve goals, but also manipulating the
-rules, even self-referential ones. For example, in the game illustrated in App. Fig.
+rules, even self-referential ones. For example, in the game illustrated in Fig.
 \ref{fig:baba-is-ai}, the agent needs to change self-referential rules from \textsl{baba
 is you}, to \textsl{door is you} to control the green door on the other side of
 the wall, form a new win rule \textsl{ball is win}, and navigate to the red ball
@@ -183,7 +183,8 @@ for the agent, AutoLibra, and agent prompt optimization, throughout the
 experiment, which will be referred as the LLM in this section. Gemini-2.5-Flash
 is ranked as the 3rd place, with a success rate of $50.8\%\pm 4.6\%$ on the Balrog
 leaderboard for Baba-is-AI at the time of submission, and the state-of-the-art
-result is $56.7\%\pm4.5\%$.
+result is $56.7\%\pm4.5\%$. We chose this model due to the tradeoff between the cost and
+the performance. 
 
 \begin{figure}[!t]
 \centering
@@ -194,10 +195,13 @@ result is $56.7\%\pm4.5\%$.
 
 
 Fig. \ref{fig:autolibra_self_improving} illustrated our procedure, and
-summarized the results. We employ an iterative process by improving the agents in
-3 stages through providing human feedback on 6 out of 40 tasks in the Baba-Is-AI.
-Before each stage we show human annotators 3 trajectories for the 6 tasks, gather
-the feedback, and apply AutoLibra iterative metric induction process (\S\ref{sec:iterative-induction}).
+summarized the results. In this experiment, we employ an iterative process by
+improving the agents in 3 stages through providing human feedback on 6 out of 40
+tasks in the Baba-Is-AI \citep{paglieri2024balrog} benchmark. In this way, we can study
+if the feedback provided for training tasks can be generalized to unseen tasks.
+
+Before each stage we show human annotators 3 trajectories per task for the 6 tasks,
+gather the feedback, and apply AutoLibra iterative metric induction process (\S\ref{sec:iterative-induction}).
 This results in 5 metrics for Stage 1 and 2, and another 1 metric for Stage 3. Within
 each stage, we iteratively feed 1 LLM agent trajectory on each of these 6 tasks,
 together with evaluation results based on these AutoLibra-induced metrics to the
