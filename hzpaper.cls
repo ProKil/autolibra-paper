@@ -11,7 +11,7 @@
 %   v0.2, January 2019 - Consistency of fonts, margins, additional notes
 %   v0.1, December 2018 - Initial version for testing
 %
-% MODIFICATIONS: 
+% MODIFICATIONS:
 %   - Renamed from googledeepmind.cls to hzpaper.cls
 %   - Removed Google DeepMind specific branding and references
 %   - Retained layout, fonts, and formatting capabilities
@@ -204,7 +204,7 @@ a4paper]{geometry}%
 \fancypagestyle{firststyle}{
 	\fancyhead[L]{
 		\ifthenelse{\boolean{logo}}{
-			\includegraphics[width=90pt]{stanford_logo.eps}
+			\includegraphics[width=90pt]{stanford_logo-eps-converted-to.pdf}
 	 }{}
 }
 \fancyhead[R]{

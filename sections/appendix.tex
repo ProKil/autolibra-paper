@@ -1,153 +1,149 @@
 \documentclass[../main.tex]{subfiles}
 
 \begin{document}
+    \section*{Content of Appendix}
+    \begin{itemize}
+        \item[\textbf{1.}] \textbf{AutoLibra Ladder Methodology}
+            \begin{itemize}
+                \item \ref{appendix:illustrations} Illustration of AutoLibra Method
 
-\section*{Content of Appendix}
-\begin{itemize}
-	\item[\textbf{1.}] \textbf{AutoLibra Ladder Methodology}
-		\begin{itemize}
-            \item \ref{appendix:illustrations} Illustration of AutoLibra Method
-            \item  \ref{sec:autolibra_as_a_lens_analysis} Analysis of AutoLibra as a Lens
-			\item \ref{appendix:algo1} Algorithm of AutoLibra Ladder
+                \item \ref{appendix:algo1} Algorithm of AutoLibra Ladder
 
-			\item \ref{appendix:autolibra_setup} AutoLibra Ladder Experiment Configuration
-		\end{itemize}
+                \item \ref{appendix:autolibra_setup} AutoLibra Ladder Experiment
+                    Configuration
+            \end{itemize}
 
-	\item[\textbf{2.}] \textbf{Baba-is-ai}
-		\begin{itemize}
+        \item[\textbf{2.}] \textbf{Baba-is-ai}
+            \begin{itemize}
+                \item \ref{appendix:baba_is_ai_rules} Rules and Environment Details
 
-			\item \ref{appendix:baba_is_ai_rules} Rules and Environment Details
+                \item \ref{appendix:heldout} Experiment Results
 
-			\item \ref{appendix:heldout} Experiment Results
+                \item \ref{appendix:babaisai} Metric Scores
 
-			\item \ref{appendix:babaisai} Metric Scores
+                \item \ref{appendix:babaisai_metrics} Metric Examples
 
-			\item \ref{appendix:babaisai_metrics} Metric Examples
+                \item \ref{appendix:babaisai_prompts} Prompts
 
-			\item \ref{appendix:babaisai_prompts} Prompts
+                \item \ref{appendix:baba_is_ai_obs} Qualitative Observations of Agent
+                    Performance
+            \end{itemize}
 
-			\item \ref{appendix:baba_is_ai_obs} Qualitative Observations of Agent Performance
-		\end{itemize}
+        \item[\textbf{3.}] \textbf{MiniHack}
+            \begin{itemize}
+                \item \ref{appendix:minihack_rules} Rules and Environment Details
 
-	\item[\textbf{3.}] \textbf{MiniHack}
-		\begin{itemize}
-			\item \ref{appendix:minihack_rules} Rules and Environment Details
+                \item \ref{appendix:heldout_mini} Experiment Results
 
-			\item \ref{appendix:heldout_mini} Experiment Results
+                \item \ref{appendix:minihack} Metric Scores
 
-			\item \ref{appendix:minihack} Metric Scores
+                \item \ref{appendix:minihack_metrics} Metric Examples
 
-			\item \ref{appendix:minihack_metrics} Metric Examples
+                \item \ref{appendix:minihack_prompts} Prompts
 
-			\item \ref{appendix:minihack_prompts} Prompts
+                \item \ref{appendix:minihack_obs} Qualitative Observations of Agent
+                    Performance
+            \end{itemize}
 
-			\item \ref{appendix:minihack_obs} Qualitative Observations of Agent Performance
-		\end{itemize}
+        \item[\textbf{4.}] \textbf{WebVoyager}
+            \begin{itemize}
+                %\item \ref{} Rules and Environment Details
 
-	\item[\textbf{4.}] \textbf{WebVoyager}
-		\begin{itemize}
-			%\item \ref{} Rules and Environment Details
+                \item \ref{appendix:nnetnav_live} NNetNav-Live Induced Metrics
+            \end{itemize}
+    \end{itemize}
 
-			\item \ref{appendix:nnetnav_live} NNetNav-Live Induced Metrics
-		\end{itemize}
-\end{itemize}
+    \newpage
+    \section{Illustration of AutoLibra Method}
+    \label{appendix:illustrations}
+    \begin{figure}[!h]
+        \includegraphics[width=0.4\linewidth]{figs/autolibra_step_1.pdf}
+        \caption{Feedback Grounding}
+        \label{fig:feedback_grounding}
+    \end{figure}
 
-\newpage
-\section{Illustration of AutoLibra Method}
-\label{appendix:illustrations}
-\begin{figure}[!h]
-	\includegraphics[width=0.4\linewidth]{figs/autolibra_step_1.pdf}
-	\caption{Feedback Grounding}
-	\label{fig:feedback_grounding}
-\end{figure}
+    \begin{figure}[!h]
+        \includegraphics[width=0.4\linewidth]{figs/autolibra_step_2.pdf}
+        \caption{Behavior Clustering}
+        \label{fig:behavior_clustering}
+    \end{figure}
 
-\begin{figure}[!h]
-	\includegraphics[width=0.4\linewidth]{figs/autolibra_step_2.pdf}
-	\caption{Behavior Clustering}
-	\label{fig:behavior_clustering}
-\end{figure}
+    \begin{figure}[!h]
+        \includegraphics[width=0.4\linewidth]{figs/autolibra_step_3.pdf}
+        \caption{Evaluation with induced metrics}
+        \label{fig:llm_as_a_judge}
+    \end{figure}
 
+    \begin{figure}[!h]
+        \includegraphics[width=0.4\linewidth]{figs/autolibra_step_4.pdf}
+        \caption{Meta evaluation}
+        \label{fig:meta_evaluation}
+    \end{figure}
 
-\begin{figure}[!h]
-	\includegraphics[width=0.4\linewidth]{figs/autolibra_step_3.pdf}
-	\caption{Evaluation with induced metrics}
-	\label{fig:llm_as_a_judge}
-\end{figure}
+    \section{Algorithm of AutoLibra Ladder Experiment}
+    \label{appendix:algo1}
+    \input{sections/apptex/algorithm_01.tex}
 
+    \section{AutoLibra Ladder Experiment Setup}
+    \label{appendix:autolibra_setup}
+    \input{sections/apptex/autolibra_setup.tex}
 
-\begin{figure}[!h]
-	\includegraphics[width=0.4\linewidth]{figs/autolibra_step_4.pdf}
-	\caption{Meta evaluation}
-	\label{fig:meta_evaluation}
-\end{figure}
+    \section{Baba-is-ai Rules and Environment Configuration}
+    \label{appendix:baba_is_ai_rules}
+    \input{sections/apptex/baba_is_you_rules.tex}
 
+    \section{Baba-is-ai Experiment Results}
+    \label{appendix:heldout}
+    \input{sections/apptex/heldout.tex}
 
+    \section{Baba-is-ai Metric Scores}
+    \label{appendix:babaisai}
+    \input{sections/apptex/babaisai_metrics_full40.tex}
+    \newpage
 
-\section{Algorithm of AutoLibra Ladder Experiment}
-\label{appendix:algo1}
-\input{sections/apptex/algorithm_01.tex}
+    \section{Baba-is-ai Metric Examples}
+    \label{appendix:babaisai_metrics}
+    \input{sections/apptex/baba_is_ai_metrics_example.tex}
+    \newpage
 
-\section{AutoLibra Ladder Experiment Setup}
-\label{appendix:autolibra_setup}
-\input{sections/apptex/autolibra_setup.tex}
+    \section{Baba-is-ai Prompts}
+    \label{appendix:babaisai_prompts}
+    \input{sections/apptex/baba_is_ai_prompts.tex}
+    \newpage
 
-\section{Baba-is-ai Rules and Environment Configuration}
-\label{appendix:baba_is_ai_rules}
-\input{sections/apptex/baba_is_you_rules.tex}
+    \section{Qualitative Observations of baba-is-ai Agent Performance}
+    \label{appendix:baba_is_ai_obs}
+    \input{sections/apptex/babaisai_eval_extras.tex}
+    \newpage
 
-\section{Baba-is-ai Experiment Results}
-\label{appendix:heldout}
-\input{sections/apptex/heldout.tex}
+    \section{MiniHack Rules and Environment Configuration}
+    \label{appendix:minihack_rules}
+    \input{sections/apptex/minihack_rules.tex}
 
-\section{Baba-is-ai Metric Scores}
-\label{appendix:babaisai}
-\input{sections/apptex/babaisai_metrics_full40.tex}
-\newpage
+    \section{MiniHack Experiment Results}
+    \label{appendix:heldout_mini}
+    \input{sections/apptex/heldout_mini.tex}
 
-\section{Baba-is-ai Metric Examples}
-\label{appendix:babaisai_metrics}
-\input{sections/apptex/baba_is_ai_metrics_example.tex}
-\newpage
+    \section{MiniHack Metric Performance}
+    \label{appendix:minihack}
+    \input{sections/apptex/minihack_metrics_performance.tex}
+    \newpage
 
-\section{Baba-is-ai Prompts}
-\label{appendix:babaisai_prompts}
-\input{sections/apptex/baba_is_ai_prompts.tex}
-\newpage
+    \section{MiniHack Metric Examples}
+    \label{appendix:minihack_metrics}
+    \input{sections/apptex/minihack_metrics_example.tex}
+    \newpage
 
-\section{Qualitative Observations of baba-is-ai Agent Performance}
-\label{appendix:baba_is_ai_obs}
-\input{sections/apptex/babaisai_eval_extras.tex}
-\newpage
+    \section{MiniHack Prompts}
+    \label{appendix:minihack_prompts}
+    \input{sections/apptex/minihack_prompts.tex}
+    \newpage
 
-\section{MiniHack Rules and Environment Configuration}
-\label{appendix:minihack_rules}
-\input{sections/apptex/minihack_rules.tex}
+    \section{Qualitative Observations of MiniHack Agent Performance}
+    \label{appendix:minihack_obs}
+    \input{sections/apptex/minihack_eval_extras.tex}
 
-\section{MiniHack Experiment Results}
-\label{appendix:heldout_mini}
-\input{sections/apptex/heldout_mini.tex}
-
-\section{MiniHack Metric Performance}
-\label{appendix:minihack}
-\input{sections/apptex/minihack_metrics_performance.tex}
-\newpage
-
-\section{MiniHack Metric Examples}
-\label{appendix:minihack_metrics}
-\input{sections/apptex/minihack_metrics_example.tex}
-\newpage
-
-\section{MiniHack Prompts}
-\label{appendix:minihack_prompts}
-\input{sections/apptex/minihack_prompts.tex}
-\newpage
-
-\section{Qualitative Observations of MiniHack Agent Performance}
-\label{appendix:minihack_obs}
-\input{sections/apptex/minihack_eval_extras.tex}
-
-\section{NNetNav-Live Induced Metrics}
-\label{appendix:nnetnav_live}
-\input{sections/apptex/webvoyager_metrics}
-
+    \section{NNetNav-Live Induced Metrics}
+    \label{appendix:nnetnav_live}
+    \input{sections/apptex/webvoyager_metrics}
 \end{document}
